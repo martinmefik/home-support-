@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Умный холодильник — рецепты и список покупок</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ЭКРАН АВТОРИЗАЦИИ -->
+  <div id="auth-screen" class="auth-screen">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="5" y="2" width="14" height="20" rx="2"/>
+          <line x1="5" y1="10" x2="19" y2="10"/>
+          <line x1="9" y1="6" x2="9" y2="8"/>
+          <line x1="9" y1="14" x2="9" y2="18"/>
+        </svg>
+        <h1>Умный холодильник</h1>
+        <p>Готовьте из того, что уже есть</p>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Вход</button>
+        <button class="auth-tab" data-tab="register">Регистрация</button>
+      </div>
+
+      <form id="login-form" class="auth-form active">
+        <input type="email" id="login-email" placeholder="Email" required>
+        <input type="password" id="login-password" placeholder="Пароль" required>
+        <button type="submit" class="btn-primary">Войти</button>
+        <p class="auth-error" id="login-error"></p>
+      </form>
+
+      <form id="register-form" class="auth-form">
+        <input type="text" id="register-name" placeholder="Ваше имя" required>
+        <input type="email" id="register-email" placeholder="Email" required>
+        <input type="password" id="register-password" placeholder="Пароль (мин. 4 символа)" required minlength="4">
+        <button type="submit" class="btn-primary">Создать аккаунт</button>
+        <p class="auth-error" id="register-error"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ОСНОВНОЕ ПРИЛОЖЕНИЕ -->
+  <div id="app" class="app hidden">
+
+    <!-- Шапка -->
+    <header class="app-header">
+      <div class="header-left">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="5" y="2" width="14" height="20" rx="2"/>
+          <line x1="5" y1="10" x2="19" y2="10"/>
+          <line x1="9" y1="6" x2="9" y2="8"/>
+          <line x1="9" y1="14" x2="9" y2="18"/>
+        </svg>
+        <span class="logo-text">Умный холодильник</span>
+      </div>
+      <div class="header-right">
+        <span class="user-name" id="header-user-name"></span>
+        <button class="btn-icon" id="logout-btn" title="Выйти">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Навигация -->
+    <nav class="app-nav">
+      <button class="nav-btn active" data-section="fridge">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="5" y="2" width="14" height="20" rx="2"/>
+          <line x1="5" y1="10" x2="19" y2="10"/>
+          <line x1="9" y1="6" x2="9" y2="8"/>
+          <line x1="9" y1="14" x2="9" y2="18"/>
+        </svg>
+        <span>Холодильник</span>
+      </button>
+      <button class="nav-btn" data-section="recipes">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+          <line x1="8" y1="8" x2="16" y2="8"/>
+          <line x1="8" y1="12" x2="16" y2="12"/>
+          <line x1="8" y1="16" x2="12" y2="16"/>
+        </svg>
+        <span>Рецепты</span>
+      </button>
+      <button class="nav-btn" data-section="shopping">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        <span>Список покупок</span>
+        <span class="badge hidden" id="shopping-badge">0</span>
+      </button>
+    </nav>
+
+    <!-- СЕКЦИЯ: ХОЛОДИЛЬНИК -->
+    <section id="section-fridge" class="app-section active">
+      <div class="section-header">
+        <h2>Мой холодильник</h2>
+        <button class="btn-primary btn-sm" id="open-add-product">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Добавить продукт
+        </button>
+      </div>
+
+      <div class="fridge-stats">
+        <div class="stat-card">
+          <span class="stat-value" id="stat-total">0</span>
+          <span class="stat-label">Всего продуктов</span>
+        </div>
+        <div class="stat-card stat-warn">
+          <span class="stat-value" id="stat-expiring">0</span>
+          <span class="stat-label">Скоро испортится</span>
+        </div>
+        <div class="stat-card stat-danger">
+          <span class="stat-value" id="stat-expired">0</span>
+          <span class="stat-label">Просрочено</span>
+        </div>
+      </div>
+
+      <div class="fridge-filters">
+        <input type="text" id="fridge-search" placeholder="Поиск продукта...">
+        <select id="fridge-category-filter">
+          <option value="">Все категории</option>
+          <option value="Овощи">Овощи</option>
+          <option value="Фрукты">Фрукты</option>
+          <option value="Мясо">Мясо</option>
+          <option value="Рыба">Рыба</option>
+          <option value="Молочное">Молочное</option>
+          <option value="Крупы">Крупы</option>
+          <option value="Специи">Специи</option>
+          <option value="Соусы">Соусы</option>
+          <option value="Прочее">Прочее</option>
+        </select>
+      </div>
+
+      <div id="fridge-list" class="product-list"></div>
+      <div id="fridge-empty" class="empty-state hidden">
+        <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="5" y="2" width="14" height="20" rx="2"/>
+          <line x1="5" y1="10" x2="19" y2="10"/>
+          <line x1="9" y1="6" x2="9" y2="8"/>
+          <line x1="9" y1="14" x2="9" y2="18"/>
+        </svg>
+        <p>Холодильник пуст. Добавьте первый продукт!</p>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: РЕЦЕПТЫ -->
+    <section id="section-recipes" class="app-section">
+      <div class="section-header">
+        <h2>Что приготовить</h2>
+        <p class="section-subtitle">Рецепты отсортированы по количеству совпадений с вашим холодильником</p>
+      </div>
+
+      <div class="recipe-filters">
+        <input type="text" id="recipe-search" placeholder="Поиск по названию или ингредиенту...">
+        <select id="recipe-sort">
+          <option value="match">По совпадению</option>
+          <option value="time">По времени готовки</option>
+          <option value="name">По названию</option>
+        </select>
+        <label class="checkbox-label">
+          <input type="checkbox" id="only-available">
+          <span>Только из того, что есть</span>
+        </label>
+      </div>
+
+      <div id="recipes-list" class="recipe-grid"></div>
+      <div id="recipes-empty" class="empty-state hidden">
+        <p>Рецепты не найдены. Попробуйте изменить фильтры.</p>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: СПИСОК ПОКУПОК -->
+    <section id="section-shopping" class="app-section">
+      <div class="section-header">
+        <h2>Список покупок</h2>
+        <button class="btn-secondary btn-sm" id="clear-bought">Убрать купленное</button>
+      </div>
+
+      <div id="shopping-list" class="shopping-list"></div>
+      <div id="shopping-empty" class="empty-state hidden">
+        <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        <p>Список пуст. Добавьте недостающие ингредиенты из рецептов.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- МОДАЛКА: ДОБАВЛЕНИЕ ПРОДУКТА -->
+  <div id="modal-product" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Добавить продукт</h3>
+        <button class="btn-icon modal-close" data-modal="modal-product">&times;</button>
+      </div>
+      <form id="product-form">
+        <div class="form-group">
+          <label>Название продукта</label>
+          <input type="text" id="product-name" placeholder="Например: Помидоры" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Количество</label>
+            <input type="number" id="product-qty" step="0.1" min="0" value="1" required>
+          </div>
+          <div class="form-group">
+            <label>Единица</label>
+            <select id="product-unit">
+              <option value="шт">шт</option>
+              <option value="г">г</option>
+              <option value="кг">кг</option>
+              <option value="мл">мл</option>
+              <option value="л">л</option>
+              <option value="уп">уп</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Категория</label>
+            <select id="product-category">
+              <option value="Овощи">Овощи</option>
+              <option value="Фрукты">Фрукты</option>
+              <option value="Мясо">Мясо</option>
+              <option value="Рыба">Рыба</option>
+              <option value="Молочное">Молочное</option>
+              <option value="Крупы">Крупы</option>
+              <option value="Специи">Специи</option>
+              <option value="Соусы">Соусы</option>
+              <option value="Прочее">Прочее</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Срок годности</label>
+            <input type="date" id="product-expiry">
+          </div>
+        </div>
+        <button type="submit" class="btn-primary btn-full">Добавить</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- МОДАЛКА: ПРОСМОТР РЕЦЕПТА -->
+  <div id="modal-recipe" class="modal hidden">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h3 id="recipe-modal-title"></h3>
+        <button class="btn-icon modal-close" data-modal="modal-recipe">&times;</button>
+      </div>
+      <div class="recipe-modal-body">
+        <div class="recipe-meta" id="recipe-modal-meta"></div>
+        <div class="recipe-ingredients">
+          <h4>Ингредиенты</h4>
+          <ul id="recipe-modal-ingredients"></ul>
+        </div>
+        <div class="recipe-steps">
+          <h4>Приготовление</h4>
+          <ol id="recipe-modal-steps"></ol>
+        </div>
+      </div>
+      <div class="recipe-modal-actions">
+        <button class="btn-primary" id="add-missing-to-shopping">Добавить недостающее в список покупок</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- УВЕДОМЛЕНИЯ -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
