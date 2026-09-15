@@ -1,290 +1,1682 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Умный холодильник — рецепты и список покупок</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Умный холодильник — рецепты и список покупок</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --surface-alt: #f9fafb;
+  --border: #e5e7eb;
+  --text: #111827;
+  --text-secondary: #6b7280;
+  --primary: #10b981;
+  --primary-dark: #059669;
+  --primary-light: #d1fae5;
+  --danger: #ef4444;
+  --danger-light: #fee2e2;
+  --warn: #f59e0b;
+  --warn-light: #fef3c7;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --transition: 0.2s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hidden { display: none !important; }
+
+/* ===== АВТОРИЗАЦИЯ ===== */
+.auth-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 50%, #f4f6f8 100%);
+}
+
+.auth-card {
+  background: var(--surface);
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+  padding: 40px 32px;
+  width: 100%;
+  max-width: 420px;
+  animation: fadeUp 0.4s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-logo { text-align: center; margin-bottom: 28px; }
+.auth-logo svg { color: var(--primary); margin-bottom: 12px; }
+.auth-logo h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
+.auth-logo p { color: var(--text-secondary); font-size: 0.9rem; }
+
+.auth-tabs {
+  display: flex;
+  background: var(--surface-alt);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+  margin-bottom: 24px;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.auth-tab.active { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+
+.auth-form { display: none; }
+.auth-form.active { display: block; }
+
+.auth-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  transition: var(--transition);
+  background: var(--surface);
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.auth-error { color: var(--danger); font-size: 0.85rem; margin-top: 8px; min-height: 20px; }
+
+/* ===== КНОПКИ ===== */
+.btn-primary, .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+
+.btn-secondary { background: var(--surface-alt); color: var(--text); border: 1.5px solid var(--border); }
+.btn-secondary:hover { background: var(--border); }
+
+.btn-full { width: 100%; }
+.btn-sm { padding: 8px 14px; font-size: 0.85rem; }
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-icon:hover { background: var(--surface-alt); color: var(--text); }
+
+/* ===== ПРИЛОЖЕНИЕ ===== */
+.app { max-width: 1100px; margin: 0 auto; padding-bottom: 40px; }
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header-left { display: flex; align-items: center; gap: 10px; color: var(--primary); }
+.logo-text { font-weight: 700; font-size: 1.05rem; color: var(--text); }
+.header-right { display: flex; align-items: center; gap: 12px; }
+.user-name { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); }
+
+/* ===== НАВИГАЦИЯ ===== */
+.app-nav {
+  display: flex;
+  gap: 4px;
+  padding: 12px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  position: sticky;
+  top: 69px;
+  z-index: 49;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  position: relative;
+}
+
+.nav-btn:hover { background: var(--surface-alt); }
+.nav-btn.active { background: var(--primary-light); color: var(--primary-dark); }
+
+.badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: var(--danger);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
+
+/* ===== СЕКЦИИ ===== */
+.app-section { display: none; padding: 24px 20px; }
+.app-section.active { display: block; }
+
+.section-header {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.section-header h2 { font-size: 1.35rem; font-weight: 700; }
+.section-subtitle { font-size: 0.85rem; color: var(--text-secondary); width: 100%; }
+
+/* ===== СТАТИСТИКА ===== */
+.fridge-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+
+.stat-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.stat-value { display: block; font-size: 1.6rem; font-weight: 700; color: var(--primary); }
+.stat-warn .stat-value { color: var(--warn); }
+.stat-danger .stat-value { color: var(--danger); }
+.stat-label { font-size: 0.8rem; color: var(--text-secondary); }
+
+/* ===== ФИЛЬТРЫ ===== */
+.fridge-filters, .recipe-filters { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+
+.fridge-filters input, .fridge-filters select,
+.recipe-filters input, .recipe-filters select {
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: var(--surface);
+  transition: var(--transition);
+}
+
+.fridge-filters input:focus, .fridge-filters select:focus,
+.recipe-filters input:focus, .recipe-filters select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.fridge-filters input { flex: 1; min-width: 180px; }
+.recipe-filters input { flex: 1; min-width: 200px; }
+
+.checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; cursor: pointer; white-space: nowrap; }
+.checkbox-label input { width: 18px; height: 18px; accent-color: var(--primary); }
+
+/* ===== СПИСОК ПРОДУКТОВ ===== */
+.product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+
+.product-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  transition: var(--transition);
+  border-left: 4px solid var(--primary);
+}
+
+.product-card:hover { box-shadow: var(--shadow-md); }
+.product-card.expiring-soon { border-left-color: var(--warn); }
+.product-card.expired { border-left-color: var(--danger); opacity: 0.75; }
+
+.product-info { flex: 1; }
+.product-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; }
+.product-details { font-size: 0.8rem; color: var(--text-secondary); }
+.product-expiry { font-size: 0.75rem; margin-top: 4px; font-weight: 500; }
+.product-expiry.expiring-soon { color: var(--warn); }
+.product-expiry.expired { color: var(--danger); }
+
+.product-actions { display: flex; flex-direction: column; gap: 4px; }
+
+.product-actions button {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: var(--surface-alt);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-actions button:hover { background: var(--danger-light); color: var(--danger); }
+
+/* ===== СЕТКА РЕЦЕПТОВ ===== */
+.recipe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+
+.recipe-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.recipe-card-header { padding: 16px 16px 0; }
+.recipe-card-title { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+.recipe-card-meta { display: flex; gap: 12px; font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 10px; }
+
+.recipe-match-bar { height: 6px; background: var(--surface-alt); border-radius: 3px; overflow: hidden; margin-bottom: 12px; }
+.recipe-match-fill { height: 100%; background: var(--primary); border-radius: 3px; transition: width 0.5s ease; }
+
+.recipe-card-ingredients { padding: 0 16px 16px; font-size: 0.82rem; color: var(--text-secondary); flex: 1; }
+.recipe-card-ingredients .have { color: var(--primary-dark); font-weight: 500; }
+.recipe-card-ingredients .missing { color: var(--danger); }
+
+.recipe-card-footer {
+  padding: 10px 16px;
+  background: var(--surface-alt);
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ===== СПИСОК ПОКУПОК ===== */
+.shopping-list { display: flex; flex-direction: column; gap: 8px; }
+
+.shopping-item {
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.shopping-item.bought { opacity: 0.55; text-decoration: line-through; }
+.shopping-item input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0; }
+.shopping-item-info { flex: 1; }
+.shopping-item-name { font-weight: 500; font-size: 0.92rem; }
+.shopping-item-recipe { font-size: 0.75rem; color: var(--text-secondary); }
+.shopping-item-qty { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); white-space: nowrap; }
+
+.shopping-item .remove-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.shopping-item .remove-btn:hover { background: var(--danger-light); color: var(--danger); }
+
+/* ===== ПУСТЫЕ СОСТОЯНИЯ ===== */
+.empty-state { text-align: center; padding: 60px 20px; color: var(--text-secondary); }
+.empty-state svg { color: var(--border); margin-bottom: 16px; }
+.empty-state p { font-size: 0.95rem; }
+
+/* ===== МОДАЛКИ ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal-content {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.25s ease;
+}
+
+.modal-lg { max-width: 640px; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.modal-header h3 { font-size: 1.15rem; font-weight: 700; }
+.modal-close { font-size: 1.5rem; line-height: 1; }
+
+.form-group { margin-bottom: 16px; flex: 1; }
+.form-group label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; color: var(--text-secondary); }
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: var(--surface);
+  transition: var(--transition);
+}
+
+.form-group input:focus, .form-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.form-row { display: flex; gap: 12px; }
+
+/* ===== МОДАЛКА РЕЦЕПТА ===== */
+.recipe-modal-body { margin-bottom: 20px; }
+
+.recipe-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.recipe-ingredients, .recipe-steps { margin-bottom: 20px; }
+.recipe-ingredients h4, .recipe-steps h4 { font-size: 1rem; font-weight: 600; margin-bottom: 10px; }
+
+.recipe-ingredients ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+
+.recipe-ingredients li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: var(--surface-alt);
+}
+
+.recipe-ingredients li.have { background: var(--primary-light); }
+
+.recipe-ingredients li .mark {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: auto;
+}
+
+.recipe-ingredients li.have .mark { background: var(--primary); color: #fff; }
+.recipe-ingredients li.missing .mark { background: var(--danger-light); color: var(--danger); }
+
+.recipe-steps ol { padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+.recipe-steps li { font-size: 0.9rem; line-height: 1.6; }
+
+.recipe-modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-md);
+  z-index: 200;
+  animation: toastIn 0.3s ease;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 640px) {
+  .auth-card { padding: 28px 20px; }
+  .app-header { padding: 12px 16px; }
+  .logo-text { font-size: 0.95rem; }
+  .app-nav { padding: 8px 12px; top: 61px; }
+  .nav-btn { padding: 8px 12px; font-size: 0.82rem; flex-direction: column; gap: 4px; text-align: center; }
+  .nav-btn span:not(.badge) { display: none; }
+  .nav-btn svg { width: 22px; height: 22px; }
+  .app-section { padding: 16px 12px; }
+  .fridge-stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .stat-card { padding: 12px 8px; }
+  .stat-value { font-size: 1.3rem; }
+  .stat-label { font-size: 0.7rem; }
+  .product-list { grid-template-columns: 1fr; }
+  .recipe-grid { grid-template-columns: 1fr; }
+  .recipe-filters { flex-direction: column; }
+  .recipe-filters input, .recipe-filters select { width: 100%; }
+  .form-row { flex-direction: column; gap: 0; }
+  .modal-content { padding: 20px 16px; border-radius: 14px; }
+}
+
+@media (max-width: 380px) {
+  .fridge-stats { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
 
-  <!-- ЭКРАН АВТОРИЗАЦИИ -->
-  <div id="auth-screen" class="auth-screen">
-    <div class="auth-card">
-      <div class="auth-logo">
-        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.8">
-          <rect x="5" y="2" width="14" height="20" rx="2"/>
-          <line x1="5" y1="10" x2="19" y2="10"/>
-          <line x1="9" y1="6" x2="9" y2="8"/>
-          <line x1="9" y1="14" x2="9" y2="18"/>
-        </svg>
-        <h1>Умный холодильник</h1>
-        <p>Готовьте из того, что уже есть</p>
-      </div>
-
-      <div class="auth-tabs">
-        <button class="auth-tab active" data-tab="login">Вход</button>
-        <button class="auth-tab" data-tab="register">Регистрация</button>
-      </div>
-
-      <form id="login-form" class="auth-form active">
-        <input type="email" id="login-email" placeholder="Email" required>
-        <input type="password" id="login-password" placeholder="Пароль" required>
-        <button type="submit" class="btn-primary">Войти</button>
-        <p class="auth-error" id="login-error"></p>
-      </form>
-
-      <form id="register-form" class="auth-form">
-        <input type="text" id="register-name" placeholder="Ваше имя" required>
-        <input type="email" id="register-email" placeholder="Email" required>
-        <input type="password" id="register-password" placeholder="Пароль (мин. 4 символа)" required minlength="4">
-        <button type="submit" class="btn-primary">Создать аккаунт</button>
-        <p class="auth-error" id="register-error"></p>
-      </form>
+<!-- ЭКРАН АВТОРИЗАЦИИ -->
+<div id="auth-screen" class="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.8">
+        <rect x="5" y="2" width="14" height="20" rx="2"/>
+        <line x1="5" y1="10" x2="19" y2="10"/>
+        <line x1="9" y1="6" x2="9" y2="8"/>
+        <line x1="9" y1="14" x2="9" y2="18"/>
+      </svg>
+      <h1>Умный холодильник</h1>
+      <p>Готовьте из того, что уже есть</p>
     </div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Вход</button>
+      <button class="auth-tab" data-tab="register">Регистрация</button>
+    </div>
+
+    <form id="login-form" class="auth-form active">
+      <input type="email" id="login-email" placeholder="Email" required>
+      <input type="password" id="login-password" placeholder="Пароль" required>
+      <button type="submit" class="btn-primary btn-full">Войти</button>
+      <p class="auth-error" id="login-error"></p>
+    </form>
+
+    <form id="register-form" class="auth-form">
+      <input type="text" id="register-name" placeholder="Ваше имя" required>
+      <input type="email" id="register-email" placeholder="Email" required>
+      <input type="password" id="register-password" placeholder="Пароль (мин. 4 символа)" required minlength="4">
+      <button type="submit" class="btn-primary btn-full">Создать аккаунт</button>
+      <p class="auth-error" id="register-error"></p>
+    </form>
   </div>
+</div>
 
-  <!-- ОСНОВНОЕ ПРИЛОЖЕНИЕ -->
-  <div id="app" class="app hidden">
+<!-- ОСНОВНОЕ ПРИЛОЖЕНИЕ -->
+<div id="app" class="app hidden">
 
-    <!-- Шапка -->
-    <header class="app-header">
-      <div class="header-left">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8">
-          <rect x="5" y="2" width="14" height="20" rx="2"/>
-          <line x1="5" y1="10" x2="19" y2="10"/>
-          <line x1="9" y1="6" x2="9" y2="8"/>
-          <line x1="9" y1="14" x2="9" y2="18"/>
+  <header class="app-header">
+    <div class="header-left">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8">
+        <rect x="5" y="2" width="14" height="20" rx="2"/>
+        <line x1="5" y1="10" x2="19" y2="10"/>
+        <line x1="9" y1="6" x2="9" y2="8"/>
+        <line x1="9" y1="14" x2="9" y2="18"/>
+      </svg>
+      <span class="logo-text">Умный холодильник</span>
+    </div>
+    <div class="header-right">
+      <span class="user-name" id="header-user-name"></span>
+      <button class="btn-icon" id="logout-btn" title="Выйти">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
         </svg>
-        <span class="logo-text">Умный холодильник</span>
-      </div>
-      <div class="header-right">
-        <span class="user-name" id="header-user-name"></span>
-        <button class="btn-icon" id="logout-btn" title="Выйти">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-            <polyline points="16 17 21 12 16 7"/>
-            <line x1="21" y1="12" x2="9" y2="12"/>
-          </svg>
-        </button>
-      </div>
-    </header>
-
-    <!-- Навигация -->
-    <nav class="app-nav">
-      <button class="nav-btn active" data-section="fridge">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
-          <rect x="5" y="2" width="14" height="20" rx="2"/>
-          <line x1="5" y1="10" x2="19" y2="10"/>
-          <line x1="9" y1="6" x2="9" y2="8"/>
-          <line x1="9" y1="14" x2="9" y2="18"/>
-        </svg>
-        <span>Холодильник</span>
       </button>
-      <button class="nav-btn" data-section="recipes">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
-          <path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
-          <line x1="8" y1="8" x2="16" y2="8"/>
-          <line x1="8" y1="12" x2="16" y2="12"/>
-          <line x1="8" y1="16" x2="12" y2="16"/>
+    </div>
+  </header>
+
+  <nav class="app-nav">
+    <button class="nav-btn active" data-section="fridge">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+        <rect x="5" y="2" width="14" height="20" rx="2"/>
+        <line x1="5" y1="10" x2="19" y2="10"/>
+        <line x1="9" y1="6" x2="9" y2="8"/>
+        <line x1="9" y1="14" x2="9" y2="18"/>
+      </svg>
+      <span>Холодильник</span>
+    </button>
+    <button class="nav-btn" data-section="recipes">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+        <line x1="8" y1="8" x2="16" y2="8"/>
+        <line x1="8" y1="12" x2="16" y2="12"/>
+        <line x1="8" y1="16" x2="12" y2="16"/>
+      </svg>
+      <span>Рецепты</span>
+    </button>
+    <button class="nav-btn" data-section="shopping">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="9" cy="21" r="1"/>
+        <circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      <span>Список покупок</span>
+      <span class="badge hidden" id="shopping-badge">0</span>
+    </button>
+  </nav>
+
+  <section id="section-fridge" class="app-section active">
+    <div class="section-header">
+      <h2>Мой холодильник</h2>
+      <button class="btn-primary btn-sm" id="open-add-product">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <line x1="5" y1="12" x2="19" y2="12"/>
         </svg>
-        <span>Рецепты</span>
+        Добавить продукт
       </button>
-      <button class="nav-btn" data-section="shopping">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
-          <circle cx="9" cy="21" r="1"/>
-          <circle cx="20" cy="21" r="1"/>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-        </svg>
-        <span>Список покупок</span>
-        <span class="badge hidden" id="shopping-badge">0</span>
-      </button>
-    </nav>
+    </div>
 
-    <!-- СЕКЦИЯ: ХОЛОДИЛЬНИК -->
-    <section id="section-fridge" class="app-section active">
-      <div class="section-header">
-        <h2>Мой холодильник</h2>
-        <button class="btn-primary btn-sm" id="open-add-product">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="12" y1="5" x2="12" y2="19"/>
-            <line x1="5" y1="12" x2="19" y2="12"/>
-          </svg>
-          Добавить продукт
-        </button>
+    <div class="fridge-stats">
+      <div class="stat-card">
+        <span class="stat-value" id="stat-total">0</span>
+        <span class="stat-label">Всего продуктов</span>
       </div>
+      <div class="stat-card stat-warn">
+        <span class="stat-value" id="stat-expiring">0</span>
+        <span class="stat-label">Скоро испортится</span>
+      </div>
+      <div class="stat-card stat-danger">
+        <span class="stat-value" id="stat-expired">0</span>
+        <span class="stat-label">Просрочено</span>
+      </div>
+    </div>
 
-      <div class="fridge-stats">
-        <div class="stat-card">
-          <span class="stat-value" id="stat-total">0</span>
-          <span class="stat-label">Всего продуктов</span>
-        </div>
-        <div class="stat-card stat-warn">
-          <span class="stat-value" id="stat-expiring">0</span>
-          <span class="stat-label">Скоро испортится</span>
-        </div>
-        <div class="stat-card stat-danger">
-          <span class="stat-value" id="stat-expired">0</span>
-          <span class="stat-label">Просрочено</span>
-        </div>
-      </div>
+    <div class="fridge-filters">
+      <input type="text" id="fridge-search" placeholder="Поиск продукта...">
+      <select id="fridge-category-filter">
+        <option value="">Все категории</option>
+        <option value="Овощи">Овощи</option>
+        <option value="Фрукты">Фрукты</option>
+        <option value="Мясо">Мясо</option>
+        <option value="Рыба">Рыба</option>
+        <option value="Молочное">Молочное</option>
+        <option value="Крупы">Крупы</option>
+        <option value="Специи">Специи</option>
+        <option value="Соусы">Соусы</option>
+        <option value="Прочее">Прочее</option>
+      </select>
+    </div>
 
-      <div class="fridge-filters">
-        <input type="text" id="fridge-search" placeholder="Поиск продукта...">
-        <select id="fridge-category-filter">
-          <option value="">Все категории</option>
-          <option value="Овощи">Овощи</option>
-          <option value="Фрукты">Фрукты</option>
-          <option value="Мясо">Мясо</option>
-          <option value="Рыба">Рыба</option>
-          <option value="Молочное">Молочное</option>
-          <option value="Крупы">Крупы</option>
-          <option value="Специи">Специи</option>
-          <option value="Соусы">Соусы</option>
-          <option value="Прочее">Прочее</option>
-        </select>
-      </div>
+    <div id="fridge-list" class="product-list"></div>
+    <div id="fridge-empty" class="empty-state hidden">
+      <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.2">
+        <rect x="5" y="2" width="14" height="20" rx="2"/>
+        <line x1="5" y1="10" x2="19" y2="10"/>
+        <line x1="9" y1="6" x2="9" y2="8"/>
+        <line x1="9" y1="14" x2="9" y2="18"/>
+      </svg>
+      <p>Холодильник пуст. Добавьте первый продукт!</p>
+    </div>
+  </section>
 
-      <div id="fridge-list" class="product-list"></div>
-      <div id="fridge-empty" class="empty-state hidden">
-        <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.2">
-          <rect x="5" y="2" width="14" height="20" rx="2"/>
-          <line x1="5" y1="10" x2="19" y2="10"/>
-          <line x1="9" y1="6" x2="9" y2="8"/>
-          <line x1="9" y1="14" x2="9" y2="18"/>
-        </svg>
-        <p>Холодильник пуст. Добавьте первый продукт!</p>
-      </div>
-    </section>
+  <section id="section-recipes" class="app-section">
+    <div class="section-header">
+      <h2>Что приготовить</h2>
+      <p class="section-subtitle">Рецепты отсортированы по количеству совпадений с вашим холодильником</p>
+    </div>
 
-    <!-- СЕКЦИЯ: РЕЦЕПТЫ -->
-    <section id="section-recipes" class="app-section">
-      <div class="section-header">
-        <h2>Что приготовить</h2>
-        <p class="section-subtitle">Рецепты отсортированы по количеству совпадений с вашим холодильником</p>
-      </div>
+    <div class="recipe-filters">
+      <input type="text" id="recipe-search" placeholder="Поиск по названию или ингредиенту...">
+      <select id="recipe-sort">
+        <option value="match">По совпадению</option>
+        <option value="time">По времени готовки</option>
+        <option value="name">По названию</option>
+      </select>
+      <label class="checkbox-label">
+        <input type="checkbox" id="only-available">
+        <span>Только из того, что есть</span>
+      </label>
+    </div>
 
-      <div class="recipe-filters">
-        <input type="text" id="recipe-search" placeholder="Поиск по названию или ингредиенту...">
-        <select id="recipe-sort">
-          <option value="match">По совпадению</option>
-          <option value="time">По времени готовки</option>
-          <option value="name">По названию</option>
-        </select>
-        <label class="checkbox-label">
-          <input type="checkbox" id="only-available">
-          <span>Только из того, что есть</span>
-        </label>
-      </div>
+    <div id="recipes-list" class="recipe-grid"></div>
+    <div id="recipes-empty" class="empty-state hidden">
+      <p>Рецепты не найдены. Попробуйте изменить фильтры.</p>
+    </div>
+  </section>
 
-      <div id="recipes-list" class="recipe-grid"></div>
-      <div id="recipes-empty" class="empty-state hidden">
-        <p>Рецепты не найдены. Попробуйте изменить фильтры.</p>
-      </div>
-    </section>
+  <section id="section-shopping" class="app-section">
+    <div class="section-header">
+      <h2>Список покупок</h2>
+      <button class="btn-secondary btn-sm" id="clear-bought">Убрать купленное</button>
+    </div>
 
-    <!-- СЕКЦИЯ: СПИСОК ПОКУПОК -->
-    <section id="section-shopping" class="app-section">
-      <div class="section-header">
-        <h2>Список покупок</h2>
-        <button class="btn-secondary btn-sm" id="clear-bought">Убрать купленное</button>
-      </div>
+    <div id="shopping-list" class="shopping-list"></div>
+    <div id="shopping-empty" class="empty-state hidden">
+      <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.2">
+        <circle cx="9" cy="21" r="1"/>
+        <circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      <p>Список пуст. Добавьте недостающие ингредиенты из рецептов.</p>
+    </div>
+  </section>
+</div>
 
-      <div id="shopping-list" class="shopping-list"></div>
-      <div id="shopping-empty" class="empty-state hidden">
-        <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.2">
-          <circle cx="9" cy="21" r="1"/>
-          <circle cx="20" cy="21" r="1"/>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-        </svg>
-        <p>Список пуст. Добавьте недостающие ингредиенты из рецептов.</p>
+<!-- МОДАЛКА: ДОБАВЛЕНИЕ ПРОДУКТА -->
+<div id="modal-product" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Добавить продукт</h3>
+      <button class="btn-icon modal-close" data-modal="modal-product">&times;</button>
+    </div>
+    <form id="product-form">
+      <div class="form-group">
+        <label>Название продукта</label>
+        <input type="text" id="product-name" placeholder="Например: Помидоры" required>
       </div>
-    </section>
-  </div>
-
-  <!-- МОДАЛКА: ДОБАВЛЕНИЕ ПРОДУКТА -->
-  <div id="modal-product" class="modal hidden">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Добавить продукт</h3>
-        <button class="btn-icon modal-close" data-modal="modal-product">&times;</button>
-      </div>
-      <form id="product-form">
+      <div class="form-row">
         <div class="form-group">
-          <label>Название продукта</label>
-          <input type="text" id="product-name" placeholder="Например: Помидоры" required>
+          <label>Количество</label>
+          <input type="number" id="product-qty" step="0.1" min="0" value="1" required>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Количество</label>
-            <input type="number" id="product-qty" step="0.1" min="0" value="1" required>
-          </div>
-          <div class="form-group">
-            <label>Единица</label>
-            <select id="product-unit">
-              <option value="шт">шт</option>
-              <option value="г">г</option>
-              <option value="кг">кг</option>
-              <option value="мл">мл</option>
-              <option value="л">л</option>
-              <option value="уп">уп</option>
-            </select>
-          </div>
+        <div class="form-group">
+          <label>Единица</label>
+          <select id="product-unit">
+            <option value="шт">шт</option>
+            <option value="г">г</option>
+            <option value="кг">кг</option>
+            <option value="мл">мл</option>
+            <option value="л">л</option>
+            <option value="уп">уп</option>
+          </select>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Категория</label>
-            <select id="product-category">
-              <option value="Овощи">Овощи</option>
-              <option value="Фрукты">Фрукты</option>
-              <option value="Мясо">Мясо</option>
-              <option value="Рыба">Рыба</option>
-              <option value="Молочное">Молочное</option>
-              <option value="Крупы">Крупы</option>
-              <option value="Специи">Специи</option>
-              <option value="Соусы">Соусы</option>
-              <option value="Прочее">Прочее</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Срок годности</label>
-            <input type="date" id="product-expiry">
-          </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Категория</label>
+          <select id="product-category">
+            <option value="Овощи">Овощи</option>
+            <option value="Фрукты">Фрукты</option>
+            <option value="Мясо">Мясо</option>
+            <option value="Рыба">Рыба</option>
+            <option value="Молочное">Молочное</option>
+            <option value="Крупы">Крупы</option>
+            <option value="Специи">Специи</option>
+            <option value="Соусы">Соусы</option>
+            <option value="Прочее">Прочее</option>
+          </select>
         </div>
-        <button type="submit" class="btn-primary btn-full">Добавить</button>
-      </form>
-    </div>
+        <div class="form-group">
+          <label>Срок годности</label>
+          <input type="date" id="product-expiry">
+        </div>
+      </div>
+      <button type="submit" class="btn-primary btn-full">Добавить</button>
+    </form>
   </div>
+</div>
 
-  <!-- МОДАЛКА: ПРОСМОТР РЕЦЕПТА -->
-  <div id="modal-recipe" class="modal hidden">
-    <div class="modal-content modal-lg">
-      <div class="modal-header">
-        <h3 id="recipe-modal-title"></h3>
-        <button class="btn-icon modal-close" data-modal="modal-recipe">&times;</button>
+<!-- МОДАЛКА: ПРОСМОТР РЕЦЕПТА -->
+<div id="modal-recipe" class="modal hidden">
+  <div class="modal-content modal-lg">
+    <div class="modal-header">
+      <h3 id="recipe-modal-title"></h3>
+      <button class="btn-icon modal-close" data-modal="modal-recipe">&times;</button>
+    </div>
+    <div class="recipe-modal-body">
+      <div class="recipe-meta" id="recipe-modal-meta"></div>
+      <div class="recipe-ingredients">
+        <h4>Ингредиенты</h4>
+        <ul id="recipe-modal-ingredients"></ul>
       </div>
-      <div class="recipe-modal-body">
-        <div class="recipe-meta" id="recipe-modal-meta"></div>
-        <div class="recipe-ingredients">
-          <h4>Ингредиенты</h4>
-          <ul id="recipe-modal-ingredients"></ul>
-        </div>
-        <div class="recipe-steps">
-          <h4>Приготовление</h4>
-          <ol id="recipe-modal-steps"></ol>
-        </div>
-      </div>
-      <div class="recipe-modal-actions">
-        <button class="btn-primary" id="add-missing-to-shopping">Добавить недостающее в список покупок</button>
+      <div class="recipe-steps">
+        <h4>Приготовление</h4>
+        <ol id="recipe-modal-steps"></ol>
       </div>
     </div>
+    <div class="recipe-modal-actions">
+      <button class="btn-primary" id="add-missing-to-shopping">Добавить недостающее в список покупок</button>
+    </div>
   </div>
+</div>
 
-  <!-- УВЕДОМЛЕНИЯ -->
-  <div id="toast" class="toast hidden"></div>
+<div id="toast" class="toast hidden"></div>
 
-  <script src="app.js"></script>
+<script>
+/* ============================================================
+   УМНЫЙ ХОЛОДИЛЬНИК — логика приложения
+   ============================================================ */
+
+const RECIPES = [
+  {
+    id: 1, name: "Паста с томатами и базиликом", category: "Основное", time: 25, servings: 2,
+    ingredients: [
+      { name: "Спагетти", qty: 200, unit: "г" },
+      { name: "Помидоры", qty: 3, unit: "шт" },
+      { name: "Чеснок", qty: 2, unit: "зуб" },
+      { name: "Базилик", qty: 10, unit: "г" },
+      { name: "Оливковое масло", qty: 2, unit: "ст.л." },
+      { name: "Соль", qty: 1, unit: "щеп" },
+      { name: "Перец чёрный", qty: 1, unit: "щеп" }
+    ],
+    steps: [
+      "Отварите спагетти в подсоленной воде до готовности.",
+      "Помидоры нарежьте кубиками, чеснок измельчите.",
+      "Разогрейте оливковое масло, обжарьте чеснок 1 минуту.",
+      "Добавьте помидоры, тушите 5–7 минут.",
+      "Добавьте базилик, соль и перец.",
+      "Смешайте пасту с соусом и подавайте."
+    ]
+  },
+  {
+    id: 2, name: "Омлет с сыром и помидорами", category: "Завтрак", time: 15, servings: 2,
+    ingredients: [
+      { name: "Яйца", qty: 4, unit: "шт" },
+      { name: "Молоко", qty: 50, unit: "мл" },
+      { name: "Сыр", qty: 80, unit: "г" },
+      { name: "Помидоры", qty: 1, unit: "шт" },
+      { name: "Масло сливочное", qty: 10, unit: "г" },
+      { name: "Соль", qty: 1, unit: "щеп" }
+    ],
+    steps: [
+      "Взбейте яйца с молоком и солью.",
+      "Помидоры нарежьте тонкими ломтиками, сыр натрите.",
+      "Растопите масло на сковороде.",
+      "Вылейте яичную смесь, готовьте на среднем огне.",
+      "Когда низ схватится, выложите помидоры и сыр.",
+      "Накройте крышкой и готовьте ещё 3–4 минуты."
+    ]
+  },
+  {
+    id: 3, name: "Куриный суп с овощами", category: "Суп", time: 50, servings: 4,
+    ingredients: [
+      { name: "Курица", qty: 400, unit: "г" },
+      { name: "Картофель", qty: 3, unit: "шт" },
+      { name: "Морковь", qty: 1, unit: "шт" },
+      { name: "Лук", qty: 1, unit: "шт" },
+      { name: "Лавровый лист", qty: 1, unit: "шт" },
+      { name: "Соль", qty: 1, unit: "щеп" },
+      { name: "Зелень", qty: 10, unit: "г" }
+    ],
+    steps: [
+      "Курицу залейте холодной водой, доведите до кипения, снимите пену.",
+      "Варите бульон 30 минут на слабом огне.",
+      "Достаньте курицу, отделите мясо от костей.",
+      "В бульон добавьте нарезанный картофель, морковь, лук.",
+      "Варите 15 минут, добавьте лавровый лист и соль.",
+      "Верните мясо, варите ещё 5 минут, добавьте зелень."
+    ]
+  },
+  {
+    id: 4, name: "Греческий салат", category: "Салат", time: 15, servings: 2,
+    ingredients: [
+      { name: "Огурец", qty: 1, unit: "шт" },
+      { name: "Помидоры", qty: 2, unit: "шт" },
+      { name: "Перец болгарский", qty: 1, unit: "шт" },
+      { name: "Сыр фета", qty: 100, unit: "г" },
+      { name: "Маслины", qty: 50, unit: "г" },
+      { name: "Оливковое масло", qty: 2, unit: "ст.л." },
+      { name: "Лимон", qty: 0.5, unit: "шт" }
+    ],
+    steps: [
+      "Нарежьте огурец, помидоры и перец крупными кубиками.",
+      "Добавьте маслины и фету, нарезанную кубиками.",
+      "Заправьте оливковым маслом и соком лимона.",
+      "Аккуратно перемешайте и подавайте."
+    ]
+  },
+  {
+    id: 5, name: "Рис с овощами и курицей", category: "Основное", time: 35, servings: 3,
+    ingredients: [
+      { name: "Рис", qty: 300, unit: "г" },
+      { name: "Курица", qty: 300, unit: "г" },
+      { name: "Морковь", qty: 1, unit: "шт" },
+      { name: "Лук", qty: 1, unit: "шт" },
+      { name: "Перец болгарский", qty: 1, unit: "шт" },
+      { name: "Соевый соус", qty: 3, unit: "ст.л." },
+      { name: "Масло растительное", qty: 2, unit: "ст.л." }
+    ],
+    steps: [
+      "Курицу нарежьте кусочками и обжарьте до золотистой корочки.",
+      "Добавьте лук, морковь и перец, обжаривайте 5 минут.",
+      "Добавьте промытый рис и соевый соус, перемешайте.",
+      "Залейте водой (2:1 от риса), доведите до кипения.",
+      "Накройте крышкой и готовьте на слабом огне 20 минут.",
+      "Дайте настояться 5 минут перед подачей."
+    ]
+  },
+  {
+    id: 6, name: "Сырники", category: "Завтрак", time: 25, servings: 3,
+    ingredients: [
+      { name: "Творог", qty: 400, unit: "г" },
+      { name: "Яйца", qty: 2, unit: "шт" },
+      { name: "Мука", qty: 100, unit: "г" },
+      { name: "Сахар", qty: 2, unit: "ст.л." },
+      { name: "Соль", qty: 1, unit: "щеп" },
+      { name: "Масло растительное", qty: 2, unit: "ст.л." }
+    ],
+    steps: [
+      "Смешайте творог, яйца, сахар и соль.",
+      "Добавьте муку и замесите мягкое тесто.",
+      "Сформируйте небольшие лепёшки.",
+      "Обжарьте на разогретом масле по 3–4 минуты с каждой стороны.",
+      "Подавайте со сметаной или вареньем."
+    ]
+  },
+  {
+    id: 7, name: "Борщ", category: "Суп", time: 90, servings: 6,
+    ingredients: [
+      { name: "Свёкла", qty: 2, unit: "шт" },
+      { name: "Капуста", qty: 300, unit: "г" },
+      { name: "Картофель", qty: 4, unit: "шт" },
+      { name: "Морковь", qty: 1, unit: "шт" },
+      { name: "Лук", qty: 1, unit: "шт" },
+      { name: "Мясо", qty: 500, unit: "г" },
+      { name: "Томатная паста", qty: 2, unit: "ст.л." }
+    ],
+    steps: [
+      "Сварите бульон из мяса (60 минут).",
+      "Натрите свёклу и морковь, нарежьте лук, обжарьте с томатной пастой.",
+      "Добавьте в бульон нарезанный картофель, варите 10 минут.",
+      "Добавьте капусту и зажарку, варите 15 минут.",
+      "Добавьте специи и зелень, дайте настояться 20 минут."
+    ]
+  },
+  {
+    id: 8, name: "Панкейки", category: "Завтрак", time: 20, servings: 4,
+    ingredients: [
+      { name: "Мука", qty: 200, unit: "г" },
+      { name: "Молоко", qty: 300, unit: "мл" },
+      { name: "Яйца", qty: 2, unit: "шт" },
+      { name: "Сахар", qty: 2, unit: "ст.л." },
+      { name: "Разрыхлитель", qty: 1, unit: "ч.л." },
+      { name: "Соль", qty: 1, unit: "щеп" }
+    ],
+    steps: [
+      "Смешайте сухие ингредиенты.",
+      "Добавьте яйца и молоко, взбейте до однородности.",
+      "Разогрейте сковороду на среднем огне.",
+      "Вылейте небольшие порции теста.",
+      "Готовьте по 2 минуты с каждой стороны до золотистого цвета."
+    ]
+  },
+  {
+    id: 9, name: "Салат Цезарь с курицей", category: "Салат", time: 30, servings: 2,
+    ingredients: [
+      { name: "Курица", qty: 250, unit: "г" },
+      { name: "Салат романо", qty: 200, unit: "г" },
+      { name: "Сухарики", qty: 100, unit: "г" },
+      { name: "Сыр пармезан", qty: 50, unit: "г" },
+      { name: "Соус Цезарь", qty: 100, unit: "г" },
+      { name: "Яйца", qty: 1, unit: "шт" }
+    ],
+    steps: [
+      "Курицу нарежьте и обжарьте до готовности.",
+      "Салат порвите руками, добавьте сухарики.",
+      "Сверху выложите курицу и натёртый сыр.",
+      "Заправьте соусом и подавайте."
+    ]
+  },
+  {
+    id: 10, name: "Картофельное пюре с котлетами", category: "Основное", time: 45, servings: 4,
+    ingredients: [
+      { name: "Картофель", qty: 800, unit: "г" },
+      { name: "Молоко", qty: 150, unit: "мл" },
+      { name: "Масло сливочное", qty: 50, unit: "г" },
+      { name: "Фарш", qty: 500, unit: "г" },
+      { name: "Лук", qty: 1, unit: "шт" },
+      { name: "Яйца", qty: 1, unit: "шт" },
+      { name: "Хлеб", qty: 2, unit: "лом" }
+    ],
+    steps: [
+      "Картофель отварите в подсоленной воде до мягкости.",
+      "Слейте воду, добавьте молоко и масло, разомните в пюре.",
+      "В фарш добавьте лук, яйцо, размоченный хлеб, соль и перец.",
+      "Сформируйте котлеты и обжарьте по 4–5 минут с каждой стороны.",
+      "Подавайте пюре с котлетами и зеленью."
+    ]
+  },
+  {
+    id: 11, name: "Творожная запеканка", category: "Десерт", time: 50, servings: 4,
+    ingredients: [
+      { name: "Творог", qty: 500, unit: "г" },
+      { name: "Яйца", qty: 3, unit: "шт" },
+      { name: "Сахар", qty: 3, unit: "ст.л." },
+      { name: "Манка", qty: 3, unit: "ст.л." },
+      { name: "Молоко", qty: 100, unit: "мл" },
+      { name: "Изюм", qty: 50, unit: "г" }
+    ],
+    steps: [
+      "Смешайте творог, яйца, сахар, манку и молоко.",
+      "Добавьте изюм и перемешайте.",
+      "Выложите в форму, смазанную маслом.",
+      "Выпекайте при 180°C 35–40 минут.",
+      "Дайте остыть и подавайте со сметаной."
+    ]
+  },
+  {
+    id: 12, name: "Плов", category: "Основное", time: 60, servings: 5,
+    ingredients: [
+      { name: "Рис", qty: 500, unit: "г" },
+      { name: "Мясо", qty: 500, unit: "г" },
+      { name: "Морковь", qty: 3, unit: "шт" },
+      { name: "Лук", qty: 2, unit: "шт" },
+      { name: "Чеснок", qty: 1, unit: "головка" },
+      { name: "Масло растительное", qty: 50, unit: "мл" },
+      { name: "Специи для плова", qty: 1, unit: "ст.л." }
+    ],
+    steps: [
+      "Мясо нарежьте кубиками и обжарьте в казане.",
+      "Добавьте лук и морковь, обжаривайте 5 минут.",
+      "Добавьте специи и чеснок.",
+      "Залейте водой, чтобы покрыла мясо, тушите 20 минут.",
+      "Добавьте рис, разровняйте, воткните чеснок.",
+      "Залейте водой на 2 см выше риса, готовьте на слабом огне 25 минут.",
+      "Накройте и дайте настояться 10 минут."
+    ]
+  },
+  {
+    id: 13, name: "Яичница с беконом", category: "Завтрак", time: 10, servings: 1,
+    ingredients: [
+      { name: "Яйца", qty: 2, unit: "шт" },
+      { name: "Бекон", qty: 50, unit: "г" },
+      { name: "Масло сливочное", qty: 5, unit: "г" },
+      { name: "Соль", qty: 1, unit: "щеп" },
+      { name: "Перец чёрный", qty: 1, unit: "щеп" }
+    ],
+    steps: [
+      "Обжарьте бекон на сухой сковороде до хруста.",
+      "Добавьте масло, разбейте яйца.",
+      "Готовьте 3–4 минуты на среднем огне.",
+      "Посолите, поперчите и подавайте."
+    ]
+  },
+  {
+    id: 14, name: "Куриные котлеты на пару", category: "Основное", time: 40, servings: 4,
+    ingredients: [
+      { name: "Курица", qty: 500, unit: "г" },
+      { name: "Лук", qty: 1, unit: "шт" },
+      { name: "Яйца", qty: 1, unit: "шт" },
+      { name: "Хлеб", qty: 1, unit: "лом" },
+      { name: "Молоко", qty: 50, unit: "мл" },
+      { name: "Соль", qty: 1, unit: "щеп" }
+    ],
+    steps: [
+      "Курицу пропустите через мясорубку.",
+      "Добавьте лук, яйцо, хлеб, размоченный в молоке.",
+      "Посолите и перемешайте фарш.",
+      "Сформируйте котлеты и готовьте на пару 25 минут."
+    ]
+  },
+  {
+    id: 15, name: "Овощное рагу", category: "Основное", time: 40, servings: 4,
+    ingredients: [
+      { name: "Картофель", qty: 4, unit: "шт" },
+      { name: "Морковь", qty: 1, unit: "шт" },
+      { name: "Лук", qty: 1, unit: "шт" },
+      { name: "Перец болгарский", qty: 1, unit: "шт" },
+      { name: "Кабачок", qty: 1, unit: "шт" },
+      { name: "Томатная паста", qty: 2, unit: "ст.л." },
+      { name: "Масло растительное", qty: 2, unit: "ст.л." }
+    ],
+    steps: [
+      "Нарежьте все овощи кубиками.",
+      "Обжарьте лук и морковь в масле.",
+      "Добавьте картофель, кабачок и перец.",
+      "Добавьте томатную пасту и воду (200 мл).",
+      "Тушите под крышкой 25 минут на слабом огне."
+    ]
+  },
+  {
+    id: 16, name: "Гречка с грибами", category: "Основное", time: 30, servings: 3,
+    ingredients: [
+      { name: "Гречка", qty: 300, unit: "г" },
+      { name: "Грибы", qty: 300, unit: "г" },
+      { name: "Лук", qty: 1, unit: "шт" },
+      { name: "Масло растительное", qty: 2, unit: "ст.л." },
+      { name: "Соль", qty: 1, unit: "щеп" }
+    ],
+    steps: [
+      "Гречку промойте и отварите в подсоленной воде (1:2).",
+      "Грибы нарежьте и обжарьте с луком до золотистого цвета.",
+      "Смешайте гречку с грибами, прогрейте 2 минуты.",
+      "Подавайте с зеленью."
+    ]
+  },
+  {
+    id: 17, name: "Банан с творогом и мёдом", category: "Десерт", time: 5, servings: 1,
+    ingredients: [
+      { name: "Банан", qty: 1, unit: "шт" },
+      { name: "Творог", qty: 150, unit: "г" },
+      { name: "Мёд", qty: 1, unit: "ст.л." },
+      { name: "Орехи", qty: 20, unit: "г" }
+    ],
+    steps: [
+      "Банан нарежьте кружочками.",
+      "Смешайте творог с мёдом.",
+      "Выложите банан, сверху творожную массу.",
+      "Посыпьте измельчёнными орехами."
+    ]
+  },
+  {
+    id: 18, name: "Рыбные котлеты", category: "Основное", time: 35, servings: 4,
+    ingredients: [
+      { name: "Рыба", qty: 500, unit: "г" },
+      { name: "Яйца", qty: 1, unit: "шт" },
+      { name: "Лук", qty: 1, unit: "шт" },
+      { name: "Хлеб", qty: 1, unit: "лом" },
+      { name: "Молоко", qty: 50, unit: "мл" },
+      { name: "Соль", qty: 1, unit: "щеп" }
+    ],
+    steps: [
+      "Рыбу пропустите через мясорубку.",
+      "Добавьте лук, яйцо, размоченный хлеб, соль.",
+      "Сформируйте котлеты.",
+      "Обжарьте по 4 минуты с каждой стороны."
+    ]
+  },
+  {
+    id: 19, name: "Пицца Маргарита", category: "Основное", time: 50, servings: 4,
+    ingredients: [
+      { name: "Мука", qty: 300, unit: "г" },
+      { name: "Дрожжи", qty: 7, unit: "г" },
+      { name: "Вода", qty: 200, unit: "мл" },
+      { name: "Томатный соус", qty: 150, unit: "г" },
+      { name: "Моцарелла", qty: 200, unit: "г" },
+      { name: "Базилик", qty: 10, unit: "г" },
+      { name: "Оливковое масло", qty: 2, unit: "ст.л." }
+    ],
+    steps: [
+      "Замесите тесто из муки, дрожжей, воды и масла.",
+      "Дайте тесту подойти 30 минут.",
+      "Раскатайте тонкий круг.",
+      "Смажьте томатным соусом, выложите моцареллу.",
+      "Выпекайте при 220°C 12–15 минут.",
+      "Посыпьте базиликом перед подачей."
+    ]
+  },
+  {
+    id: 20, name: "Смузи из ягод и банана", category: "Напиток", time: 5, servings: 2,
+    ingredients: [
+      { name: "Ягоды", qty: 200, unit: "г" },
+      { name: "Банан", qty: 1, unit: "шт" },
+      { name: "Йогурт", qty: 200, unit: "мл" },
+      { name: "Мёд", qty: 1, unit: "ст.л." }
+    ],
+    steps: [
+      "Все ингредиенты поместите в блендер.",
+      "Взбейте до однородной массы.",
+      "Разлейте по стаканам и подавайте."
+    ]
+  }
+];
+
+let currentUser = null;
+let fridge = [];
+let shoppingList = [];
+let activeRecipeId = null;
+
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => document.querySelectorAll(sel);
+
+function generateId() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+}
+
+function showToast(msg) {
+  const toast = $('#toast');
+  toast.textContent = msg;
+  toast.classList.remove('hidden');
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => toast.classList.add('hidden'), 2500);
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+function daysUntil(dateStr) {
+  if (!dateStr) return null;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const target = new Date(dateStr);
+  target.setHours(0, 0, 0, 0);
+  return Math.round((target - today) / (1000 * 60 * 60 * 24));
+}
+
+function normalize(str) {
+  return str.toLowerCase().trim()
+    .replace(/ё/g, 'е')
+    .replace(/[^a-zа-я0-9\s]/g, '');
+}
+
+function ingredientMatches(recipeIng, fridgeItems) {
+  const target = normalize(recipeIng.name);
+  return fridgeItems.find(item => {
+    const itemName = normalize(item.name);
+    return itemName === target || itemName.includes(target) || target.includes(itemName);
+  });
+}
+
+// ---------- АВТОРИЗАЦИЯ ----------
+function saveUsers(users) { localStorage.setItem('sf_users', JSON.stringify(users)); }
+function getUsers() { return JSON.parse(localStorage.getItem('sf_users') || '[]'); }
+function saveSession(email) { localStorage.setItem('sf_session', email); }
+function clearSession() { localStorage.removeItem('sf_session'); }
+
+function loadUserData(email) {
+  const key = 'sf_data_' + email;
+  const data = JSON.parse(localStorage.getItem(key) || '{}');
+  fridge = data.fridge || [];
+  shoppingList = data.shoppingList || [];
+}
+
+function persistUserData() {
+  if (!currentUser) return;
+  const key = 'sf_data_' + currentUser.email;
+  localStorage.setItem(key, JSON.stringify({ fridge, shoppingList }));
+}
+
+function initAuth() {
+  const session = localStorage.getItem('sf_session');
+  if (!session) return;
+  const users = getUsers();
+  const user = users.find(u => u.email === session);
+  if (user) {
+    currentUser = user;
+    loadUserData(user.email);
+    enterApp();
+  }
+}
+
+function enterApp() {
+  $('#auth-screen').classList.add('hidden');
+  $('#app').classList.remove('hidden');
+  $('#header-user-name').textContent = currentUser.name;
+  renderFridge();
+  renderRecipes();
+  renderShopping();
+}
+
+function logout() {
+  currentUser = null;
+  clearSession();
+  $('#app').classList.add('hidden');
+  $('#auth-screen').classList.remove('hidden');
+  $('#login-form').reset();
+  $('#register-form').reset();
+}
+
+// ---------- ХОЛОДИЛЬНИК ----------
+function renderFridge() {
+  const list = $('#fridge-list');
+  const empty = $('#fridge-empty');
+  const search = $('#fridge-search').value.toLowerCase();
+  const catFilter = $('#fridge-category-filter').value;
+
+  let items = fridge.filter(item => {
+    const matchSearch = item.name.toLowerCase().includes(search);
+    const matchCat = !catFilter || item.category === catFilter;
+    return matchSearch && matchCat;
+  });
+
+  items.sort((a, b) => {
+    const da = a.expiry ? daysUntil(a.expiry) : 9999;
+    const db = b.expiry ? daysUntil(b.expiry) : 9999;
+    return da - db;
+  });
+
+  let expiring = 0, expired = 0;
+  fridge.forEach(item => {
+    if (!item.expiry) return;
+    const d = daysUntil(item.expiry);
+    if (d < 0) expired++;
+    else if (d <= 3) expiring++;
+  });
+  $('#stat-total').textContent = fridge.length;
+  $('#stat-expiring').textContent = expiring;
+  $('#stat-expired').textContent = expired;
+
+  if (items.length === 0) {
+    list.innerHTML = '';
+    empty.classList.remove('hidden');
+    return;
+  }
+  empty.classList.add('hidden');
+
+  list.innerHTML = items.map(item => {
+    let expiryClass = '';
+    let expiryText = '';
+    if (item.expiry) {
+      const d = daysUntil(item.expiry);
+      if (d < 0) { expiryClass = 'expired'; expiryText = 'Просрочено'; }
+      else if (d <= 3) { expiryClass = 'expiring-soon'; expiryText = d === 0 ? 'Сегодня' : 'Осталось ' + d + ' дн.'; }
+      else { expiryText = 'До ' + formatDate(item.expiry); }
+    }
+    return (
+      '<div class="product-card ' + expiryClass + '">' +
+        '<div class="product-info">' +
+          '<div class="product-name">' + item.name + '</div>' +
+          '<div class="product-details">' + item.qty + ' ' + item.unit + ' · ' + item.category + '</div>' +
+          (expiryText ? '<div class="product-expiry ' + expiryClass + '">' + expiryText + '</div>' : '') +
+        '</div>' +
+        '<div class="product-actions">' +
+          '<button onclick="removeProduct(\'' + item.id + '\')" title="Удалить">✕</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }).join('');
+}
+
+window.removeProduct = function(id) {
+  fridge = fridge.filter(p => p.id !== id);
+  persistUserData();
+  renderFridge();
+  renderRecipes();
+  showToast('Продукт удалён');
+};
+
+// ---------- РЕЦЕПТЫ ----------
+function getRecipeMatch(recipe) {
+  const have = [];
+  const missing = [];
+  recipe.ingredients.forEach(ing => {
+    const found = ingredientMatches(ing, fridge);
+    if (found) have.push(ing);
+    else missing.push(ing);
+  });
+  return { have, missing, percent: Math.round(have.length / recipe.ingredients.length * 100) };
+}
+
+function renderRecipes() {
+  const list = $('#recipes-list');
+  const empty = $('#recipes-empty');
+  const search = $('#recipe-search').value.toLowerCase();
+  const sort = $('#recipe-sort').value;
+  const onlyAvailable = $('#only-available').checked;
+
+  let items = RECIPES.map(r => Object.assign({}, r, { _match: getRecipeMatch(r) }));
+
+  if (search) {
+    items = items.filter(r =>
+      r.name.toLowerCase().includes(search) ||
+      r.ingredients.some(i => i.name.toLowerCase().includes(search))
+    );
+  }
+
+  if (onlyAvailable) items = items.filter(r => r._match.missing.length === 0);
+
+  if (sort === 'match') items.sort((a, b) => b._match.percent - a._match.percent);
+  else if (sort === 'time') items.sort((a, b) => a.time - b.time);
+  else if (sort === 'name') items.sort((a, b) => a.name.localeCompare(b.name));
+
+  if (items.length === 0) {
+    list.innerHTML = '';
+    empty.classList.remove('hidden');
+    return;
+  }
+  empty.classList.add('hidden');
+
+  list.innerHTML = items.map(r => {
+    const m = r._match;
+    const haveNames = m.have.map(i => i.name).join(', ');
+    const missingNames = m.missing.map(i => i.name).join(', ');
+    return (
+      '<div class="recipe-card" onclick="openRecipe(' + r.id + ')">' +
+        '<div class="recipe-card-header">' +
+          '<div class="recipe-card-title">' + r.name + '</div>' +
+          '<div class="recipe-card-meta">' +
+            '<span>⏱ ' + r.time + ' мин</span>' +
+            '<span>🍽 ' + r.servings + ' порц.</span>' +
+            '<span>' + r.category + '</span>' +
+          '</div>' +
+          '<div class="recipe-match-bar">' +
+            '<div class="recipe-match-fill" style="width:' + m.percent + '%"></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="recipe-card-ingredients">' +
+          (haveNames ? '<div><span class="have">Есть:</span> ' + haveNames + '</div>' : '') +
+          (missingNames ? '<div><span class="missing">Нужно:</span> ' + missingNames + '</div>' : '') +
+        '</div>' +
+        '<div class="recipe-card-footer">' +
+          (m.missing.length === 0 ? '✅ Всё есть — можно готовить!' : '🛒 Не хватает: ' + m.missing.length + ' ингр.') +
+        '</div>' +
+      '</div>'
+    );
+  }).join('');
+}
+
+window.openRecipe = function(id) {
+  const recipe = RECIPES.find(r => r.id === id);
+  if (!recipe) return;
+  activeRecipeId = id;
+  const m = getRecipeMatch(recipe);
+
+  $('#recipe-modal-title').textContent = recipe.name;
+  $('#recipe-modal-meta').innerHTML =
+    '<span>⏱ ' + recipe.time + ' мин</span>' +
+    '<span>🍽 ' + recipe.servings + ' порций</span>' +
+    '<span>' + recipe.category + '</span>';
+
+  $('#recipe-modal-ingredients').innerHTML = recipe.ingredients.map(ing => {
+    const has = m.have.indexOf(ing) !== -1;
+    return (
+      '<li class="' + (has ? 'have' : 'missing') + '">' +
+        '<span>' + ing.name + ' — ' + ing.qty + ' ' + ing.unit + '</span>' +
+        '<span class="mark">' + (has ? 'Есть' : 'Нужно') + '</span>' +
+      '</li>'
+    );
+  }).join('');
+
+  $('#recipe-modal-steps').innerHTML = recipe.steps.map(s => '<li>' + s + '</li>').join('');
+  $('#modal-recipe').classList.remove('hidden');
+};
+
+// ---------- СПИСОК ПОКУПОК ----------
+function renderShopping() {
+  const list = $('#shopping-list');
+  const empty = $('#shopping-empty');
+  const badge = $('#shopping-badge');
+
+  const active = shoppingList.filter(i => !i.bought);
+  if (active.length > 0) {
+    badge.textContent = active.length;
+    badge.classList.remove('hidden');
+  } else {
+    badge.classList.add('hidden');
+  }
+
+  if (shoppingList.length === 0) {
+    list.innerHTML = '';
+    empty.classList.remove('hidden');
+    return;
+  }
+  empty.classList.add('hidden');
+
+  list.innerHTML = shoppingList.map(item =>
+    '<div class="shopping-item ' + (item.bought ? 'bought' : '') + '">' +
+      '<input type="checkbox" ' + (item.bought ? 'checked' : '') + ' onchange="toggleBought(\'' + item.id + '\')">' +
+      '<div class="shopping-item-info">' +
+        '<div class="shopping-item-name">' + item.name + '</div>' +
+        (item.recipe ? '<div class="shopping-item-recipe">Для: ' + item.recipe + '</div>' : '') +
+      '</div>' +
+      '<div class="shopping-item-qty">' + item.qty + ' ' + item.unit + '</div>' +
+      '<button class="remove-btn" onclick="removeShoppingItem(\'' + item.id + '\')">✕</button>' +
+    '</div>'
+  ).join('');
+}
+
+window.toggleBought = function(id) {
+  const item = shoppingList.find(i => i.id === id);
+  if (item) {
+    item.bought = !item.bought;
+    persistUserData();
+    renderShopping();
+  }
+};
+
+window.removeShoppingItem = function(id) {
+  shoppingList = shoppingList.filter(i => i.id !== id);
+  persistUserData();
+  renderShopping();
+};
+
+$('#add-missing-to-shopping').addEventListener('click', () => {
+  const recipe = RECIPES.find(r => r.id === activeRecipeId);
+  if (!recipe) return;
+  const m = getRecipeMatch(recipe);
+  let added = 0;
+  m.missing.forEach(ing => {
+    const exists = shoppingList.find(i => normalize(i.name) === normalize(ing.name) && !i.bought);
+    if (!exists) {
+      shoppingList.push({
+        id: generateId(),
+        name: ing.name,
+        qty: ing.qty,
+        unit: ing.unit,
+        recipe: recipe.name,
+        bought: false
+      });
+      added++;
+    }
+  });
+  persistUserData();
+  renderShopping();
+  $('#modal-recipe').classList.add('hidden');
+  showToast(added > 0 ? 'Добавлено ' + added + ' ингредиентов в список' : 'Всё уже в списке');
+});
+
+// ---------- МОДАЛКИ ----------
+function setupModals() {
+  $$('.modal-close').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modal = document.getElementById(btn.dataset.modal);
+      if (modal) modal.classList.add('hidden');
+    });
+  });
+  $$('.modal').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.add('hidden');
+    });
+  });
+
+  $('#open-add-product').addEventListener('click', () => {
+    $('#product-form').reset();
+    $('#product-qty').value = 1;
+    $('#modal-product').classList.remove('hidden');
+  });
+
+  $('#product-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = $('#product-name').value.trim();
+    if (!name) return;
+    fridge.push({
+      id: generateId(),
+      name: name,
+      qty: parseFloat($('#product-qty').value) || 1,
+      unit: $('#product-unit').value,
+      category: $('#product-category').value,
+      expiry: $('#product-expiry').value || null
+    });
+    persistUserData();
+    renderFridge();
+    renderRecipes();
+    $('#modal-product').classList.add('hidden');
+    showToast('Продукт добавлен');
+  });
+}
+
+// ---------- НАВИГАЦИЯ ----------
+function setupNav() {
+  $$('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $$('.nav-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      $$('.app-section').forEach(s => s.classList.remove('active'));
+      const section = document.getElementById('section-' + btn.dataset.section);
+      if (section) section.classList.add('active');
+    });
+  });
+}
+
+// ---------- АВТОРИЗАЦИЯ ----------
+function setupAuth() {
+  $$('.auth-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      $$('.auth-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      $$('.auth-form').forEach(f => f.classList.remove('active'));
+      const form = document.getElementById(tab.dataset.tab + '-form');
+      if (form) form.classList.add('active');
+    });
+  });
+
+  $('#login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = $('#login-email').value.trim().toLowerCase();
+    const pass = $('#login-password').value;
+    const users = getUsers();
+    const user = users.find(u => u.email === email && u.password === pass);
+    if (!user) {
+      $('#login-error').textContent = 'Неверный email или пароль';
+      return;
+    }
+    $('#login-error').textContent = '';
+    currentUser = user;
+    saveSession(email);
+    loadUserData(email);
+    enterApp();
+  });
+
+  $('#register-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = $('#register-name').value.trim();
+    const email = $('#register-email').value.trim().toLowerCase();
+    const pass = $('#register-password').value;
+    if (pass.length < 4) {
+      $('#register-error').textContent = 'Пароль должен быть не менее 4 символов';
+      return;
+    }
+    const users = getUsers();
+    if (users.find(u => u.email === email)) {
+      $('#register-error').textContent = 'Пользователь с таким email уже существует';
+      return;
+    }
+    const newUser = { name: name, email: email, password: pass };
+    users.push(newUser);
+    saveUsers(users);
+    $('#register-error').textContent = '';
+    currentUser = newUser;
+    saveSession(email);
+    fridge = [];
+    shoppingList = [];
+    persistUserData();
+    enterApp();
+  });
+
+  $('#logout-btn').addEventListener('click', logout);
+}
+
+// ---------- ФИЛЬТРЫ ----------
+function setupFilters() {
+  $('#fridge-search').addEventListener('input', renderFridge);
+  $('#fridge-category-filter').addEventListener('change', renderFridge);
+  $('#recipe-search').addEventListener('input', renderRecipes);
+  $('#recipe-sort').addEventListener('change', renderRecipes);
+  $('#only-available').addEventListener('change', renderRecipes);
+
+  $('#clear-bought').addEventListener('click', () => {
+    shoppingList = shoppingList.filter(i => !i.bought);
+    persistUserData();
+    renderShopping();
+    showToast('Купленное убрано');
+  });
+}
+
+// ---------- СТАРТ ----------
+document.addEventListener('DOMContentLoaded', () => {
+  setupAuth();
+  setupNav();
+  setupModals();
+  setupFilters();
+  initAuth();
+});
+</script>
 </body>
 </html>
