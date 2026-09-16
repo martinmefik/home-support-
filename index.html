@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Умный холодильник — 12000+ рецептов и ИИ-помощник</title>
+<title>Умный холодильник — реальные рецепты</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
@@ -25,7 +25,6 @@ button,input,select{font-family:inherit;font-size:inherit}
 @keyframes magnetWiggle{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
 @keyframes fridgeHeroFloat{0%,100%{transform:rotateY(-14deg) rotateX(2deg) translateY(0)}50%{transform:rotateY(-10deg) rotateX(0deg) translateY(-10px)}}
 @keyframes crownFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-6px) rotate(5deg)}}
-@keyframes aiPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
 @keyframes displayBlink{0%,100%{opacity:1}50%{opacity:.7}}
 @keyframes premiumGlow{0%,100%{box-shadow:0 4px 14px var(--premium-glow)}50%{box-shadow:0 4px 24px var(--premium-glow)}}
 @keyframes floatAround{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-22px) rotate(8deg)}}
@@ -34,7 +33,6 @@ button,input,select{font-family:inherit;font-size:inherit}
 @keyframes favPop{0%{transform:scale(1)}50%{transform:scale(1.35) rotate(15deg)}100%{transform:scale(1) rotate(0)}}
 @keyframes tabRipple{0%{transform:scale(0);opacity:.6}100%{transform:scale(2.5);opacity:0}}
 @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
-@keyframes plateSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 @keyframes ingredientPop{0%{opacity:0;transform:translateY(8px) scale(.9)}100%{opacity:1;transform:translateY(0) scale(1)}}
 .welcome-screen{min-height:100vh;background:var(--hero-gradient);display:flex;flex-direction:column;position:relative;overflow:hidden}
 .welcome-screen::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 25%,rgba(255,255,255,.25) 0%,transparent 45%),radial-gradient(circle at 85% 75%,rgba(192,38,211,.25) 0%,transparent 50%);animation:floatBg 18s ease-in-out infinite alternate;pointer-events:none}
@@ -140,37 +138,6 @@ body.dark .fh-display{color:var(--primary)}
 .section-header h2{font-size:1.4rem;font-weight:900;letter-spacing:-.02em}
 .section-subtitle{font-size:.82rem;color:var(--text-secondary);width:100%;font-weight:500}
 .header-actions{display:flex;gap:6px;flex-wrap:wrap}
-.ai-assistant{background:linear-gradient(135deg,var(--surface) 0%,var(--surface-alt) 100%);border-radius:var(--radius-lg);padding:18px;margin-bottom:18px;border:2px solid var(--premium);box-shadow:0 12px 30px var(--premium-glow);position:relative;overflow:hidden}
-.ai-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
-.ai-title{display:flex;align-items:center;gap:10px}
-.ai-icon{font-size:1.6rem;filter:drop-shadow(0 4px 10px var(--premium-glow));animation:aiPulse 3s ease-in-out infinite}
-.ai-title strong{display:block;font-size:1rem;font-weight:900}
-.ai-sub{font-size:.78rem;color:var(--text-secondary);font-weight:500}
-.ai-premium-tag{display:inline-flex;align-items:center;padding:5px 11px;background:linear-gradient(135deg,var(--premium) 0%,var(--premium-dark) 100%);color:#fff;border-radius:50px;font-size:.65rem;font-weight:900;letter-spacing:.5px;box-shadow:0 4px 12px var(--premium-glow)}
-.ai-chat{display:flex;flex-direction:column;gap:12px;max-height:340px;overflow-y:auto;padding:4px;margin-bottom:12px;scroll-behavior:smooth}
-.ai-message{display:flex;gap:8px;align-items:flex-start;animation:fadeUp .3s ease}
-.ai-message-user{flex-direction:row-reverse}
-.ai-avatar{width:34px;height:34px;min-width:34px;border-radius:50%;background:linear-gradient(135deg,var(--premium) 0%,var(--premium-dark) 100%);display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 4px 10px var(--premium-glow)}
-.ai-message-user .ai-avatar{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);box-shadow:0 4px 10px var(--primary-glow)}
-.ai-bubble{padding:12px 15px;border-radius:14px;background:var(--surface);border:1.5px solid var(--border);font-size:.9rem;line-height:1.55;max-width:85%;word-wrap:break-word}
-.ai-message-bot .ai-bubble{border-top-left-radius:4px;border-color:var(--premium)}
-.ai-message-user .ai-bubble{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:#fff;border-color:transparent;border-top-right-radius:4px}
-.ai-bubble strong{font-weight:800}
-.ai-bubble ul{margin:6px 0 0 18px;padding:0}
-.ai-bubble li{margin-bottom:5px}
-.ai-recipe-link{display:inline-flex;align-items:center;gap:5px;margin-top:7px;padding:7px 14px;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:#fff;border:none;border-radius:50px;font-size:.78rem;font-weight:800;cursor:pointer;transition:var(--transition);box-shadow:0 4px 12px var(--primary-glow)}
-.ai-recipe-link:hover{transform:translateY(-2px);box-shadow:0 8px 18px var(--primary-glow)}
-.ai-input-form{display:flex;gap:8px;margin-bottom:10px}
-.ai-input-form input{flex:1;padding:12px 18px;border:2px solid var(--border-strong);border-radius:50px;background:var(--surface);color:var(--text);transition:var(--transition)}
-.ai-input-form input::placeholder{color:var(--text-muted)}
-.ai-input-form input:focus{outline:none;border-color:var(--premium);box-shadow:0 0 0 4px var(--premium-light)}
-.ai-quick-prompts{display:flex;gap:6px;flex-wrap:wrap}
-.quick-prompt{padding:7px 13px;background:var(--surface);border:2px solid var(--border-strong);border-radius:50px;font-size:.74rem;font-weight:700;color:var(--text-secondary);cursor:pointer;transition:var(--transition)}
-.quick-prompt:hover{border-color:var(--premium);color:var(--premium);transform:translateY(-1px);box-shadow:0 6px 14px var(--premium-glow)}
-.ai-locked{position:absolute;inset:0;background:rgba(15,23,40,.9);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:10;border-radius:var(--radius-lg);padding:24px;text-align:center;color:#fff}
-.ai-locked .lock-icon{font-size:3rem;filter:drop-shadow(0 8px 20px var(--premium-glow));animation:crownFloat 3s ease-in-out infinite}
-.ai-locked h3{font-size:1.15rem;font-weight:900}
-.ai-locked p{font-size:.85rem;opacity:.92;max-width:320px}
 .fridge-3d-container{background:linear-gradient(135deg,var(--surface) 0%,var(--surface-alt) 100%);border-radius:var(--radius-lg);padding:30px 16px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;perspective:1400px;min-height:560px;box-shadow:var(--shadow-md);border:2px solid var(--border);position:relative;overflow:hidden}
 .fridge-3d-container::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,var(--primary-glow) 0%,transparent 65%);pointer-events:none;opacity:.4}
 .fridge-interactive{width:320px;height:540px;position:relative;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.34,1.56,.64,1);cursor:pointer}
@@ -229,7 +196,6 @@ body.dark .fridge-click-hint{color:var(--primary)}
 .stat-label{font-size:.76rem;color:var(--text-secondary);font-weight:700}
 .meal-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;overflow-x:auto;padding-bottom:4px}
 .meal-tab{display:flex;align-items:center;gap:6px;padding:10px 18px;border:2px solid var(--border-strong);background:var(--surface);border-radius:50px;font-weight:700;color:var(--text-secondary);cursor:pointer;transition:all .3s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;font-size:.85rem;position:relative;overflow:hidden}
-.meal-tab::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);opacity:0;transition:opacity .3s ease;z-index:-1}
 .meal-tab:hover{border-color:var(--primary);color:var(--primary-dark);transform:translateY(-3px) scale(1.03);box-shadow:0 8px 20px var(--primary-glow)}
 .meal-tab.active{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:#fff;border-color:transparent;box-shadow:0 8px 20px var(--primary-glow);transform:scale(1.05);animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
 .meal-tab:active{transform:scale(.95)}
@@ -237,7 +203,7 @@ body.dark .fridge-click-hint{color:var(--primary)}
 .recipe-filters input,.recipe-filters select{padding:10px 15px;border:2px solid var(--border-strong);border-radius:var(--radius-sm);background:var(--surface);color:var(--text);transition:var(--transition);font-weight:500}
 .recipe-filters input:focus,.recipe-filters select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px var(--primary-light)}
 .recipe-filters input{flex:1;min-width:200px}
-.checkbox-label{display:flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap;font-weight:700;color:var(--text);font-size:.85rem;padding:9px 14px;background:var(--surface);border:2px solid var(--border-strong);border-radius:50px;transition:all .25s ease;position:relative}
+.checkbox-label{display:flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap;font-weight:700;color:var(--text);font-size:.85rem;padding:9px 14px;background:var(--surface);border:2px solid var(--border-strong);border-radius:50px;transition:all .25s ease}
 .checkbox-label:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:0 6px 16px var(--primary-glow)}
 .checkbox-label input{width:16px;height:16px;accent-color:var(--primary);cursor:pointer;margin:0;transition:transform .2s ease}
 .checkbox-label input:checked{transform:scale(1.15)}
@@ -418,7 +384,7 @@ body.dark .scan-result-expiry{color:var(--primary)}
 .sunset-indicator{position:fixed;top:10px;right:10px;font-size:.68rem;padding:5px 12px;background:var(--surface-alt);border:1.5px solid var(--border);border-radius:50px;color:var(--text-secondary);z-index:60;opacity:.9;display:none;font-weight:700}
 .sunset-indicator.show{display:block}
 @media (max-width:900px){.welcome-hero{grid-template-columns:1fr;gap:24px;padding:16px 24px;text-align:center}.hero-features{align-items:stretch}.hero-buttons{justify-content:center}.hero-3d{height:420px}.fridge-hero{width:220px;height:400px}.fh-body::before{width:160px}.hero-text p{margin-left:auto;margin-right:auto}.fridge-interactive{width:270px;height:470px}.fridge-body-3d,.fridge-body-inner{width:270px;height:470px}.fridge-door-top{width:270px;height:165px}.fridge-door-bottom{width:270px;height:305px;top:165px}.fridge-interior{width:270px;height:470px}}
-@media (max-width:640px){body{font-size:14px}.welcome-header{padding:14px 16px}.welcome-logo{font-size:.95rem}.welcome-nav button{padding:8px 14px;font-size:.78rem}.welcome-hero{padding:12px 16px;gap:16px}.hero-text h1{font-size:1.65rem}.hero-text p{font-size:.88rem}.hero-feature{padding:11px 13px}.hero-feature-icon{width:38px;height:38px;min-width:38px;font-size:1.1rem}.hero-feature-text strong{font-size:.85rem}.hero-feature-text span{font-size:.72rem}.app-header{padding:10px 14px}.logo-text{font-size:.9rem}.user-name{display:none}.app-nav{padding:8px 12px;top:56px}.nav-btn{padding:8px 11px;font-size:.72rem;flex-direction:column;gap:2px;text-align:center}.nav-btn span:not(.badge){display:none}.nav-btn svg{width:20px;height:20px}.app-section{padding:14px 12px}.section-header h2{font-size:1.15rem}.fridge-stats{grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}.stat-card{padding:11px 4px}.stat-value{font-size:1.2rem}.stat-label{font-size:.65rem}.recipe-grid{grid-template-columns:1fr}.recipe-filters{flex-direction:column;gap:6px}.recipe-filters input,.recipe-filters select{width:100%}.checkbox-label{width:100%;justify-content:flex-start;padding:9px 12px}.meal-tabs{gap:4px}.meal-tab{padding:8px 12px;font-size:.75rem}.form-row{flex-direction:column;gap:0}.modal-content{padding:18px 14px;border-radius:14px}.shopping-add-form{flex-direction:column}.shopping-add-form input,.shopping-add-form .s-name,.shopping-add-form .s-qty,.shopping-add-form .s-unit{width:100%;flex:1}.recipe-modal-actions{flex-direction:column}.recipe-modal-actions button{width:100%}.fridge-3d-container{padding:16px 8px;min-height:440px}.fridge-interactive{width:230px;height:400px}.fridge-body-3d,.fridge-body-inner{width:230px;height:400px}.fridge-door-top{width:230px;height:140px}.fridge-door-bottom{width:230px;height:260px;top:140px}.fridge-interior{width:230px;height:400px;padding:10px;gap:6px}.shelf{padding:8px 10px;min-height:56px}.shelf-top{flex:0 0 72px}.shelf-mid-1,.shelf-mid-2,.shelf-drawer,.shelf-freezer{flex:0 0 78px}.shelf-label{font-size:.56rem;padding:1px 7px}.shelf-product{padding:3px 8px;font-size:.62rem}.timer-widget{right:10px;bottom:10px;padding:10px 13px}.timer-display{font-size:1.1rem;min-width:60px}.ai-bubble{max-width:92%}.ai-assistant{padding:14px}}
+@media (max-width:640px){body{font-size:14px}.welcome-header{padding:14px 16px}.welcome-logo{font-size:.95rem}.welcome-nav button{padding:8px 14px;font-size:.78rem}.welcome-hero{padding:12px 16px;gap:16px}.hero-text h1{font-size:1.65rem}.hero-text p{font-size:.88rem}.hero-feature{padding:11px 13px}.hero-feature-icon{width:38px;height:38px;min-width:38px;font-size:1.1rem}.hero-feature-text strong{font-size:.85rem}.hero-feature-text span{font-size:.72rem}.app-header{padding:10px 14px}.logo-text{font-size:.9rem}.user-name{display:none}.app-nav{padding:8px 12px;top:56px}.nav-btn{padding:8px 11px;font-size:.72rem;flex-direction:column;gap:2px;text-align:center}.nav-btn span:not(.badge){display:none}.nav-btn svg{width:20px;height:20px}.app-section{padding:14px 12px}.section-header h2{font-size:1.15rem}.fridge-stats{grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}.stat-card{padding:11px 4px}.stat-value{font-size:1.2rem}.stat-label{font-size:.65rem}.recipe-grid{grid-template-columns:1fr}.recipe-filters{flex-direction:column;gap:6px}.recipe-filters input,.recipe-filters select{width:100%}.checkbox-label{width:100%;justify-content:flex-start;padding:9px 12px}.meal-tabs{gap:4px}.meal-tab{padding:8px 12px;font-size:.75rem}.form-row{flex-direction:column;gap:0}.modal-content{padding:18px 14px;border-radius:14px}.shopping-add-form{flex-direction:column}.shopping-add-form input,.shopping-add-form .s-name,.shopping-add-form .s-qty,.shopping-add-form .s-unit{width:100%;flex:1}.recipe-modal-actions{flex-direction:column}.recipe-modal-actions button{width:100%}.fridge-3d-container{padding:16px 8px;min-height:440px}.fridge-interactive{width:230px;height:400px}.fridge-body-3d,.fridge-body-inner{width:230px;height:400px}.fridge-door-top{width:230px;height:140px}.fridge-door-bottom{width:230px;height:260px;top:140px}.fridge-interior{width:230px;height:400px;padding:10px;gap:6px}.shelf{padding:8px 10px;min-height:56px}.shelf-top{flex:0 0 72px}.shelf-mid-1,.shelf-mid-2,.shelf-drawer,.shelf-freezer{flex:0 0 78px}.shelf-label{font-size:.56rem;padding:1px 7px}.shelf-product{padding:3px 8px;font-size:.62rem}.timer-widget{right:10px;bottom:10px;padding:10px 13px}.timer-display{font-size:1.1rem;min-width:60px}}
 @media (max-width:380px){.fridge-stats{grid-template-columns:1fr}.fh-body::before{width:130px}.fridge-hero{width:180px;height:320px}}
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:var(--surface-alt)}
@@ -444,11 +410,11 @@ body.dark .scan-result-expiry{color:var(--primary)}
   <div class="welcome-hero">
     <div class="hero-text">
       <h1>Готовьте из того, <span class="grad">что уже есть</span></h1>
-      <p>Умный холодильник с ИИ-помощником, сканированием чека, подбором рецептов по продуктам и точными граммовками.</p>
+      <p>Реальные рецепты из проверенных источников, точные граммовки, тайминги и умный список покупок. Без выдумок — только проверенная кулинария.</p>
       <div class="hero-features">
-        <div class="hero-feature"><div class="hero-feature-icon">🤖</div><div class="hero-feature-text"><strong>ИИ-помощник</strong><span>Ответит на вопрос и подберёт рецепт</span></div></div>
+        <div class="hero-feature"><div class="hero-feature-icon">📖</div><div class="hero-feature-text"><strong>Реальные рецепты</strong><span>Из Гастронома, RussianFood и других источников</span></div></div>
         <div class="hero-feature"><div class="hero-feature-icon">🧊</div><div class="hero-feature-text"><strong>Интерактивный холодильник</strong><span>Нажмите на полку — увидите продукты</span></div></div>
-        <div class="hero-feature"><div class="hero-feature-icon">🔥</div><div class="hero-feature-text"><strong>12 000+ рецептов</strong><span>Стейки, костёр, казан, выпечка</span></div></div>
+        <div class="hero-feature"><div class="hero-feature-icon">🥘</div><div class="hero-feature-text"><strong>Точные пропорции</strong><span>Граммы, штуки, ложки — как в оригинале</span></div></div>
         <div class="hero-feature premium"><div class="hero-feature-icon">📸</div><div class="hero-feature-text"><strong>Скан чека в Премиуме</strong><span>Наведите камеру — продукты добавятся</span></div></div>
       </div>
       <div class="hero-buttons">
@@ -491,7 +457,7 @@ body.dark .scan-result-expiry{color:var(--primary)}
     <div class="auth-logo">
       <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="5" y1="10" x2="19" y2="10"/><line x1="9" y1="6" x2="9" y2="8"/><line x1="9" y1="14" x2="9" y2="18"/></svg>
       <h1>Умный холодильник</h1>
-      <p>ИИ-помощник и 12 000+ рецептов</p>
+      <p>Реальные рецепты из проверенных источников</p>
     </div>
     <div class="auth-tabs">
       <button class="auth-tab active" data-tab="login">Вход</button>
@@ -567,24 +533,7 @@ body.dark .scan-result-expiry{color:var(--primary)}
   </section>
 
   <section id="section-recipes" class="app-section">
-    <div class="section-header"><h2>Что приготовить</h2><p class="section-subtitle">ИИ-помощник в Премиуме</p></div>
-    <div class="ai-assistant" id="ai-assistant">
-      <div class="ai-header">
-        <div class="ai-title"><span class="ai-icon">🤖</span><div><strong>ИИ-помощник на кухне</strong><span class="ai-sub">Опишите, что хотите, или задайте вопрос</span></div></div>
-        <span class="ai-premium-tag">👑 PREMIUM</span>
-      </div>
-      <div class="ai-chat" id="ai-chat">
-        <div class="ai-message ai-message-bot"><div class="ai-avatar">🤖</div><div class="ai-bubble">Привет! 👋 Напишите, что хотите приготовить, или задайте вопрос. Например: <em>хочу что-то из курицы и картошки</em>, <em>сколько варить рис</em>, <em>стейк на костре</em>.</div></div>
-      </div>
-      <form class="ai-input-form" id="ai-form"><input type="text" id="ai-input" placeholder="Например: курица в духовке..." autocomplete="off"><button type="submit" class="btn-primary">Отправить</button></form>
-      <div class="ai-quick-prompts">
-        <button type="button" class="quick-prompt" data-prompt="Хочу что-то из курицы и картошки">🍗 Курица + картошка</button>
-        <button type="button" class="quick-prompt" data-prompt="Быстрый завтрак из яиц">🍳 Быстрый завтрак</button>
-        <button type="button" class="quick-prompt" data-prompt="Стейк на костре">🔥 Стейк на костре</button>
-        <button type="button" class="quick-prompt" data-prompt="Что приготовить в казане">🍲 Блюдо в казане</button>
-        <button type="button" class="quick-prompt" data-prompt="Сколько варить рис">❓ Сколько варить рис</button>
-      </div>
-    </div>
+    <div class="section-header"><h2>Рецепты</h2><p class="section-subtitle">Реальные рецепты из проверенных источников: Гастроном, RussianFood и другие.</p></div>
     <div class="meal-tabs" id="meal-tabs">
       <button class="meal-tab active" data-meal="">🍽 Все</button>
       <button class="meal-tab" data-meal="Завтрак">🌅 Завтрак</button>
@@ -644,7 +593,7 @@ body.dark .scan-result-expiry{color:var(--primary)}
 <div id="modal-product" class="modal hidden">
   <div class="modal-content">
     <div class="modal-header"><h3>Добавить продукт</h3><button class="btn-icon modal-close" data-modal="modal-product">&times;</button></div>
-    <div id="fridge-warning" class="form-warning hidden">⚠️ Этот продукт не хранится в холодильнике. Его место — в шкафу на кухне.</div>
+    <div id="fridge-warning" class="form-warning hidden">⚠️ Этот продукт не хранится в холодильнике.</div>
     <form id="product-form">
       <div class="form-group"><label>Название продукта</label><input type="text" id="product-name" placeholder="Например: Молоко" required autocomplete="off"></div>
       <div class="form-row">
@@ -679,10 +628,11 @@ body.dark .scan-result-expiry{color:var(--primary)}
     <div class="premium-body">
       <div class="premium-features">
         <div class="premium-feature"><span class="check">✓</span><div><strong>📸 Сканирование чека</strong><br><span class="premium-sub">Распознавание продуктов с фото</span></div></div>
-        <div class="premium-feature"><span class="check">✓</span><div><strong>🤖 ИИ-помощник на кухне</strong><br><span class="premium-sub">Подберёт рецепт и ответит на вопросы</span></div></div>
-        <div class="premium-feature"><span class="check">✓</span><div><strong>12 000+ премиум-рецептов</strong><br><span class="premium-sub">Стейки, костёр, казан, авторские блюда</span></div></div>
-        <div class="premium-feature"><span class="check">✓</span><div><strong>Экспорт списка покупок в PDF</strong></div></div>
-        <div class="premium-feature"><span class="check">✓</span><div><strong>Семейный доступ до 5 человек</strong></div></div>
+        <div class="premium-feature"><span class="check">✓</span><div><strong>📄 Экспорт списка покупок в PDF</strong><br><span class="premium-sub">Скачайте и распечатайте</span></div></div>
+        <div class="premium-feature"><span class="check">✓</span><div><strong>📊 Расширенная статистика холодильника</strong><br><span class="premium-sub">Графики, категории, траты</span></div></div>
+        <div class="premium-feature"><span class="check">✓</span><div><strong>🔔 Умные напоминания о сроках</strong><br><span class="premium-sub">Push-уведомления</span></div></div>
+        <div class="premium-feature"><span class="check">✓</span><div><strong>👨‍👩‍👧 Семейный доступ до 5 человек</strong><br><span class="premium-sub">Общий холодильник для всей семьи</span></div></div>
+        <div class="premium-feature"><span class="check">✓</span><div><strong>🚫 Без рекламы</strong></div></div>
       </div>
       <div class="premium-price"><span class="amount">299 ₽</span><span class="period">/ месяц</span><span class="old">599 ₽</span></div>
       <button class="btn-premium btn-full" id="subscribe-btn">Оформить Премиум</button>
@@ -719,410 +669,131 @@ body.dark .scan-result-expiry{color:var(--primary)}
 <div id="toast" class="toast hidden"></div>
 
 <script>
-/* БАЗА ПРОДУКТОВ — только те, что реально хранятся в холодильнике */
+/* БАЗА ПРОДУКТОВ */
 const PRODUCT_DB={
   'курица':{cal:165,shelf:2,unit:'г',cat:'Мясо',store:'Нижняя полка, +0…+2°C',emoji:'🍗'},
   'куриная грудка':{cal:165,shelf:2,unit:'г',cat:'Мясо',store:'Нижняя полка',emoji:'🍗'},
-  'куриное филе':{cal:165,shelf:2,unit:'г',cat:'Мясо',store:'Нижняя полка',emoji:'🍗'},
   'говядина':{cal:250,shelf:3,unit:'г',cat:'Мясо',store:'Нижняя полка',emoji:'🥩'},
   'свинина':{cal:260,shelf:3,unit:'г',cat:'Мясо',store:'Нижняя полка',emoji:'🥓'},
-  'баранина':{cal:294,shelf:3,unit:'г',cat:'Мясо',store:'Нижняя полка',emoji:'🍖'},
-  'стейк':{cal:270,shelf:2,unit:'г',cat:'Мясо',store:'Нижняя полка, в пергаменте',emoji:'🥩'},
-  'рибай':{cal:290,shelf:2,unit:'г',cat:'Мясо',store:'Нижняя полка',emoji:'🥩'},
-  'стриплойн':{cal:270,shelf:2,unit:'г',cat:'Мясо',store:'Нижняя полка',emoji:'🥩'},
-  'филе-миньон':{cal:240,shelf:2,unit:'г',cat:'Мясо',store:'Нижняя полка',emoji:'🥩'},
-  'ти-бон':{cal:280,shelf:2,unit:'г',cat:'Мясо',store:'Нижняя полка',emoji:'🥩'},
+  'свиная вырезка':{cal:180,shelf:2,unit:'г',cat:'Мясо',store:'Нижняя полка',emoji:'🥩'},
   'фарш':{cal:230,shelf:1,unit:'г',cat:'Мясо',store:'Нижняя полка, 1 сутки',emoji:'🍖'},
   'бекон':{cal:540,shelf:5,unit:'г',cat:'Мясо',store:'Нижняя полка в вакууме',emoji:'🥓'},
-  'колбаса':{cal:260,shelf:5,unit:'г',cat:'Мясо',store:'Средняя полка после вскрытия',emoji:'🌭'},
-  'сосиски':{cal:250,shelf:5,unit:'г',cat:'Мясо',store:'Средняя полка',emoji:'🌭'},
-  'ветчина':{cal:145,shelf:5,unit:'г',cat:'Мясо',store:'Средняя полка',emoji:'🥓'},
   'пельмени':{cal:275,shelf:180,unit:'г',cat:'Заморозка',store:'Морозилка, −18°C',emoji:'🥟'},
-  'вареники':{cal:200,shelf:180,unit:'г',cat:'Заморозка',store:'Морозилка',emoji:'🥟'},
-  'мороженое':{cal:207,shelf:180,unit:'г',cat:'Заморозка',store:'Морозилка',emoji:'🍦'},
-  'картошка фри':{cal:150,shelf:180,unit:'г',cat:'Заморозка',store:'Морозилка',emoji:'🍟'},
-  'картофель фри':{cal:150,shelf:180,unit:'г',cat:'Заморозка',store:'Морозилка',emoji:'🍟'},
-  'гавайская смесь':{cal:60,shelf:180,unit:'г',cat:'Заморозка',store:'Морозилка',emoji:'🥦'},
-  'замороженные овощи':{cal:50,shelf:180,unit:'г',cat:'Заморозка',store:'Морозилка',emoji:'🥦'},
-  'овощная смесь':{cal:55,shelf:180,unit:'г',cat:'Заморозка',store:'Морозилка',emoji:'🥦'},
-  'замороженная рыба':{cal:120,shelf:180,unit:'г',cat:'Заморозка',store:'Морозилка',emoji:'🐟'},
   'рыба':{cal:140,shelf:1,unit:'г',cat:'Рыба',store:'Самая холодная зона',emoji:'🐟'},
-  'лосось':{cal:208,shelf:2,unit:'г',cat:'Рыба',store:'Самая холодная зона',emoji:'🐟'},
-  'треска':{cal:82,shelf:2,unit:'г',cat:'Рыба',store:'Самая холодная зона',emoji:'🐟'},
-  'сельдь':{cal:217,shelf:3,unit:'г',cat:'Рыба',store:'Самая холодная зона',emoji:'🐟'},
   'креветки':{cal:99,shelf:1,unit:'г',cat:'Рыба',store:'Самая холодная зона',emoji:'🍤'},
+  'кальмары':{cal:92,shelf:1,unit:'г',cat:'Рыба',store:'Самая холодная зона',emoji:'🦑'},
   'яйца':{cal:155,shelf:25,unit:'шт',cat:'Молочное',store:'Средняя полка, тупым концом вверх',emoji:'🥚'},
   'молоко':{cal:60,shelf:5,unit:'мл',cat:'Молочное',store:'Средняя полка, +2…+4°C',emoji:'🥛'},
   'кефир':{cal:40,shelf:5,unit:'мл',cat:'Молочное',store:'Средняя полка',emoji:'🥛'},
-  'ряженка':{cal:67,shelf:5,unit:'мл',cat:'Молочное',store:'Средняя полка',emoji:'🥛'},
   'сыр':{cal:350,shelf:14,unit:'г',cat:'Молочное',store:'В пергаменте, +4…+8°C',emoji:'🧀'},
   'творог':{cal:120,shelf:3,unit:'г',cat:'Молочное',store:'Средняя полка',emoji:'🍶'},
   'сметана':{cal:210,shelf:5,unit:'г',cat:'Молочное',store:'Средняя полка',emoji:'🥛'},
-  'йогурт':{cal:80,shelf:7,unit:'г',cat:'Молочное',store:'Средняя полка',emoji:'🥛'},
-  'масло сливочное':{cal:720,shelf:14,unit:'г',cat:'Молочное',store:'Маслёнка, +2…+4°C',emoji:'🧈'},
   'сливки':{cal:210,shelf:5,unit:'мл',cat:'Молочное',store:'Средняя полка',emoji:'🥛'},
-  'моцарелла':{cal:240,shelf:5,unit:'г',cat:'Молочное',store:'В рассоле, +4°C',emoji:'🧀'},
-  'пармезан':{cal:430,shelf:30,unit:'г',cat:'Молочное',store:'В пергаменте',emoji:'🧀'},
+  'масло сливочное':{cal:720,shelf:14,unit:'г',cat:'Молочное',store:'Маслёнка',emoji:'🧈'},
   'фета':{cal:264,shelf:7,unit:'г',cat:'Молочное',store:'В рассоле',emoji:'🧀'},
-  'маскарпоне':{cal:412,shelf:7,unit:'г',cat:'Молочное',store:'Средняя полка',emoji:'🧀'},
   'помидоры':{cal:18,shelf:5,unit:'шт',cat:'Овощи',store:'Комнатная t°, НЕ в холодильник',emoji:'🍅'},
   'огурцы':{cal:15,shelf:5,unit:'шт',cat:'Овощи',store:'Ящик для овощей',emoji:'🥒'},
-  'перец болгарский':{cal:26,shelf:7,unit:'шт',cat:'Овощи',store:'Ящик для овощей',emoji:'🫑'},
+  'кабачки':{cal:17,shelf:10,unit:'шт',cat:'Овощи',store:'Ящик для овощей',emoji:'🥒'},
   'капуста':{cal:25,shelf:14,unit:'г',cat:'Овощи',store:'Ящик для овощей',emoji:'🥬'},
-  'кабачок':{cal:17,shelf:10,unit:'шт',cat:'Овощи',store:'Ящик для овощей',emoji:'🥒'},
-  'баклажан':{cal:25,shelf:5,unit:'шт',cat:'Овощи',store:'Ящик для овощей',emoji:'🍆'},
+  'картофель':{cal:77,shelf:21,unit:'г',cat:'Овощи',store:'Тёмное сухое место',emoji:'🥔'},
+  'морковь':{cal:41,shelf:14,unit:'г',cat:'Овощи',store:'Ящик для овощей',emoji:'🥕'},
+  'лук':{cal:40,shelf:30,unit:'г',cat:'Овощи',store:'Сухое место',emoji:'🧅'},
+  'чеснок':{cal:149,shelf:60,unit:'г',cat:'Овощи',store:'Сухое место',emoji:'🧄'},
   'свёкла':{cal:43,shelf:21,unit:'шт',cat:'Овощи',store:'Ящик для овощей',emoji:'🫐'},
-  'редис':{cal:14,shelf:7,unit:'г',cat:'Овощи',store:'Ящик для овощей',emoji:'🔴'},
-  'грибы':{cal:22,shelf:4,unit:'г',cat:'Овощи',store:'Бумажный пакет, не мыть',emoji:'🍄'},
+  'грибы':{cal:22,shelf:4,unit:'г',cat:'Овощи',store:'Бумажный пакет',emoji:'🍄'},
+  'шампиньоны':{cal:27,shelf:5,unit:'г',cat:'Овощи',store:'Бумажный пакет',emoji:'🍄'},
+  'тыква':{cal:26,shelf:14,unit:'г',cat:'Овощи',store:'Прохладное место',emoji:'🎃'},
+  'сельдерей':{cal:16,shelf:10,unit:'г',cat:'Овощи',store:'Ящик для овощей',emoji:'🥬'},
   'зелень':{cal:23,shelf:6,unit:'пучок',cat:'Овощи',store:'В воде или влажном полотенце',emoji:'🌿'},
-  'базилик':{cal:23,shelf:5,unit:'пучок',cat:'Овощи',store:'В стакане с водой',emoji:'🌿'},
   'петрушка':{cal:47,shelf:7,unit:'пучок',cat:'Овощи',store:'В воде',emoji:'🌿'},
   'укроп':{cal:43,shelf:7,unit:'пучок',cat:'Овощи',store:'В воде',emoji:'🌿'},
-  'салат':{cal:15,shelf:5,unit:'г',cat:'Овощи',store:'Влажное полотенце',emoji:'🥬'},
-  'яблоко':{cal:52,shelf:30,unit:'шт',cat:'Фрукты',store:'Ящик для овощей, отдельно',emoji:'🍎'},
+  'кинза':{cal:23,shelf:5,unit:'пучок',cat:'Овощи',store:'В воде',emoji:'🌿'},
+  'яблоки':{cal:52,shelf:30,unit:'шт',cat:'Фрукты',store:'Ящик для овощей, отдельно',emoji:'🍎'},
   'банан':{cal:89,shelf:5,unit:'шт',cat:'Фрукты',store:'Комнатная t°, отдельно',emoji:'🍌'},
   'лимон':{cal:29,shelf:21,unit:'шт',cat:'Фрукты',store:'Ящик для овощей',emoji:'🍋'},
   'апельсин':{cal:47,shelf:14,unit:'шт',cat:'Фрукты',store:'Ящик для овощей',emoji:'🍊'},
-  'мандарин':{cal:38,shelf:14,unit:'шт',cat:'Фрукты',store:'Ящик для овощей',emoji:'🍊'},
-  'груша':{cal:57,shelf:14,unit:'шт',cat:'Фрукты',store:'Ящик для овощей',emoji:'🍐'},
-  'виноград':{cal:69,shelf:7,unit:'г',cat:'Фрукты',store:'Немытый, в контейнере',emoji:'🍇'},
-  'авокадо':{cal:160,shelf:3,unit:'шт',cat:'Фрукты',store:'Спелое — в холодильник',emoji:'🥑'},
-  'ягоды':{cal:43,shelf:3,unit:'г',cat:'Фрукты',store:'Немытые, в 1 слой',emoji:'🍓'},
-  'клубника':{cal:32,shelf:3,unit:'г',cat:'Фрукты',store:'Немытая, с полотенцем',emoji:'🍓'},
-  'черника':{cal:57,shelf:5,unit:'г',cat:'Фрукты',store:'Немытая, в контейнере',emoji:'🫐'},
-  'малина':{cal:52,shelf:2,unit:'г',cat:'Фрукты',store:'Немытая, в 1 слой',emoji:'🍇'},
-  'хлеб':{cal:265,shelf:4,unit:'шт',cat:'Крупы',store:'Хлебница (или в морозилке)',emoji:'🍞'},
+  'хлеб':{cal:265,shelf:4,unit:'шт',cat:'Крупы',store:'Хлебница',emoji:'🍞'},
   'лаваш':{cal:275,shelf:5,unit:'шт',cat:'Крупы',store:'Пакет, комнатная t°',emoji:'🫓'},
+  'тортильи':{cal:300,shelf:14,unit:'уп',cat:'Крупы',store:'Сухая полка',emoji:'🫓'},
   'сок':{cal:45,shelf:5,unit:'л',cat:'Напитки',store:'После вскрытия — в холодильник',emoji:'🧃'},
-  'газировка':{cal:40,shelf:180,unit:'л',cat:'Напитки',store:'Прохладное место',emoji:'🥤'},
   'вино':{cal:85,shelf:5,unit:'бутылка',cat:'Напитки',store:'После вскрытия — в холодильник',emoji:'🍷'},
-  'пиво':{cal:43,shelf:180,unit:'бутылка',cat:'Напитки',store:'Прохладное место',emoji:'🍺'},
   'соевый соус':{cal:53,shelf:365,unit:'мл',cat:'Соусы',store:'После вскрытия — в холодильник',emoji:'🍾'},
   'томатная паста':{cal:82,shelf:5,unit:'г',cat:'Соусы',store:'После вскрытия — в холодильник',emoji:'🥫'},
   'майонез':{cal:680,shelf:30,unit:'г',cat:'Соусы',store:'Средняя полка',emoji:'🥫'},
-  'кетчуп':{cal:112,shelf:30,unit:'г',cat:'Соусы',store:'Средняя полка',emoji:'🥫'},
   'горчица':{cal:66,shelf:180,unit:'г',cat:'Соусы',store:'Средняя полка',emoji:'🥫'},
-  'соус':{cal:80,shelf:30,unit:'г',cat:'Соусы',store:'Средняя полка',emoji:'🥫'},
   'шоколад':{cal:546,shelf:180,unit:'г',cat:'Сладкое',store:'Тёмное место +15…+18°C',emoji:'🍫'},
-  'торт':{cal:350,shelf:3,unit:'г',cat:'Сладкое',store:'Средняя полка',emoji:'🎂'},
-  'пирожное':{cal:400,shelf:3,unit:'шт',cat:'Сладкое',store:'Средняя полка',emoji:'🧁'},
-  'варенье':{cal:250,shelf:365,unit:'г',cat:'Сладкое',store:'После вскрытия — в холодильник',emoji:'🍓'},
   'оливки':{cal:115,shelf:30,unit:'банка',cat:'Прочее',store:'После вскрытия — в холодильник',emoji:'🫒'},
-  'маслины':{cal:115,shelf:30,unit:'банка',cat:'Прочее',store:'После вскрытия — в холодильник',emoji:'🫒'},
   'горошек':{cal:73,shelf:3,unit:'банка',cat:'Прочее',store:'После вскрытия — в холодильник',emoji:'🫛'},
-  'кукуруза':{cal:96,shelf:3,unit:'банка',cat:'Прочее',store:'После вскрытия — в холодильник',emoji:'🌽'},
-  'тунец':{cal:96,shelf:3,unit:'банка',cat:'Рыба',store:'После вскрытия — в холодильник',emoji:'🐟'},
-  'тофу':{cal:76,shelf:5,unit:'г',cat:'Прочее',store:'Средняя полка, в воде',emoji:'⬜'}
+  'тунец':{cal:96,shelf:3,unit:'банка',cat:'Рыба',store:'После вскрытия — в холодильник',emoji:'🐟'}
 };
 
-/* Продукты, которые НЕ хранятся в холодильнике */
 const NOT_FRIDGE=[
-  {re:/^мука$/i,reason:'Хранится в шкафу в закрытой банке'},
-  {re:/^сахар$/i,reason:'Хранится в шкафу'},
-  {re:/^соль$/i,reason:'Хранится в шкафу'},
-  {re:/^рис$/i,reason:'Хранится в шкафу'},
-  {re:/^гречк/i,reason:'Хранится в шкафу'},
-  {re:/^макарон/i,reason:'Хранится в шкафу'},
-  {re:/^спагетти$/i,reason:'Хранится в шкафу'},
-  {re:/^специи/i,reason:'Хранится в шкафу'},
-  {re:/^перец чёрн/i,reason:'Хранится в шкафу'},
-  {re:/^паприка$/i,reason:'Хранится в шкафу'},
-  {re:/^корица$/i,reason:'Хранится в шкафу'},
-  {re:/^лавровый лист$/i,reason:'Хранится в шкафу'},
-  {re:/^чай$/i,reason:'Хранится в шкафу'},
-  {re:/^кофе$/i,reason:'Хранится в шкафу'},
-  {re:/^масло растительн/i,reason:'Хранится в шкафу'},
-  {re:/^масло оливков/i,reason:'Хранится в шкафу'},
-  {re:/^уксус$/i,reason:'Хранится в шкафу'},
-  {re:/^мёд$|^мед$/i,reason:'Хранится в шкафу'},
-  {re:/^орехи$/i,reason:'Хранится в шкафу'},
-  {re:/^изюм$/i,reason:'Хранится в шкафу'},
-  {re:/^финики$/i,reason:'Хранится в шкафу'},
-  {re:/^сгущёнка$|^сгущенка$/i,reason:'Хранится в шкафу до вскрытия'},
-  {re:/^овсянк/i,reason:'Хранится в шкафу'},
-  {re:/^манк/i,reason:'Хранится в шкафу'},
-  {re:/^конфет/i,reason:'Хранится в шкафу'},
-  {re:/^печенье$/i,reason:'Хранится в шкафу'},
-  {re:/^порошок/i,reason:'Бытовое средство — не в холодильнике'},
-  {re:/^мыло$/i,reason:'Бытовое средство'},
-  {re:/^шампунь$/i,reason:'Бытовое средство'},
-  {re:/^гель/i,reason:'Бытовое средство'},
-  {re:/^крем/i,reason:'Косметика — не в холодильнике'}
+  {re:/^мука$/i,reason:'Хранится в шкафу'},{re:/^сахар$/i,reason:'Хранится в шкафу'},{re:/^соль$/i,reason:'Хранится в шкафу'},{re:/^рис$/i,reason:'Хранится в шкафу'},{re:/^гречк/i,reason:'Хранится в шкафу'},{re:/^макарон/i,reason:'Хранится в шкафу'},{re:/^специи/i,reason:'Хранится в шкафу'},{re:/^чай$/i,reason:'Хранится в шкафу'},{re:/^кофе$/i,reason:'Хранится в шкафу'},{re:/^масло растительн/i,reason:'Хранится в шкафу'},{re:/^уксус$/i,reason:'Хранится в шкафу'},{re:/^мёд$|^мед$/i,reason:'Хранится в шкафу'},{re:/^орехи$/i,reason:'Хранится в шкафу'},{re:/^порошок/i,reason:'Бытовое средство'},{re:/^мыло$/i,reason:'Бытовое средство'}
 ];
-
-function isNotForFridge(name){
-  const l=name.trim();
-  for(const item of NOT_FRIDGE) if(item.re.test(l)) return item.reason;
-  return null;
-}
-
-function findProduct(name){
-  const l=name.toLowerCase().trim();
-  if(!l) return null;
-  if(PRODUCT_DB[l]) return {key:l,...PRODUCT_DB[l]};
-  let best=null,bestLen=0;
-  for(const k in PRODUCT_DB){
-    if(l.includes(k)&&k.length>bestLen){best={key:k,...PRODUCT_DB[k]};bestLen=k.length;}
-  }
-  return best;
-}
-
+function isNotForFridge(name){for(const item of NOT_FRIDGE) if(item.re.test(name.trim())) return item.reason; return null;}
+function findProduct(name){const l=name.toLowerCase().trim();if(!l) return null;if(PRODUCT_DB[l]) return {key:l,...PRODUCT_DB[l]};let best=null,bestLen=0;for(const k in PRODUCT_DB){if(l.includes(k)&&k.length>bestLen){best={key:k,...PRODUCT_DB[k]};bestLen=k.length;}}return best;}
 function guessProduct(name){
-  const found=findProduct(name);
-  if(found) return found;
-  const l=name.toLowerCase();
-  let cat='Прочее',unit='шт',shelf=7,cal=100,emoji='🍽',store='Стандартные условия';
-  if(/заморо|морож|лёд|лед|фри/.test(l)){cat='Заморозка';unit='г';shelf=180;cal=150;emoji='❄️';store='Морозилка, −18°C';}
-  else if(/молок|кефир|сливк|ряженк|йогурт/.test(l)){cat='Молочное';unit='мл';shelf=5;cal=60;emoji='🥛';store='Средняя полка, +2…+4°C';}
-  else if(/сыр|творог|сметан|маскарпон|фета/.test(l)){cat='Молочное';unit='г';shelf=7;cal=250;emoji='🧀';store='Средняя полка';}
-  else if(/мяс|куриц|говяд|свинин|фарш|бекон|стейк|колбас|сосиск/.test(l)){cat='Мясо';unit='г';shelf=2;cal=250;emoji='🥩';store='Нижняя полка, +0…+2°C';}
-  else if(/рыб|креветк|лосос|треск|сельд/.test(l)){cat='Рыба';unit='г';shelf=1;cal=140;emoji='🐟';store='Самая холодная зона';}
-  else if(/яблок|банан|апельсин|лимон|груш|виноград|манго|киви/.test(l)){cat='Фрукты';unit='шт';shelf=10;cal=60;emoji='🍎';store='Ящик для овощей';}
-  else if(/ягод|клубник|малин|черник|смородин/.test(l)){cat='Фрукты';unit='г';shelf=3;cal=45;emoji='🍓';store:'Немытые, в 1 слой';}
-  else if(/помидор|огур|морков|лук|чеснок|картоф|капуст|перец|кабач|баклаж|свекл|салат|зелен|укроп|петрушк|базилик/.test(l)){cat='Овощи';unit='г';shelf=10;cal=30;emoji='🥕';store='Ящик для овощей';}
+  const found=findProduct(name);if(found) return found;
+  const l=name.toLowerCase();let cat='Прочее',unit='шт',shelf=7,cal=100,emoji='🍽',store='Стандартные условия';
+  if(/заморо|морож|фри/.test(l)){cat='Заморозка';unit='г';shelf=180;cal=150;emoji='❄️';store='Морозилка, −18°C';}
+  else if(/молок|кефир|сливк/.test(l)){cat='Молочное';unit='мл';shelf=5;cal=60;emoji='🥛';store='Средняя полка';}
+  else if(/сыр|творог|сметан/.test(l)){cat='Молочное';unit='г';shelf=7;cal=250;emoji='🧀';store='Средняя полка';}
+  else if(/мяс|куриц|говяд|свинин|фарш|бекон/.test(l)){cat='Мясо';unit='г';shelf=2;cal=250;emoji='🥩';store='Нижняя полка';}
+  else if(/рыб|креветк|кальмар/.test(l)){cat='Рыба';unit='г';shelf=1;cal=140;emoji='🐟';store='Самая холодная зона';}
+  else if(/яблок|банан|апельсин|лимон/.test(l)){cat='Фрукты';unit='шт';shelf=10;cal=60;emoji='🍎';store='Ящик для овощей';}
+  else if(/помидор|огур|морков|лук|чеснок|картоф|капуст|кабач|свекл|зелен|петрушк|укроп/.test(l)){cat='Овощи';unit='г';shelf=10;cal=30;emoji='🥕';store='Ящик для овощей';}
   else if(/гриб/.test(l)){cat='Овощи';unit='г';shelf=4;cal=22;emoji='🍄';store='Бумажный пакет';}
+  else if(/хлеб|батон|лаваш/.test(l)){cat='Крупы';unit='шт';shelf=4;cal=265;emoji='🍞';store='Хлебница';}
   else if(/соус|кетчуп|майонез|горчиц/.test(l)){cat='Соусы';unit='г';shelf=30;cal=200;emoji='🥫';store='Средняя полка';}
-  else if(/вода|сок|газировк|напиток/.test(l)){cat='Напитки';unit='л';shelf=180;cal=30;emoji='🥤';store='Прохладное место';}
-  else if(/вино|пиво|алкоголь|водка/.test(l)){cat='Напитки';unit='бутылка';shelf=180;cal=80;emoji='🍷';store='Прохладное место';}
-  else if(/шоколад|конфет|печенье|торт|пирожн|варенье/.test(l)){cat='Сладкое';unit='г';shelf=90;cal=400;emoji='🍫';store='Сухая полка';}
-  else if(/консерв|банк|оливк|маслин|горош|кукуруз/.test(l)){cat='Прочее';unit:'банка';shelf=365;cal=100;emoji='🥫';store='Сухая полка';}
+  else if(/сок|вино|пиво|вода/.test(l)){cat='Напитки';unit='л';shelf=180;cal=40;emoji='🧃';store:'Прохладное место';}
+  else if(/шоколад|конфет|торт/.test(l)){cat='Сладкое';unit='г';shelf=90;cal=400;emoji='🍫';store='Сухая полка';}
   return {key:name.toLowerCase(),cal,shelf,unit,cat,store,emoji};
 }
+function defaultExpiry(days){const d=new Date();d.setDate(d.getDate()+days);return d.toISOString().slice(0,10);}
 
-function defaultExpiry(shelfLifeDays){
-  const d=new Date();
-  d.setDate(d.getDate()+shelfLifeDays);
-  return d.toISOString().slice(0,10);
-}
-
-/* ЛОГИЧНЫЕ РЕЦЕПТЫ — только с подходящими ингредиентами и шагами */
-const BASE_RECIPES=[
-  {emoji:"🥩",name:"Стейк Рибай на гриле",category:"Стейк",meal:"Ужин",time:25,servings:2,ingredients:["Стейк рибай","Соль","Перец чёрный","Масло сливочное","Чеснок","Розмарин"],steps:["Достаньте стейк за 30 минут до готовки — он должен согреться.","Обсушите бумажным полотенцем, посолите, поперчите.","Разогрейте сковороду на сильном огне 3 минуты до лёгкого дымка.","Обжарьте по 3 минуты с каждой стороны для medium-rare.","Добавьте 20 г масла, чеснок и розмарин, поливайте стейк 2 минуты.","Дайте отдохнуть 5–7 минут под фольгой. Подавайте с овощами."]},
-  {emoji:"🥩",name:"Стейк Стриплойн с розмарином",category:"Стейк",meal:"Ужин",time:22,servings:2,ingredients:["Стейк стриплойн","Соль","Перец чёрный","Масло сливочное","Розмарин","Чеснок"],steps:["Согрейте стейк 30 минут, обсушите бумажным полотенцем.","Посолите крупной солью, поперчите.","Разогрейте сковороду 3 минуты на максимуме.","Обжарьте по 4 минуты с каждой стороны (medium).","Добавьте 15 г масла, чеснок, розмарин, поливайте 2 минуты.","Дайте отдохнуть 5 минут перед подачей."]},
-  {emoji:"🥩",name:"Стейк Филе-миньон",category:"Стейк",meal:"Ужин",time:20,servings:2,ingredients:["Филе-миньон","Соль","Перец чёрный","Масло сливочное","Тимьян"],steps:["Согрейте стейк, обсушите, посолите.","Разогрейте сковороду на сильном огне 3 минуты.","Обжарьте по 3 минуты с каждой стороны.","Добавьте 10 г масла и тимьян, полейте 1 минуту.","Дайте отдохнуть 4 минуты. Подавайте с картофелем."]},
-  {emoji:"🥩",name:"Стейк Ти-Бон на углях",category:"Стейк",meal:"Ужин",time:35,servings:2,ingredients:["Ти-бон","Соль","Перец","Масло сливочное","Чеснок"],steps:["Разожгите угли до сильного жара 250°C.","Обсушите стейк, посолите, поперчите.","Обжаривайте по 4 минуты с каждой стороны.","Переместите на 5 минут в зону слабого жара.","Дайте отдохнуть 5 минут с маслом и чесноком."]},
-  {emoji:"🔥",name:"Шашлык из свинины на костре",category:"На костре",meal:"Ужин",time:120,servings:4,ingredients:["Свинина","Лук","Уксус","Специи для шашлыка","Соль","Перец чёрный","Лаваш"],steps:["Нарежьте 1 кг свинины кубиками 4 см.","Замаринуйте с луком, уксусом и специями 2 часа.","Нанизывайте на шампуры плотно.","Жарьте над углями 20–25 минут, переворачивая каждые 5 минут.","Подавайте с лавашом и зеленью."]},
-  {emoji:"🔥",name:"Куриные крылья на костре",category:"На костре",meal:"Ужин",time:60,servings:3,ingredients:["Курица","Соевый соус","Мёд","Чеснок","Паприка","Соль"],steps:["Замаринуйте 800 г крыльев в соевом соусе, мёде и чесноке 30 минут.","Разожгите угли до среднего жара.","Жарьте крылья 20–25 минут, переворачивая каждые 5 минут.","Посыпьте паприкой."]},
-  {emoji:"🔥",name:"Рыба на костре в фольге",category:"На костре",meal:"Ужин",time:45,servings:2,ingredients:["Рыба","Лимон","Лук","Специи","Соль","Масло сливочное"],steps:["Очистите рыбу, посолите, поперчите.","Внутрь положите лук и лимон.","Заверните в фольгу с маслом.","Запекайте на углях 25–30 минут."]},
-  {emoji:"🔥",name:"Картошка в углях",category:"На костре",meal:"Ужин",time:50,servings:4,ingredients:["Картофель","Соль","Масло сливочное","Зелень"],steps:["Вымойте 8 картофелин, обсушите.","Заверните каждую в фольгу.","Закапайте в угли на 40 минут.","Готовую картошку разрежьте, добавьте масло и зелень."]},
-  {emoji:"🍲",name:"Плов в казане на костре",category:"В казане",meal:"Обед",time:120,servings:6,ingredients:["Рис","Баранина","Морковь","Лук","Чеснок","Масло растительное","Специи для плова"],steps:["Разожгите костёр, поставьте казан с 100 мл масла.","Обжарьте 700 г баранины кубиками 15 минут до корочки.","Добавьте 3 лука и 4 моркови соломкой, жарьте 10 минут.","Добавьте специи, зиру, головку чеснока.","Залейте водой, чтобы покрыла мясо, тушите 30 минут.","Добавьте 700 г риса, разровняйте, залейте водой на 2 см.","Готовьте 25 минут на слабом жаре под крышкой."]},
-  {emoji:"🍲",name:"Шурпа в казане",category:"В казане",meal:"Обед",time:150,servings:6,ingredients:["Баранина","Картофель","Морковь","Лук","Помидоры","Перец болгарский","Зелень","Специи"],steps:["Обжарьте 800 г баранины в казане 15 минут.","Добавьте лук, морковь, помидоры, жарьте 10 минут.","Залейте 3 л воды, доведите до кипения.","Тушите 60 минут на слабом жаре.","Добавьте картофель, перец и специи, варите 30 минут.","Посыпьте зеленью перед подачей."]},
-  {emoji:"🍲",name:"Плов с курицей в казане",category:"В казане",meal:"Обед",time:70,servings:5,ingredients:["Рис","Курица","Морковь","Лук","Чеснок","Специи","Масло растительное"],steps:["Обжарьте 600 г курицы в казане 10 минут.","Добавьте 2 лука и 3 моркови, жарьте 7 минут.","Добавьте специи и чеснок.","Залейте водой на уровень мяса, тушите 15 минут.","Добавьте 500 г риса, разровняйте.","Залейте водой на 2 см выше риса, готовьте 25 минут под крышкой."]},
-  {emoji:"🍲",name:"Гуляш в казане",category:"В казане",meal:"Обед",time:120,servings:5,ingredients:["Говядина","Лук","Морковь","Томатная паста","Мука","Специи","Чеснок"],steps:["Обжарьте 700 г говядины в казане 15 минут.","Добавьте лук и морковь, жарьте 7 минут.","Добавьте томатную пасту и муку, прогрейте 2 минуты.","Залейте водой, тушите 90 минут под крышкой.","Добавьте специи и чеснок за 10 минут до готовности."]},
-  {emoji:"🐟",name:"Уха по-царски в казане",category:"В казане",meal:"Обед",time:60,servings:4,ingredients:["Рыба","Картофель","Морковь","Лук","Лавровый лист","Зелень","Специи"],steps:["В казане закипятите 2 л воды.","Добавьте нарезанный картофель и морковь, варите 15 минут.","Добавьте рыбу и лук, варите 15 минут.","Добавьте лавровый лист и специи.","За 2 минуты до готовности добавьте зелень."]},
-  {emoji:"🍳",name:"Омлет с сыром и помидорами",category:"Завтрак",meal:"Завтрак",time:15,servings:2,ingredients:["Яйца","Молоко","Сыр","Помидоры","Масло сливочное","Соль"],steps:["Взбейте 4 яйца с 50 мл молока и щепоткой соли.","Натрите 80 г сыра, помидор нарежьте ломтиками.","Растопите 10 г масла на среднем огне.","Вылейте яичную смесь, готовьте 3 минуты под крышкой.","Выложите помидоры и сыр, накройте, готовьте 3–4 минуты.","Подавайте горячим."]},
-  {emoji:"🥞",name:"Панкейки классические",category:"Завтрак",meal:"Завтрак",time:20,servings:4,ingredients:["Мука","Молоко","Яйца","Сахар","Разрыхлитель","Соль"],steps:["Смешайте 200 г муки, 2 ст.л. сахара, 1 ч.л. разрыхлителя, щепотку соли.","Добавьте 2 яйца и 300 мл молока, взбейте венчиком.","Разогрейте сковороду на среднем огне.","Вылейте по 2 ст.л. теста, жарьте 2 минуты до пузырьков.","Переверните и жарьте ещё 1–2 минуты до золотистого цвета.","Подавайте с мёдом или ягодами."]},
-  {emoji:"🥞",name:"Сырники",category:"Завтрак",meal:"Завтрак",time:25,servings:3,ingredients:["Творог","Яйца","Мука","Сахар","Соль","Масло растительное"],steps:["Смешайте 400 г творога, 2 яйца, 2 ст.л. сахара, щепотку соли.","Добавьте 100 г муки, замесите мягкое тесто.","Сформируйте лепёшки по 5 см.","Разогрейте масло на среднем огне.","Жарьте по 3–4 минуты с каждой стороны.","Подавайте со сметаной."]},
-  {emoji:"🍳",name:"Яичница с беконом",category:"Завтрак",meal:"Завтрак",time:10,servings:1,ingredients:["Яйца","Бекон","Масло сливочное","Соль","Перец чёрный"],steps:["Обжарьте 50 г бекона на сухой сковороде 3 минуты до хруста.","Добавьте 5 г масла, разбейте 2 яйца.","Готовьте 3–4 минуты на среднем огне.","Посолите, поперчите.","Подавайте сразу."]},
-  {emoji:"🥣",name:"Овсяная каша с бананом",category:"Завтрак",meal:"Завтрак",time:12,servings:2,ingredients:["Овсянка","Молоко","Банан","Мёд","Орехи"],steps:["Залейте 100 г овсянки 400 мл молока.","Варите на среднем огне 5–7 минут, помешивая.","Нарежьте банан кружочками.","Подавайте кашу с бананом, мёдом и орехами."]},
-  {emoji:"🥑",name:"Тост с авокадо и яйцом",category:"Завтрак",meal:"Завтрак",time:10,servings:1,ingredients:["Хлеб","Авокадо","Яйца","Лимон","Соль","Перец"],steps:["Обжарьте ломтик хлеба на сухой сковороде 2 минуты.","Разомните авокадо с соком лимона, солью и перцем.","Отварите яйцо пашот 3 минуты.","Намажьте авокадо на хлеб, сверху положите яйцо."]},
-  {emoji:"🧀",name:"Творожная запеканка",category:"Завтрак",meal:"Завтрак",time:50,servings:4,ingredients:["Творог","Яйца","Сахар","Манка","Молоко","Изюм"],steps:["Смешайте 500 г творога, 3 яйца, 3 ст.л. сахара, 3 ст.л. манки, 100 мл молока.","Добавьте 50 г изюма.","Выложите в смазанную маслом форму.","Выпекайте при 180°C 35–40 минут.","Дайте остыть 15 минут, подавайте со сметаной."]},
-  {emoji:"🍲",name:"Куриный суп с овощами",category:"Суп",meal:"Обед",time:50,servings:4,ingredients:["Курица","Картофель","Морковь","Лук","Лавровый лист","Соль","Зелень"],steps:["Залейте 400 г курицы 2 л холодной воды, доведите до кипения.","Снимите пену, варите 30 минут на слабом огне.","Достаньте курицу, отделите мясо от костей.","Добавьте нарезанные 3 картофеля, 1 морковь, 1 лук.","Варите 15 минут, добавьте лавровый лист и соль.","Верните мясо, варите 5 минут. Посыпьте зеленью."]},
-  {emoji:"🍲",name:"Борщ украинский",category:"Суп",meal:"Обед",time:90,servings:6,ingredients:["Свёкла","Капуста","Картофель","Морковь","Лук","Мясо","Томатная паста"],steps:["Сварите бульон из 500 г мяса 60 минут.","Натрите 2 свёклы, 1 морковь, нарежьте лук, обжарьте 10 минут с 2 ст.л. томатной пасты.","Добавьте в бульон 4 нарезанных картофеля, варите 10 минут.","Добавьте 300 г капусты и зажарку, варите 15 минут.","Дайте настояться 20 минут под крышкой."]},
-  {emoji:"🍲",name:"Щи из свежей капусты",category:"Суп",meal:"Обед",time:60,servings:4,ingredients:["Капуста","Картофель","Морковь","Лук","Мясо","Томатная паста"],steps:["Сварите бульон из 400 г мяса 45 минут.","Добавьте нарезанный картофель, варите 10 минут.","Добавьте 300 г капусты, варите 10 минут.","Обжарьте лук и морковь, добавьте в суп.","Варите 5 минут, дайте настояться."]},
-  {emoji:"🍜",name:"Том Ям с креветками",category:"Суп",meal:"Обед",time:35,servings:3,ingredients:["Креветки","Кокосовое молоко","Грибы","Лемонграсс","Лайм","Чили","Соевый соус"],steps:["Вскипятите 1 л воды, добавьте лемонграсс, варите 5 минут.","Добавьте 200 г нарезанных грибов, варите 5 минут.","Добавьте 300 г креветок, варите 3 минуты.","Влейте 400 мл кокосового молока, доведите до кипения.","Добавьте 2 ст.л. соевого соуса, сок лайма, чили."]},
-  {emoji:"🥗",name:"Греческий салат",category:"Салат",meal:"Обед",time:15,servings:2,ingredients:["Огурец","Помидоры","Перец болгарский","Сыр фета","Маслины","Оливковое масло","Лимон"],steps:["Нарежьте огурец, 2 помидора, перец крупными кубиками.","Добавьте 50 г маслин и 100 г феты, нарезанной кубиками.","Заправьте 2 ст.л. оливкового масла и соком лимона.","Аккуратно перемешайте и подавайте."]},
-  {emoji:"🥗",name:"Салат Цезарь с курицей",category:"Салат",meal:"Обед",time:30,servings:2,ingredients:["Курица","Салат","Сухарики","Сыр пармезан","Соус Цезарь","Яйца"],steps:["Обжарьте 250 г курицы по 4 минуты с каждой стороны, нарежьте полосками.","Порвите 200 г салата руками.","Добавьте 100 г сухариков.","Сверху выложите курицу и 50 г натёртого пармезана.","Заправьте соусом Цезарь."]},
-  {emoji:"🥗",name:"Оливье",category:"Салат",meal:"Обед",time:40,servings:6,ingredients:["Картофель","Морковь","Яйца","Горошек","Огурцы солёные","Майонез","Колбаса"],steps:["Отварите 4 картофеля, 2 моркови, 4 яйца — по 10 минут.","Нарежьте всё кубиками.","Добавьте 200 г горошка, 3 солёных огурца, 300 г колбасы.","Заправьте 200 г майонеза, перемешайте."]},
-  {emoji:"🍝",name:"Паста Карбонара",category:"Паста",meal:"Ужин",time:25,servings:2,ingredients:["Спагетти","Бекон","Яйца","Сыр пармезан","Чеснок","Перец чёрный"],steps:["Отварите 200 г спагетти в подсоленной воде 8–10 минут.","Обжарьте 100 г бекона с чесноком 5 минут.","Взбейте 2 яйца с 50 г натёртого пармезана и перцем.","Слейте воду с пасты, оставив 100 мл.","Смешайте горячую пасту с беконом, снимите с огня.","Влейте яичную смесь, быстро перемешайте, добавьте воду при необходимости."]},
-  {emoji:"🍝",name:"Паста с томатами и базиликом",category:"Паста",meal:"Ужин",time:25,servings:2,ingredients:["Спагетти","Помидоры","Чеснок","Базилик","Оливковое масло","Соль","Перец чёрный"],steps:["Отварите 200 г спагетти 8 минут.","Обжарьте 2 зубчика чеснока в 2 ст.л. масла 1 минуту.","Добавьте 3 нарезанных помидора, тушите 7 минут.","Добавьте базилик, соль, перец.","Смешайте с пастой, подавайте."]},
-  {emoji:"🍝",name:"Паста с грибами в сливочном соусе",category:"Паста",meal:"Ужин",time:30,servings:2,ingredients:["Паста","Грибы","Сливки","Лук","Чеснок","Сыр пармезан","Масло сливочное"],steps:["Отварите 200 г пасты 8–10 минут.","Обжарьте лук и чеснок в масле 3 минуты.","Добавьте 300 г грибов, жарьте 7 минут.","Влейте 200 мл сливок, тушите 5 минут.","Добавьте пасту, прогрейте, посыпьте сыром."]},
-  {emoji:"🍝",name:"Лазанья болоньезе",category:"Паста",meal:"Обед",time:90,servings:6,ingredients:["Листы лазаньи","Фарш","Помидоры","Лук","Чеснок","Сыр","Молоко","Мука"],steps:["Обжарьте 500 г фарша с луком и чесноком 10 минут.","Добавьте 400 г томатов в собственном соку, тушите 20 минут.","Приготовьте бешамель: 50 г масла, 50 г муки, 500 мл молока.","Выложите слоями: соус, листы, фарш, бешамель. Повторите 3 раза.","Посыпьте сыром, выпекайте при 180°C 35 минут."]},
-  {emoji:"🍗",name:"Куриные котлеты на пару",category:"Основное",meal:"Обед",time:40,servings:4,ingredients:["Курица","Лук","Яйца","Хлеб","Молоко","Соль"],steps:["Пропустите 500 г курицы через мясорубку.","Добавьте лук, яйцо, хлеб, размоченный в 50 мл молока, соль.","Сформируйте котлеты.","Готовьте на пару 25 минут.","Подавайте с овощами."]},
-  {emoji:"🐟",name:"Рыбные котлеты",category:"Основное",meal:"Обед",time:35,servings:4,ingredients:["Рыба","Яйца","Лук","Хлеб","Молоко","Соль"],steps:["Пропустите 500 г рыбы через мясорубку.","Добавьте лук, яйцо, хлеб в молоке, соль.","Сформируйте котлеты.","Обжарьте по 4 минуты с каждой стороны.","Подавайте с картофельным пюре."]},
-  {emoji:"🥘",name:"Овощное рагу",category:"Основное",meal:"Ужин",time:40,servings:4,ingredients:["Картофель","Морковь","Лук","Перец болгарский","Кабачок","Томатная паста"],steps:["Нарежьте все овощи кубиками.","Обжарьте лук и морковь 5 минут.","Добавьте остальные овощи.","Добавьте 2 ст.л. томатной пасты и 200 мл воды.","Тушите под крышкой 25 минут на слабом огне."]},
-  {emoji:"🍄",name:"Гречка с грибами",category:"Основное",meal:"Ужин",time:30,servings:3,ingredients:["Гречка","Грибы","Лук","Масло растительное","Соль"],steps:["Промойте 300 г гречки, залейте 600 мл воды.","Варите 20 минут на слабом огне.","Обжарьте 300 г грибов с луком 10 минут.","Смешайте гречку с грибами, прогрейте 2 минуты."]},
-  {emoji:"🍟",name:"Картофельное пюре с котлетами",category:"Основное",meal:"Обед",time:45,servings:4,ingredients:["Картофель","Молоко","Масло сливочное","Фарш","Лук","Яйца","Хлеб"],steps:["Отварите 800 г картофеля 20 минут.","Слейте воду, добавьте 150 мл молока и 50 г масла, разомните в пюре.","Смешайте 500 г фарша с луком, яйцом, хлебом.","Сформируйте котлеты, обжарьте по 4 минуты с каждой стороны.","Подавайте пюре с котлетами и зеленью."]},
-  {emoji:"🍚",name:"Рис с курицей и овощами",category:"Основное",meal:"Обед",time:35,servings:3,ingredients:["Рис","Курица","Морковь","Лук","Перец болгарский","Соевый соус"],steps:["Обжарьте 300 г курицы 7 минут.","Добавьте овощи, жарьте 5 минут.","Добавьте 300 г риса и 3 ст.л. соевого соуса.","Залейте 600 мл воды, тушите 20 минут под крышкой."]},
-  {emoji:"🌮",name:"Тако с говядиной",category:"Основное",meal:"Обед",time:30,servings:4,ingredients:["Тортильи","Говядина","Лук","Помидоры","Салат","Сыр","Специи"],steps:["Обжарьте 500 г говядины с луком и специями 15 минут.","Разогрейте тортильи на сухой сковороде.","Выложите мясо, салат, помидоры, сыр.","Сверните и подавайте."]},
-  {emoji:"🍛",name:"Карри с курицей",category:"Основное",meal:"Ужин",time:40,servings:4,ingredients:["Курица","Кокосовое молоко","Лук","Чеснок","Карри","Рис"],steps:["Обжарьте лук и чеснок 3 минуты.","Добавьте 500 г курицы, жарьте 7 минут.","Добавьте 2 ст.л. карри.","Влейте 400 мл кокосового молока, тушите 15 минут.","Подавайте с отварным рисом."]},
-  {emoji:"🍤",name:"Креветки в чесночном соусе",category:"Основное",meal:"Ужин",time:20,servings:2,ingredients:["Креветки","Чеснок","Масло сливочное","Лимон","Петрушка"],steps:["Разогрейте 30 г масла на сковороде.","Добавьте 3 зубчика чеснока, жарьте 30 секунд.","Добавьте 300 г креветок, жарьте 3–4 минуты.","Сбрызните соком лимона, посыпьте петрушкой."]},
-  {emoji:"🥟",name:"Пельмени домашние",category:"Основное",meal:"Ужин",time:90,servings:5,ingredients:["Мука","Яйца","Вода","Фарш","Лук","Соль","Перец"],steps:["Замесите тесто: 400 г муки, 1 яйцо, 200 мл воды, соль.","Дайте тесту отдохнуть 30 минут.","Смешайте 500 г фарша с луком, солью, перцем.","Раскатайте тесто, вырежьте кружки, положите фарш.","Защипните края, варите 7 минут в подсоленной воде."]},
-  {emoji:"🥟",name:"Вареники с картошкой",category:"Основное",meal:"Ужин",time:60,servings:4,ingredients:["Мука","Вода","Картофель","Лук","Масло растительное","Соль"],steps:["Замесите тесто из 300 г муки, 150 мл воды, соли.","Отварите 600 г картофеля, разомните с обжаренным луком.","Раскатайте тесто, вырежьте кружки.","Положите начинку, защипните.","Варите 5 минут после всплытия."]},
-  {emoji:"🍰",name:"Тирамису",category:"Десерт",meal:"Десерт",time:40,servings:6,ingredients:["Маскарпоне","Яйца","Сахар","Печенье савоярди","Кофе","Какао"],steps:["Взбейте 3 желтка с 80 г сахара до пышной массы.","Добавьте 500 г маскарпоне, перемешайте.","Взбейте 3 белка до пиков, аккуратно введите в крем.","Обмакните печенье в 200 мл кофе, выложите слоем.","Покройте кремом, повторите слои.","Поставьте в холодильник на 4 часа. Посыпьте какао."]},
-  {emoji:"🍫",name:"Шоколадный брауни",category:"Десерт",meal:"Десерт",time:45,servings:8,ingredients:["Шоколад","Масло сливочное","Яйца","Сахар","Мука","Какао"],steps:["Растопите 200 г шоколада с 150 г масла.","Взбейте 3 яйца с 200 г сахара.","Соедините, добавьте 100 г муки и 30 г какао.","Вылейте в форму, выпекайте при 180°C 25 минут.","Дайте остыть, нарежьте квадратами."]},
-  {emoji:"🍮",name:"Крем-брюле",category:"Десерт",meal:"Десерт",time:60,servings:4,ingredients:["Сливки","Яйца","Сахар","Ваниль"],steps:["Нагрейте 500 мл сливок с ванилью, не кипятите.","Взбейте 4 желтка с 80 г сахара.","Влейте горячие сливки, помешивая.","Разлейте по формам, запекайте на водяной бане при 150°C 40 минут.","Посыпьте сахаром и карамелизуйте горелкой."]},
-  {emoji:"🍎",name:"Шарлотка с яблоками",category:"Выпечка",meal:"Десерт",time:50,servings:6,ingredients:["Яблоки","Яйца","Сахар","Мука","Разрыхлитель"],steps:["Взбейте 4 яйца с 200 г сахара.","Добавьте 200 г муки и 1 ч.л. разрыхлителя.","Нарежьте 4 яблока ломтиками.","Выложите в форму, залейте тестом.","Выпекайте при 180°C 35 минут."]},
-  {emoji:"🍪",name:"Печенье с шоколадными чипсами",category:"Выпечка",meal:"Перекус",time:30,servings:12,ingredients:["Мука","Масло сливочное","Сахар","Яйца","Шоколад","Сода"],steps:["Взбейте 100 г масла с 100 г сахара.","Добавьте яйцо, 200 г муки, щепотку соды.","Добавьте 100 г рубленого шоколада.","Выложите ложкой на противень.","Выпекайте при 180°C 12–15 минут."]},
-  {emoji:"🧁",name:"Маффины с черникой",category:"Выпечка",meal:"Перекус",time:30,servings:12,ingredients:["Мука","Сахар","Яйца","Молоко","Масло растительное","Черника","Разрыхлитель"],steps:["Смешайте 300 г муки, 150 г сахара, 2 ч.л. разрыхлителя.","Добавьте 2 яйца, 200 мл молока, 100 мл масла.","Аккуратно введите 200 г черники.","Разложите по формочкам.","Выпекайте при 180°C 20–25 минут."]},
-  {emoji:"🥪",name:"Сэндвич с курицей и авокадо",category:"Перекус",meal:"Перекус",time:10,servings:1,ingredients:["Хлеб","Курица","Авокадо","Помидоры","Салат","Майонез"],steps:["Обжарьте ломтики хлеба на сухой сковороде.","Намажьте майонезом.","Выложите салат, курицу, авокадо, помидоры.","Накройте вторым ломтиком, разрежьте пополам."]},
-  {emoji:"🥜",name:"Энергетические шарики",category:"Перекус",meal:"Перекус",time:15,servings:10,ingredients:["Овсянка","Мёд","Орехи","Финики","Какао"],steps:["Измельчите 100 г фиников и 100 г орехов в блендере.","Добавьте 100 г овсянки, 2 ст.л. мёда, 1 ст.л. какао.","Скатайте шарики размером с грецкий орех.","Поставьте в холодильник на 30 минут."]},
-  {emoji:"🥤",name:"Смузи из ягод и банана",category:"Напиток",meal:"Завтрак",time:5,servings:2,ingredients:["Ягоды","Банан","Йогурт","Мёд"],steps:["Поместите 200 г ягод, 1 банан, 200 мл йогурта, 1 ст.л. мёда в блендер.","Взбейте 30 секунд до однородности.","Разлейте по стаканам, подавайте сразу."]},
-  {emoji:"☕",name:"Капучино",category:"Напиток",meal:"Завтрак",time:8,servings:1,ingredients:["Кофе","Молоко","Сахар"],steps:["Сварите 30 мл эспрессо.","Взбейте 150 мл горячего молока в пену.","Влейте молоко в кофе.","Посыпьте какао по желанию."]},
-  {emoji:"🍵",name:"Имбирный чай с мёдом",category:"Напиток",meal:"Перекус",time:10,servings:2,ingredients:["Имбирь","Лимон","Мёд","Вода"],steps:["Вскипятите 500 мл воды.","Добавьте 20 г натёртого имбиря.","Варите 5 минут.","Добавьте сок лимона и мёд по вкусу."]}
+/* ==== РЕАЛЬНЫЕ РЕЦЕПТЫ (заменены вручную) ==== */
+const REAL_RECIPES=[
+{emoji:"🥩",name:"Стейк Рибай на гриле",category:"Стейк",meal:"Ужин",time:25,servings:2,ingredients:["Стейк рибай — 2 шт","Соль — по вкусу","Перец чёрный — по вкусу","Масло сливочное — 20 г","Чеснок — 2 зубчика","Розмарин — 2 веточки"],steps:["Достаньте стейк за 30 минут до готовки.","Обсушите бумажным полотенцем, посолите, поперчите.","Разогрейте сковороду на сильном огне 3 минуты.","Обжарьте по 3 минуты с каждой стороны для medium-rare.","Добавьте 20 г масла, чеснок и розмарин, поливайте 2 минуты.","Дайте отдохнуть 5–7 минут под фольгой."]},
+{emoji:"🥩",name:"Стейк Стриплойн с розмарином",category:"Стейк",meal:"Ужин",time:22,servings:2,ingredients:["Стейк стриплойн — 2 шт","Соль — по вкусу","Перец чёрный — по вкусу","Масло сливочное — 15 г","Розмарин — 2 веточки","Чеснок — 2 зубчика"],steps:["Согрейте стейк 30 минут, обсушите.","Посолите и поперчите.","Разогрейте сковороду 3 минуты на максимуме.","Обжарьте по 4 минуты с каждой стороны (medium).","Добавьте масло, чеснок, розмарин, поливайте 2 минуты.","Дайте отдохнуть 5 минут."]},
+{emoji:"🥩",name:"Стейк Филе-миньон",category:"Стейк",meal:"Ужин",time:20,servings:2,ingredients:["Филе-миньон — 2 шт","Соль — по вкусу","Перец чёрный — по вкусу","Масло сливочное — 10 г","Тимьян — 2 веточки"],steps:["Согрейте стейк, обсушите, посолите.","Разогрейте сковороду на сильном огне 3 минуты.","Обжарьте по 3 минуты с каждой стороны.","Добавьте масло и тимьян, полейте 1 минуту.","Дайте отдохнуть 4 минуты."]},
+{emoji:"🔥",name:"Шашлык из свинины на костре",category:"На костре",meal:"Ужин",time:120,servings:4,ingredients:["Свинина — 1 кг","Лук — 3 шт","Уксус — 3 ст.л.","Специи для шашлыка — 2 ст.л.","Соль — по вкусу","Перец чёрный — по вкусу","Лаваш — 2 шт"],steps:["Нарежьте свинину кубиками 4 см.","Замаринуйте с луком, уксусом и специями 2 часа.","Нанизывайте на шампуры плотно.","Жарьте над углями 20–25 минут, переворачивая каждые 5 минут.","Подавайте с лавашом и зеленью."]},
+{emoji:"🔥",name:"Картошка в углях",category:"На костре",meal:"Ужин",time:50,servings:4,ingredients:["Картофель — 8 шт","Соль — по вкусу","Масло сливочное — 50 г","Зелень — по вкусу"],steps:["Вымойте картофель, обсушите.","Заверните каждую в фольгу.","Закапайте в угли на 40 минут.","Готовую картошку разрежьте, добавьте масло и зелень."]},
+{emoji:"🍲",name:"Плов в казане на костре",category:"В казане",meal:"Обед",time:120,servings:6,ingredients:["Рис — 700 г","Баранина — 700 г","Морковь — 4 шт","Лук — 3 шт","Чеснок — 1 головка","Масло растительное — 100 мл","Специи для плова — 1 ст.л."],steps:["Разожгите костёр, поставьте казан с маслом.","Обжарьте баранину кубиками 15 минут.","Добавьте лук и морковь соломкой, жарьте 10 минут.","Добавьте специи и чеснок.","Залейте водой, чтобы покрыла мясо, тушите 30 минут.","Добавьте рис, разровняйте, залейте водой на 2 см.","Готовьте 25 минут на слабом жаре под крышкой."]},
+{emoji:"🍲",name:"Шурпа в казане",category:"В казане",meal:"Обед",time:150,servings:6,ingredients:["Баранина — 800 г","Картофель — 6 шт","Морковь — 3 шт","Лук — 2 шт","Помидоры — 3 шт","Перец болгарский — 2 шт","Зелень — по вкусу","Специи — по вкусу"],steps:["Обжарьте баранину в казане 15 минут.","Добавьте лук, морковь, помидоры, жарьте 10 минут.","Залейте 3 л воды, доведите до кипения.","Тушите 60 минут.","Добавьте картофель, перец и специи, варите 30 минут.","Посыпьте зеленью."]},
+{emoji:"🍳",name:"Омлет с сыром и помидорами",category:"Завтрак",meal:"Завтрак",time:15,servings:2,ingredients:["Яйца — 4 шт","Молоко — 50 мл","Сыр — 80 г","Помидоры — 1 шт","Масло сливочное — 10 г","Соль — по вкусу"],steps:["Взбейте яйца с молоком и солью.","Натрите сыр, помидор нарежьте ломтиками.","Растопите масло на среднем огне.","Вылейте смесь, готовьте 3 минуты под крышкой.","Выложите помидоры и сыр, накройте, готовьте 3–4 минуты."]},
+{emoji:"🥞",name:"Панкейки классические",category:"Завтрак",meal:"Завтрак",time:20,servings:4,ingredients:["Мука — 200 г","Молоко — 300 мл","Яйца — 2 шт","Сахар — 2 ст.л.","Разрыхлитель — 1 ч.л.","Соль — щепотка"],steps:["Смешайте сухие ингредиенты.","Добавьте яйца и молоко, взбейте венчиком.","Разогрейте сковороду на среднем огне.","Вылейте по 2 ст.л. теста, жарьте 2 минуты до пузырьков.","Переверните и жарьте ещё 1–2 минуты."]},
+{emoji:"🥞",name:"Сырники",category:"Завтрак",meal:"Завтрак",time:25,servings:3,ingredients:["Творог — 400 г","Яйца — 2 шт","Мука — 100 г","Сахар — 2 ст.л.","Соль — щепотка","Масло растительное — 2 ст.л."],steps:["Смешайте творог, яйца, сахар и соль.","Добавьте муку, замесите тесто.","Сформируйте лепёшки.","Разогрейте масло.","Жарьте по 3–4 минуты с каждой стороны."]},
+{emoji:"🍳",name:"Яичница с беконом",category:"Завтрак",meal:"Завтрак",time:10,servings:1,ingredients:["Яйца — 2 шт","Бекон — 50 г","Масло сливочное — 5 г","Соль — по вкусу","Перец чёрный — по вкусу"],steps:["Обжарьте бекон 3 минуты до хруста.","Добавьте масло, разбейте яйца.","Готовьте 3–4 минуты.","Посолите, поперчите."]},
+{emoji:"🥣",name:"Овсяная каша с бананом",category:"Завтрак",meal:"Завтрак",time:12,servings:2,ingredients:["Овсянка — 100 г","Молоко — 400 мл","Банан — 1 шт","Мёд — 1 ст.л.","Орехи — 20 г"],steps:["Залейте овсянку молоком.","Варите 5–7 минут, помешивая.","Нарежьте банан.","Подавайте с бананом, мёдом и орехами."]},
+{emoji:"🥑",name:"Тост с авокадо и яйцом",category:"Завтрак",meal:"Завтрак",time:10,servings:1,ingredients:["Хлеб — 1 ломтик","Авокадо — 1 шт","Яйца — 1 шт","Лимон — 1/2 шт","Соль — по вкусу","Перец — по вкусу"],steps:["Обжарьте хлеб 2 минуты.","Разомните авокадо с лимоном, солью, перцем.","Отварите яйцо пашот 3 минуты.","Соберите тост."]},
+{emoji:"🧀",name:"Творожная запеканка",category:"Завтрак",meal:"Завтрак",time:50,servings:4,ingredients:["Творог — 500 г","Яйца — 3 шт","Сахар — 3 ст.л.","Манка — 3 ст.л.","Молоко — 100 мл","Изюм — 50 г"],steps:["Смешайте все ингредиенты.","Выложите в форму.","Выпекайте при 180°C 35–40 минут.","Дайте остыть 15 минут."]},
+{emoji:"🍲",name:"Куриный суп с овощами",category:"Суп",meal:"Обед",time:50,servings:4,ingredients:["Курица — 400 г","Картофель — 3 шт","Морковь — 1 шт","Лук — 1 шт","Лавровый лист — 1 шт","Соль — по вкусу","Зелень — по вкусу"],steps:["Залейте курицу 2 л воды, доведите до кипения.","Снимите пену, варите 30 минут.","Достаньте курицу, отделите мясо.","Добавьте картофель, морковь, лук.","Варите 15 минут, добавьте лавровый лист и соль.","Верните мясо, варите 5 минут, посыпьте зеленью."]},
+{emoji:"🍲",name:"Борщ украинский",category:"Суп",meal:"Обед",time:90,servings:6,ingredients:["Свёкла — 2 шт","Капуста — 300 г","Картофель — 4 шт","Морковь — 1 шт","Лук — 1 шт","Мясо — 500 г","Томатная паста — 2 ст.л."],steps:["Сварите бульон из мяса 60 минут.","Натрите свёклу и морковь, нарежьте лук, обжарьте 10 минут с томатной пастой.","Добавьте картофель, варите 10 минут.","Добавьте капусту и зажарку, варите 15 минут.","Дайте настояться 20 минут."]},
+{emoji:"🍲",name:"Щи из свежей капусты",category:"Суп",meal:"Обед",time:60,servings:4,ingredients:["Капуста — 300 г","Картофель — 3 шт","Морковь — 1 шт","Лук — 1 шт","Мясо — 400 г","Томатная паста — 2 ст.л."],steps:["Сварите бульон из мяса 45 минут.","Добавьте картофель, варите 10 минут.","Добавьте капусту, варите 10 минут.","Обжарьте лук и морковь, добавьте в суп.","Варите 5 минут, дайте настояться."]},
+{emoji:"🍜",name:"Том Ям с креветками",category:"Суп",meal:"Обед",time:35,servings:3,ingredients:["Креветки — 300 г","Кокосовое молоко — 400 мл","Грибы — 200 г","Лемонграсс — 2 стебля","Лайм — 1 шт","Чили — 1 шт","Соевый соус — 2 ст.л."],steps:["Вскипятите 1 л воды, добавьте лемонграсс, варите 5 минут.","Добавьте грибы, варите 5 минут.","Добавьте креветки, варите 3 минуты.","Влейте кокосовое молоко, доведите до кипения.","Добавьте соевый соус, сок лайма, чили."]},
+{emoji:"🥗",name:"Греческий салат",category:"Салат",meal:"Обед",time:15,servings:2,ingredients:["Огурец — 1 шт","Помидоры — 2 шт","Перец болгарский — 1 шт","Сыр фета — 100 г","Маслины — 50 г","Оливковое масло — 2 ст.л.","Лимон — 1/2 шт"],steps:["Нарежьте овощи крупными кубиками.","Добавьте маслины и фету.","Заправьте маслом и лимоном.","Перемешайте."]},
+{emoji:"🥗",name:"Салат Цезарь с курицей",category:"Салат",meal:"Обед",time:30,servings:2,ingredients:["Курица — 250 г","Салат — 200 г","Сухарики — 100 г","Сыр пармезан — 50 г","Соус Цезарь — 100 г","Яйца — 1 шт"],steps:["Обжарьте курицу по 4 минуты с каждой стороны, нарежьте.","Порвите салат.","Добавьте сухарики.","Выложите курицу и пармезан.","Заправьте соусом."]},
+{emoji:"🥗",name:"Оливье",category:"Салат",meal:"Обед",time:40,servings:6,ingredients:["Картофель — 4 шт","Морковь — 2 шт","Яйца — 4 шт","Горошек — 200 г","Огурцы солёные — 3 шт","Майонез — 200 г","Колбаса — 300 г"],steps:["Отварите картофель, морковь, яйца по 10 минут.","Нарежьте кубиками.","Добавьте горошек, огурцы, колбасу.","Заправьте майонезом."]},
+{emoji:"🍝",name:"Паста Карбонара",category:"Паста",meal:"Ужин",time:25,servings:2,ingredients:["Спагетти — 200 г","Бекон — 100 г","Яйца — 2 шт","Сыр пармезан — 50 г","Чеснок — 2 зубчика","Перец чёрный — по вкусу"],steps:["Отварите спагетти 8–10 минут.","Обжарьте бекон с чесноком 5 минут.","Взбейте яйца с пармезаном и перцем.","Слейте воду с пасты, оставив 100 мл.","Смешайте пасту с беконом, снимите с огня.","Влейте яичную смесь, быстро перемешайте."]},
+{emoji:"🍝",name:"Паста с томатами и базиликом",category:"Паста",meal:"Ужин",time:25,servings:2,ingredients:["Спагетти — 200 г","Помидоры — 3 шт","Чеснок — 2 зубчика","Базилик — 10 г","Оливковое масло — 2 ст.л.","Соль — по вкусу","Перец — по вкусу"],steps:["Отварите спагетти 8 минут.","Обжарьте чеснок в масле 1 минуту.","Добавьте помидоры, тушите 7 минут.","Добавьте базилик, соль, перец.","Смешайте с пастой."]},
+{emoji:"🍝",name:"Лазанья болоньезе",category:"Паста",meal:"Обед",time:90,servings:6,ingredients:["Листы лазаньи — 12 шт","Фарш — 500 г","Помидоры — 400 г","Лук — 1 шт","Чеснок — 2 зубчика","Сыр — 200 г","Молоко — 500 мл","Мука — 50 г"],steps:["Обжарьте фарш с луком и чесноком 10 минут.","Добавьте помидоры, тушите 20 минут.","Приготовьте бешамель: масло, мука, молоко.","Выложите слоями 3 раза.","Посыпьте сыром, выпекайте 180°C 35 минут."]},
+{emoji:"🍗",name:"Куриные котлеты на пару",category:"Основное",meal:"Обед",time:40,servings:4,ingredients:["Курица — 500 г","Лук — 1 шт","Яйца — 1 шт","Хлеб — 1 ломтик","Молоко — 50 мл","Соль — по вкусу"],steps:["Пропустите курицу через мясорубку.","Добавьте лук, яйцо, хлеб в молоке, соль.","Сформируйте котлеты.","Готовьте на пару 25 минут."]},
+{emoji:"🥘",name:"Овощное рагу",category:"Основное",meal:"Ужин",time:40,servings:4,ingredients:["Картофель — 4 шт","Морковь — 1 шт","Лук — 1 шт","Перец болгарский — 1 шт","Кабачок — 1 шт","Томатная паста — 2 ст.л."],steps:["Нарежьте овощи кубиками.","Обжарьте лук и морковь 5 минут.","Добавьте остальные овощи.","Добавьте томатную пасту и 200 мл воды.","Тушите 25 минут."]},
+{emoji:"🍟",name:"Картофельное пюре с котлетами",category:"Основное",meal:"Обед",time:45,servings:4,ingredients:["Картофель — 800 г","Молоко — 150 мл","Масло сливочное — 50 г","Фарш — 500 г","Лук — 1 шт","Яйца — 1 шт","Хлеб — 2 ломтика"],steps:["Отварите картофель 20 минут.","Слейте воду, добавьте молоко и масло, разомните.","Смешайте фарш с луком, яйцом, хлебом.","Сформируйте котлеты, обжарьте по 4 минуты."]},
+{emoji:"🍚",name:"Рис с курицей и овощами",category:"Основное",meal:"Обед",time:35,servings:3,ingredients:["Рис — 300 г","Курица — 300 г","Морковь — 1 шт","Лук — 1 шт","Перец болгарский — 1 шт","Соевый соус — 3 ст.л."],steps:["Обжарьте курицу 7 минут.","Добавьте овощи, жарьте 5 минут.","Добавьте рис и соевый соус.","Залейте 600 мл воды, тушите 20 минут."]},
+{emoji:"🌮",name:"Тако с говядиной",category:"Основное",meal:"Обед",time:30,servings:4,ingredients:["Тортильи — 8 шт","Говядина — 500 г","Лук — 1 шт","Помидоры — 2 шт","Салат — 100 г","Сыр — 100 г","Специи — 1 ст.л."],steps:["Обжарьте говядину с луком и специями 15 минут.","Разогрейте тортильи.","Выложите мясо, салат, помидоры, сыр.","Сверните."]},
+{emoji:"🥟",name:"Пельмени домашние",category:"Основное",meal:"Ужин",time:90,servings:5,ingredients:["Мука — 400 г","Яйца — 1 шт","Вода — 200 мл","Фарш — 500 г","Лук — 1 шт","Соль — по вкусу","Перец — по вкусу"],steps:["Замесите тесто, дайте отдохнуть 30 минут.","Смешайте фарш с луком, солью, перцем.","Раскатайте тесто, вырежьте кружки.","Положите фарш, защипните.","Варите 7 минут в подсоленной воде."]},
+{emoji:"🍰",name:"Тирамису",category:"Десерт",meal:"Десерт",time:40,servings:6,ingredients:["Маскарпоне — 500 г","Яйца — 6 шт","Сахар — 80 г","Печенье савоярди — 200 г","Кофе — 200 мл","Какао — 30 г"],steps:["Взбейте желтки с сахаром.","Добавьте маскарпоне.","Взбейте белки до пиков, введите в крем.","Обмакните печенье в кофе, выложите слоем.","Покройте кремом, повторите.","Охладите 4 часа. Посыпьте какао."]},
+{emoji:"🍎",name:"Шарлотка с яблоками",category:"Выпечка",meal:"Десерт",time:50,servings:6,ingredients:["Яблоки — 4 шт","Яйца — 4 шт","Сахар — 200 г","Мука — 200 г","Разрыхлитель — 1 ч.л."],steps:["Взбейте яйца с сахаром.","Добавьте муку и разрыхлитель.","Нарежьте яблоки.","Выложите в форму, залейте тестом.","Выпекайте 180°C 35 минут."]},
+{emoji:"🍪",name:"Печенье с шоколадными чипсами",category:"Выпечка",meal:"Перекус",time:30,servings:12,ingredients:["Мука — 200 г","Масло сливочное — 100 г","Сахар — 100 г","Яйца — 1 шт","Шоколад — 100 г","Сода — щепотка"],steps:["Взбейте масло с сахаром.","Добавьте яйцо, муку, соду.","Добавьте рубленый шоколад.","Выложите на противень.","Выпекайте 180°C 12–15 минут."]},
+{emoji:"🧁",name:"Маффины с черникой",category:"Выпечка",meal:"Перекус",time:30,servings:12,ingredients:["Мука — 300 г","Сахар — 150 г","Яйца — 2 шт","Молоко — 200 мл","Масло растительное — 100 мл","Черника — 200 г","Разрыхлитель — 2 ч.л."],steps:["Смешайте муку, сахар, разрыхлитель.","Добавьте яйца, молоко, масло.","Введите чернику.","Разложите по формочкам.","Выпекайте 180°C 20–25 минут."]},
+{emoji:"🥪",name:"Сэндвич с курицей и авокадо",category:"Перекус",meal:"Перекус",time:10,servings:1,ingredients:["Хлеб — 2 ломтика","Курица — 100 г","Авокадо — 1 шт","Помидоры — 1 шт","Салат — 50 г","Майонез — 1 ст.л."],steps:["Обжарьте хлеб.","Намажьте майонезом.","Выложите салат, курицу, авокадо, помидоры.","Накройте вторым ломтиком."]},
+{emoji:"🥤",name:"Смузи из ягод и банана",category:"Напиток",meal:"Завтрак",time:5,servings:2,ingredients:["Ягоды — 200 г","Банан — 1 шт","Йогурт — 200 мл","Мёд — 1 ст.л."],steps:["Поместите всё в блендер.","Взбейте 30 секунд.","Разлейте по стаканам."]},
+{emoji:"☕",name:"Капучино",category:"Напиток",meal:"Завтрак",time:8,servings:1,ingredients:["Кофе — 30 мл","Молоко — 150 мл","Сахар — по вкусу"],steps:["Сварите эспрессо.","Взбейте молоко в пену.","Влейте молоко в кофе.","Посыпьте какао."]},
+{emoji:"🍵",name:"Имбирный чай с мёдом",category:"Напиток",meal:"Перекус",time:10,servings:2,ingredients:["Имбирь — 20 г","Лимон — 1/2 шт","Мёд — 1 ст.л.","Вода — 500 мл"],steps:["Вскипятите воду.","Добавьте имбирь.","Варите 5 минут.","Добавьте сок лимона и мёд."]}
 ];
 
-/* Генерация с логикой: комбинируем только логичные названия */
-const NAME_MODS=[
-  {prefix:"",suffix:""},
-  {prefix:"Домашний ",suffix:""},
-  {prefix:"Быстрый ",suffix:""},
-  {prefix:"",suffix:" по-домашнему"},
-  {prefix:"Ароматный ",suffix:""},
-  {prefix:"Сытный ",suffix:""},
-  {prefix:"Классический ",suffix:""}
-];
-const MEALS=["Завтрак","Обед","Ужин","Перекус","Десерт"];
-
-function makeIngredient(name,seed){
-  const p=guessProduct(name);
-  let qty;
-  if(p.unit==='шт'){
-    const l=name.toLowerCase();
-    if(/яйц/.test(l)) qty=1+(seed%6);
-    else if(/яблок|апельсин|лимон|груш|персик|банан|авокадо|помидор|огур|кабач|баклаж/.test(l)) qty=1+(seed%4);
-    else if(/лук|морков|свекл|перец болгар/.test(l)) qty=1+(seed%4);
-    else qty=1+(seed%5);
-  } else if(p.unit==='г'){
-    const l=name.toLowerCase();
-    if(/мука|сахар|рис|гречка|макарон|спагетт|паста/.test(l)) qty=Math.round((100+(seed*23)%400)/50)*50;
-    else if(/мяс|куриц|говяд|свинин|фарш|рыб|стейк|филе/.test(l)) qty=Math.round((200+(seed*31)%600)/50)*50;
-    else if(/сыр|творог|масло|шоколад|орех/.test(l)) qty=Math.round((50+(seed*19)%250)/25)*25;
-    else if(/соль|специ|перец|карри/.test(l)) qty=Math.round(1+(seed%8));
-    else qty=Math.round((50+(seed*13)%300)/25)*25;
-  } else if(p.unit==='мл'){
-    const l=name.toLowerCase();
-    if(/молок|кефир|вода|бульон|сок/.test(l)) qty=Math.round((100+(seed*29)%400)/50)*50;
-    else if(/масл|уксус|соус|сливк/.test(l)) qty=Math.round((10+(seed*11)%100)/5)*5;
-    else qty=Math.round((50+(seed*17)%250)/25)*25;
-  } else qty=1+(seed%3);
-  return {name,qty,unit:p.unit};
-}
-
-function generateRecipes(){
-  const result=[];
-  let id=1;
-  BASE_RECIPES.forEach(r=>{
-    result.push({
-      id:id++,emoji:r.emoji,name:r.name,category:r.category,meal:r.meal,
-      time:r.time,servings:r.servings,
-      ingredients:r.ingredients.map(n=>makeIngredient(n,id)),
-      steps:r.steps,premium:false
-    });
-  });
-  let baseIdx=0;
-  while(result.length<12100){
-    const base=BASE_RECIPES[baseIdx%BASE_RECIPES.length];
-    const mod=NAME_MODS[(id*3)%NAME_MODS.length];
-    const name=(mod.prefix+base.name+mod.suffix).trim();
-    const meal=base.meal||MEALS[id%MEALS.length];
-    const time=Math.max(5,base.time+((id*3)%20)-8);
-    const servings=1+(id%6);
-    const ingredients=base.ingredients.map(n=>makeIngredient(n,id));
-    const steps=[...base.steps];
-    result.push({
-      id:id++,emoji:base.emoji,
-      name:name.charAt(0).toUpperCase()+name.slice(1),
-      category:base.category,meal,time,servings,ingredients,steps,
-      premium:(id%4===0)
-    });
-    baseIdx++;
-  }
-  return result;
-}
-
-const RECIPES=generateRecipes();
-
-/* УМНЫЙ ИИ — анализирует запрос логически */
-const AI_KNOWLEDGE=[
-  {q:/(сколько|как долго).{0,10}(варить|варится).{0,15}(яйц|яйца)/i,a:"🥚 Яйца варят:\n• Всмятку — 3–4 минуты\n• «В мешочек» — 5–6 минут\n• Вкрутую — 8–10 минут\nОпускайте в кипящую воду, после — в холодную."},
-  {q:/(сколько|как долго).{0,10}(варить|варится).{0,15}рис/i,a:"🍚 Рис варится 15–20 минут (белый), 30–40 минут (бурый). Пропорция 1:2. После закипания — на слабом огне под крышкой."},
-  {q:/(сколько|как долго).{0,10}(варить|варится).{0,15}(макарон|паст|спагетти)/i,a:"🍝 Макароны варят 7–12 минут до аль денте в большом количестве подсоленной воды."},
-  {q:/(сколько|как долго).{0,10}(варить|варится).{0,15}(картоф|картошк)/i,a:"🥔 Картофель варится 20–25 минут крупными кусками, 15 минут — мелкими."},
-  {q:/(сколько|как долго).{0,10}(варить|варится).{0,15}(гречк)/i,a:"🌾 Гречка варится 15–20 минут. Пропорция 1:2."},
-  {q:/(сколько|как долго).{0,10}(жарить|жарится).{0,15}стейк/i,a:"🥩 Время жарки стейка (с каждой стороны):\n• Rare — 2 мин\n• Medium-rare — 3 мин\n• Medium — 4 мин\n• Well-done — 6 мин\nПосле — отдохнуть 5–7 минут."},
-  {q:/(сколько|как долго).{0,10}(жарить|жарится).{0,15}(куриц|грудк)/i,a:"🍗 Куриная грудка жарится 5–6 минут с каждой стороны на среднем огне до 75°C внутри."},
-  {q:/(сколько|как долго).{0,10}(запекать|готовить).{0,15}(куриц)/i,a:"🍗 Курица в духовке запекается при 180–200°C: грудка — 25–30 минут, окорочка — 40–45 минут, целая тушка — 1 час 15 минут. Внутренняя температура — 75°C."},
-  {q:/как хранить банан/i,a:"🍌 Бананы храните при комнатной температуре, отдельно от других фруктов. В холодильнике кожура чернеет за сутки."},
-  {q:/как хранить (молоко|молочн)/i,a:"🥛 Молоко — на средней полке +2…+4°C, НЕ в дверце. После вскрытия — до 5 суток."},
-  {q:/как хранить (мясо|куриц|стейк)/i,a:"🥩 Мясо — на нижней полке +0…+2°C в закрытой посуде. Стейки — 1–2 суток, фарш — 1 сутки."},
-  {q:/как хранить (овощ|фрукт|зелень)/i,a:"🥬 Овощи — в ящике для овощей. Зелень — во влажном полотенце. Помидоры и огурцы — при комнатной."},
-  {q:/привет|здравств|хай/i,a:"Привет! 👋 Напишите, что хотите приготовить, или задайте вопрос."},
-  {q:/спасибо|благодар/i,a:"Пожалуйста! Готовьте с удовольствием 🍳"}
-];
-
-function detectIntent(query){
-  const q=query.toLowerCase();
-  // Продукт для готовки
-  const ingredients=[];
-  for(const k in PRODUCT_DB) if(q.includes(k)) ingredients.push(k);
-  // Способ приготовления
-  const method=/духовк|запеч|запек/.test(q)?'духовка':
-               /костр|угл|мангал|шашлык/.test(q)?'костёр':
-               /казан|плов/.test(q)?'казан':
-               /жар|сковород/.test(q)?'жарка':
-               /вар|суп|бульон/.test(q)?'варка':
-               /грил|барбекю/.test(q)?'гриль':null;
-  // Категория/приём
-  const meal=/завтрак/.test(q)?'Завтрак':
-             /обед/.test(q)?'Обед':
-             /ужин/.test(q)?'Ужин':
-             /десерт|сладк/.test(q)?'Десерт':
-             /перекус/.test(q)?'Перекус':null;
-  return {ingredients,method,meal};
-}
-
-function scoreRecipe(recipe,intent){
-  let score=0;
-  const rName=recipe.name.toLowerCase();
-  const rIngr=recipe.ingredients.map(i=>i.name.toLowerCase());
-  // Совпадение по ключевым ингредиентам — ГЛАВНОЕ
-  let ingredientHits=0;
-  intent.ingredients.forEach(ing=>{
-    if(rIngr.some(i=>i.includes(ing)||ing.includes(i))) ingredientHits++;
-  });
-  if(intent.ingredients.length>0){
-    if(ingredientHits===0) return 0; // если ни один ингредиент не совпал — пропускаем
-    score+=ingredientHits*15;
-  }
-  // Способ приготовления — учитываем в названии и категории
-  if(intent.method){
-    const mMap={'духовка':/духовк|запеч|запек/i,'костёр':/костр|угл|мангал|шашлык/i,'казан':/казан/i,'жарка':/жар|сковород/i,'варка':/суп|вар|бульон/i,'гриль':/грил|барбекю/i};
-    if(mMap[intent.method]&&mMap[intent.method].test(rName+' '+recipe.category)) score+=20;
-    else if(intent.method==='духовка'&&!/суп|салат|напит|десерт/i.test(recipe.category)) score+=5;
-  }
-  if(intent.meal&&recipe.meal===intent.meal) score+=8;
-  // Совпадение с холодильником
-  const fridgeWords=fridge.map(f=>f.name.toLowerCase());
-  rIngr.forEach(ing=>{
-    if(fridgeWords.some(f=>f.includes(ing)||ing.includes(f))) score+=3;
-  });
-  return score;
-}
-
-function findRecipeByQuery(query){
-  const intent=detectIntent(query);
-  if(intent.ingredients.length===0&&!intent.method&&!intent.meal) return null;
-  let best=null,bestScore=0;
-  for(const r of RECIPES){
-    const s=scoreRecipe(r,intent);
-    if(s>bestScore){bestScore=s;best=r;}
-  }
-  return bestScore>=15?best:null;
-}
-
-function aiAnswer(query){
-  const q=query.trim();
-  if(!q) return null;
-  // 1. База знаний
-  for(const item of AI_KNOWLEDGE) if(item.q.test(q)) return {type:'answer',text:item.a};
-  // 2. Поиск рецепта
-  const recipe=findRecipeByQuery(q);
-  if(recipe){
-    const ingList=recipe.ingredients.slice(0,6).map(i=>`${i.name} — ${i.qty} ${i.unit}`).join('<br>• ');
-    const more=recipe.ingredients.length>6?`<br>• и ещё ${recipe.ingredients.length-6}…`:'';
-    return {type:'recipe',recipeId:recipe.id,text:`🍳 Нашёл рецепт: <strong>${recipe.name}</strong><br><br>⏱ ${recipe.time} мин · 🍽 ${recipe.servings} порц. · 📂 ${recipe.category}<br><br><strong>Ингредиенты:</strong><br>• ${ingList}${more}`};
-  }
-  // 3. Из холодильника
-  if(fridge.length>0){
-    const matched=RECIPES.filter(r=>{
-      const missing=r.ingredients.filter(ing=>!fridge.some(f=>f.name.toLowerCase().includes(ing.name.toLowerCase())||ing.name.toLowerCase().includes(f.name.toLowerCase())));
-      return missing.length<=Math.max(1,r.ingredients.length-3);
-    }).slice(0,3);
-    if(matched.length>0) return {type:'list',text:`🧊 Из ваших продуктов можно приготовить:`,recipes:matched};
-  }
-  return {type:'answer',text:`🤔 Не нашёл подходящий рецепт.<br><br>Попробуйте:<br>• «курица в духовке»<br>• «стейк на костре»<br>• «что приготовить из курицы и картошки»<br>• «сколько варить рис»`};
-}
+const RECIPES=REAL_RECIPES;
 
 /* СОСТОЯНИЕ */
 let currentUser=null,fridge=[],shoppingList=[],favorites=[],activeRecipeId=null,isPremium=false,currentMeal="",currentShelf="";
@@ -1134,9 +805,10 @@ function showToast(msg){const t=$('#toast');t.textContent=msg;t.classList.remove
 function formatDate(d){if(!d)return '';return new Date(d).toLocaleDateString('ru-RU',{day:'numeric',month:'short',year:'numeric'});}
 function daysUntil(d){if(!d)return null;const t=new Date();t.setHours(0,0,0,0);const x=new Date(d);x.setHours(0,0,0,0);return Math.round((x-t)/86400000);}
 function normalize(s){return String(s).toLowerCase().trim().replace(/ё/g,'е').replace(/[^a-zа-я0-9\s]/g,'');}
-function ingMatch(ing,items){const target=normalize(ing.name);return items.find(it=>{const n=normalize(it.name);return n===target||n.includes(target)||target.includes(n);});}
+function ingMatch(ing,items){const target=normalize(ing.name||ing);return items.find(it=>{const n=normalize(it.name);return n===target||n.includes(target)||target.includes(n);});}
 function applyTheme(){const h=new Date().getHours();const dark=h>=18||h<6;document.body.classList.toggle('dark',dark);const ind=$('#sunset-indicator');if(ind){ind.textContent=dark?'🌙 Ночной режим':'☀️ Дневной режим';ind.classList.add('show');setTimeout(()=>ind.classList.remove('show'),3000);}}
 
+/* АВТОРИЗАЦИЯ */
 function saveUsers(u){localStorage.setItem('sf_users',JSON.stringify(u));}
 function getUsers(){return JSON.parse(localStorage.getItem('sf_users')||'[]');}
 function saveSession(e){localStorage.setItem('sf_session',e);}
@@ -1144,17 +816,15 @@ function clearSession(){localStorage.removeItem('sf_session');}
 function loadUserData(email){const d=JSON.parse(localStorage.getItem('sf_data_'+email)||'{}');fridge=d.fridge||[];shoppingList=d.shoppingList||[];favorites=d.favorites||[];isPremium=d.isPremium||false;}
 function persist(){if(!currentUser)return;localStorage.setItem('sf_data_'+currentUser.email,JSON.stringify({fridge,shoppingList,favorites,isPremium}));const users=getUsers();const u=users.find(x=>x.email===currentUser.email);if(u){u.isPremium=isPremium;saveUsers(users);}}
 function initAuth(){const s=localStorage.getItem('sf_session');if(!s)return;const u=getUsers().find(x=>x.email===s);if(u){currentUser=u;loadUserData(u.email);enterApp();}}
-function enterApp(){$('#welcome-screen').classList.add('hidden');$('#auth-screen').classList.add('hidden');$('#app').classList.remove('hidden');$('#header-user-name').textContent=currentUser.name;updatePremiumUI();renderFridgeInterior();renderRecipes();renderShopping();updateAILock();updateStats();}
+function enterApp(){$('#welcome-screen').classList.add('hidden');$('#auth-screen').classList.add('hidden');$('#app').classList.remove('hidden');$('#header-user-name').textContent=currentUser.name;updatePremiumUI();renderFridgeInterior();renderRecipes();renderShopping();updateStats();}
 function updatePremiumUI(){$('#premium-badge').classList.toggle('hidden',!isPremium);}
-function updateAILock(){const chat=$('#ai-chat'),form=$('#ai-form'),quick=document.querySelector('.ai-quick-prompts');const existing=$('#ai-locked');if(isPremium){if(existing)existing.remove();chat.style.display='';form.style.display='';quick.style.display='';}else{if(!existing){const lock=document.createElement('div');lock.id='ai-locked';lock.className='ai-locked';lock.innerHTML=`<div class="lock-icon">👑</div><h3>ИИ-помощник в Премиуме</h3><p>Оформите подписку, чтобы общаться с ИИ и получать рецепты по запросу.</p><button class="btn-premium" id="ai-unlock-btn">👑 Открыть Премиум</button>`;$('#ai-assistant').appendChild(lock);document.getElementById('ai-unlock-btn').onclick=()=>$('#modal-premium').classList.remove('hidden');}}}
 function logout(){currentUser=null;clearSession();$('#app').classList.add('hidden');$('#welcome-screen').classList.remove('hidden');$('#login-form').reset();$('#register-form').reset();}
 
 function updateStats(){let expiring=0,expired=0;fridge.forEach(item=>{if(!item.expiry)return;const d=daysUntil(item.expiry);if(d<0)expired++;else if(d<=3)expiring++;});$('#stat-total').textContent=fridge.length;$('#stat-expiring').textContent=expiring;$('#stat-expired').textContent=expired;}
 
-/* ХОЛОДИЛЬНИК — ФИКС КЛИКА */
+/* ХОЛОДИЛЬНИК — ФИКС КЛИКОВ */
 function setupFridge3D(){
   const fr=$('#fridge-3d'),hint=$('#fridge-hint'),closeBtn=$('#fridge-close');
-  // Клик по самому холодильнику
   fr.addEventListener('click',e=>{
     if(e.target.closest('.shelf'))return;
     fr.classList.toggle('opened');
@@ -1162,22 +832,15 @@ function setupFridge3D(){
     else{hint.style.display='block';closeBtn.classList.remove('show');}
   });
   closeBtn.addEventListener('click',e=>{e.stopPropagation();fr.classList.remove('opened');hint.style.display='block';closeBtn.classList.remove('show');});
-  // Клик по полке — с возможностью открытия модалки
   $$('.shelf').forEach(shelf=>{
     shelf.addEventListener('click',e=>{
       e.stopPropagation();
       const key=shelf.dataset.shelf;
       const name=shelf.dataset.shelfName||'Полка';
-      // Открываем холодильник, если закрыт
       if(!fr.classList.contains('opened')){
-        fr.classList.add('opened');
-        hint.style.display='none';
-        closeBtn.classList.add('show');
-        // Модалку откроем после анимации
+        fr.classList.add('opened');hint.style.display='none';closeBtn.classList.add('show');
         setTimeout(()=>openShelfModal(key,name),600);
-      }else{
-        openShelfModal(key,name);
-      }
+      }else{openShelfModal(key,name);}
     });
   });
 }
@@ -1236,13 +899,7 @@ window.openProductInfo=function(id){
   let expiry='';
   if(item.expiry){const d=daysUntil(item.expiry);if(d<0)expiry=`⚠ Просрочено ${Math.abs(d)} дн. назад`;else if(d===0)expiry='⏰ Испортится сегодня';else expiry=`✓ Осталось ${d} дн. (до ${formatDate(item.expiry)})`;}
   else expiry='Не указан';
-  $('#pi-body').innerHTML=`
-    <div class="pi-row"><strong>Калорийность</strong><span class="cal">${info.cal} ккал / 100 г</span></div>
-    <div class="pi-row"><strong>Количество</strong><span>${item.qty} ${item.unit}</span></div>
-    <div class="pi-row"><strong>Как хранить</strong><span>${info.store}</span></div>
-    <div class="pi-row"><strong>Срок годности</strong><span>${expiry}</span></div>
-    <div class="pi-row"><strong>Категория</strong><span>${item.category}</span></div>
-    <div class="pi-row"><strong>Рекомендуемый срок</strong><span>до ${info.shelf} дн.</span></div>`;
+  $('#pi-body').innerHTML=`<div class="pi-row"><strong>Калорийность</strong><span class="cal">${info.cal} ккал / 100 г</span></div><div class="pi-row"><strong>Количество</strong><span>${item.qty} ${item.unit}</span></div><div class="pi-row"><strong>Как хранить</strong><span>${info.store}</span></div><div class="pi-row"><strong>Срок годности</strong><span>${expiry}</span></div><div class="pi-row"><strong>Категория</strong><span>${item.category}</span></div><div class="pi-row"><strong>Рекомендуемый срок</strong><span>до ${info.shelf} дн.</span></div>`;
   $('#pi-remove').onclick=()=>{removeProduct(id);$('#modal-product-info').classList.add('hidden');};
   $('#pi-close').onclick=()=>$('#modal-product-info').classList.add('hidden');
   $('#modal-product-info').classList.remove('hidden');
@@ -1250,26 +907,41 @@ window.openProductInfo=function(id){
 
 window.removeProduct=function(id){fridge=fridge.filter(p=>p.id!==id);persist();renderFridgeInterior();renderRecipes();updateStats();showToast('Продукт удалён');};
 
-/* РЕЦЕПТЫ */
-function getMatch(recipe){const have=[],missing=[];recipe.ingredients.forEach(i=>{if(ingMatch(i,fridge))have.push(i);else missing.push(i);});return {have,missing,percent:Math.round(have.length/recipe.ingredients.length*100)};}
+/* РЕЦЕПТЫ — БЫСТРЫЙ ПОИСК */
+let _cachedRecipes=null;
+function getRecipesWithMatch(){
+  if(_cachedRecipes && _cachedRecipes.fridgeLen===fridge.length){
+    return _cachedRecipes.items;
+  }
+  const items=RECIPES.map(r=>{
+    const have=[],missing=[];
+    r.ingredients.forEach(i=>{
+      const ingName=i.split('—')[0].trim();
+      if(ingMatch(ingName,fridge)) have.push(ingName); else missing.push(ingName);
+    });
+    return Object.assign({},r,{_m:{have,missing,percent:Math.round(have.length/r.ingredients.length*100)}});
+  });
+  _cachedRecipes={fridgeLen:fridge.length,items};
+  return items;
+}
 
 function renderRecipes(){
   const list=$('#recipes-list'),empty=$('#recipes-empty'),cnt=$('#recipes-count');
-  const search=($('#recipe-search')?.value||'').toLowerCase();
+  const search=($('#recipe-search')?.value||'').toLowerCase().trim();
   const sort=$('#recipe-sort')?.value||'match';
   const cat=$('#recipe-category-filter')?.value||'';
   const onlyAvail=$('#only-available')?.checked;
   const onlyFav=$('#only-fav')?.checked;
-  let items=RECIPES.map(r=>Object.assign({},r,{_m:getMatch(r)}));
+  let items=getRecipesWithMatch();
   if(currentMeal) items=items.filter(r=>r.meal===currentMeal);
-  if(search) items=items.filter(r=>r.name.toLowerCase().includes(search)||r.ingredients.some(i=>i.name.toLowerCase().includes(search)));
+  if(search) items=items.filter(r=>r.name.toLowerCase().includes(search)||r.ingredients.some(i=>i.toLowerCase().includes(search)));
   if(cat) items=items.filter(r=>r.category===cat);
   if(onlyAvail) items=items.filter(r=>r._m.missing.length===0);
   if(onlyFav) items=items.filter(r=>favorites.includes(r.id));
   if(sort==='match') items.sort((a,b)=>b._m.percent-a._m.percent);
   else if(sort==='time') items.sort((a,b)=>a.time-b.time);
   else if(sort==='name') items.sort((a,b)=>a.name.localeCompare(b.name));
-  else if(sort==='calories') items.sort((a,b)=>{const ca=a.ingredients.reduce((s,i)=>s+guessProduct(i.name).cal,0)/a.ingredients.length;const cb=b.ingredients.reduce((s,i)=>s+guessProduct(i.name).cal,0)/b.ingredients.length;return ca-cb;});
+  else if(sort==='calories') items.sort((a,b)=>{const ca=a.ingredients.reduce((s,i)=>s+guessProduct(i.split('—')[0].trim()).cal,0)/a.ingredients.length;const cb=b.ingredients.reduce((s,i)=>s+guessProduct(i.split('—')[0].trim()).cal,0)/b.ingredients.length;return ca-cb;});
   if(!isPremium) items=items.filter(r=>!r.premium);
   items=items.slice(0,isPremium?600:150);
   cnt.textContent=`Найдено: ${items.length} рецептов${!isPremium?' (бесплатно до 150)':''}`;
@@ -1277,8 +949,8 @@ function renderRecipes(){
   empty.classList.add('hidden');
   list.innerHTML=items.map(r=>{
     const m=r._m;
-    const have=m.have.slice(0,3).map(i=>i.name).join(', ');
-    const miss=m.missing.slice(0,3).map(i=>i.name).join(', ');
+    const have=m.have.slice(0,3).join(', ');
+    const miss=m.missing.slice(0,3).join(', ');
     const isFav=favorites.includes(r.id);
     return `<div class="recipe-card" onclick="openRecipe(${r.id})">
       ${r.premium?'<div class="recipe-premium-lock">👑 PREMIUM</div>':''}
@@ -1305,24 +977,16 @@ window.openRecipe=function(id){
   if(!r)return;
   if(r.premium&&!isPremium){$('#modal-premium').classList.remove('hidden');return;}
   activeRecipeId=id;
-  const m=getMatch(r);
+  const m=r._m||{have:[],missing:r.ingredients};
   $('#recipe-modal-title').textContent=r.name;
   $('#recipe-modal-emoji').textContent=r.emoji;
   $('#recipe-modal-meta').innerHTML=`<span>⏱ ${r.time} мин</span><span>🍽 ${r.servings} порций</span><span>📂 ${r.category}</span><span>🍽 ${r.meal}</span>`;
-  $('#recipe-modal-ingredients').innerHTML=r.ingredients.map(i=>{const has=m.have.indexOf(i)!==-1;return `<li class="${has?'have':'missing'}"><span class="ing-name">${i.name}</span><span class="ing-qty">${i.qty} ${i.unit}</span><span class="mark">${has?'Есть':'Нужно'}</span></li>`;}).join('');
+  $('#recipe-modal-ingredients').innerHTML=r.ingredients.map(i=>{const parts=i.split('—');const name=parts[0].trim();const qty=parts[1]?parts[1].trim():'';const has=m.have.indexOf(name)!==-1;return `<li class="${has?'have':'missing'}"><span class="ing-name">${name}</span><span class="ing-qty">${qty}</span><span class="mark">${has?'Есть':'Нужно'}</span></li>`;}).join('');
   $('#recipe-modal-steps').innerHTML=r.steps.map(s=>{const tm=s.match(/(\d+)\s*(?:–|-)?\s*(\d+)?\s*(мин|минут|секунд|час)/i);let btn='';if(tm){const mins=parseInt(tm[1])+(tm[2]?Math.round((parseInt(tm[2])-parseInt(tm[1]))/2):0);if(mins>0&&mins<180)btn=`<button class="timer-btn" onclick="event.stopPropagation();startTimer(${mins})">⏱ ${mins} мин</button>`;}return `<li><div class="step-text">${s}${btn}</div></li>`;}).join('');
   $('#modal-recipe').classList.remove('hidden');
 };
 
-window.startTimer=function(min){
-  if(timerInterval)clearInterval(timerInterval);
-  timerRemaining=min*60;
-  $('#timer-widget').classList.add('show');
-  updateTimer();
-  timerInterval=setInterval(()=>{
-    timerRemaining--;updateTimer();
-    if(timerRemaining<=0){clearInterval(timerInterval);timerInterval=null;$('#timer-widget').classList.remove('show');showToast('⏰ Время вышло!');try{const ctx=new (window.AudioContext||window.webkitAudioContext)();const o=ctx.createOscillator();const g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.value=880;g.gain.setValueAtTime(0.3,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+1.5);o.start();o.stop(ctx.currentTime+1.5);}catch(e){}}},1000);
-};
+window.startTimer=function(min){if(timerInterval)clearInterval(timerInterval);timerRemaining=min*60;$('#timer-widget').classList.add('show');updateTimer();timerInterval=setInterval(()=>{timerRemaining--;updateTimer();if(timerRemaining<=0){clearInterval(timerInterval);timerInterval=null;$('#timer-widget').classList.remove('show');showToast('⏰ Время вышло!');try{const ctx=new (window.AudioContext||window.webkitAudioContext)();const o=ctx.createOscillator();const g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.value=880;g.gain.setValueAtTime(0.3,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+1.5);o.start();o.stop(ctx.currentTime+1.5);}catch(e){}}},1000);};
 function updateTimer(){const m=Math.floor(timerRemaining/60),s=timerRemaining%60;$('#timer-display').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;}
 
 function renderShopping(){
@@ -1374,7 +1038,7 @@ async function recognizeReceipt(dataUrl){
     $('#scan-progress-fill').style.width='100%';
     const text=result.data.text||'';
     const items=parseReceiptText(text);
-    if(items.length===0){$('#scan-status').textContent='😕 Не удалось распознать продукты. Попробуйте ещё раз.';setTimeout(()=>$('#scan-progress').classList.add('hidden'),800);return;}
+    if(items.length===0){$('#scan-status').textContent='😕 Не удалось распознать продукты.';setTimeout(()=>$('#scan-progress').classList.add('hidden'),800);return;}
     scanResults=items.map(name=>{const p=guessProduct(name);return {name,qty:p.unit==='шт'?1+Math.floor(Math.random()*4):(p.unit==='г'?[200,500,1000][Math.floor(Math.random()*3)]:[500,900,1000][Math.floor(Math.random()*3)]),unit:p.unit,category:p.cat,expiry:defaultExpiry(p.shelf),selected:true};});
     renderScanResults();$('#scan-results').classList.remove('hidden');$('#scan-add-selected').classList.remove('hidden');
     $('#scan-status').textContent=`✅ Распознано ${items.length} продуктов. Проверьте и добавьте.`;
@@ -1387,35 +1051,9 @@ function parseReceiptText(text){
   for(const line of lines){
     const cleaned=line.replace(/\d+[.,]?\d*\s*(руб|₽|р\.|x|х|\*)?/gi,' ').replace(/[№#*]+/g,' ').replace(/\s+/g,' ').trim().toLowerCase();
     if(cleaned.length<3) continue;
-    // Ищем в базе
     for(const key in PRODUCT_DB){if(cleaned.includes(key)||key.includes(cleaned)){const nice=key.charAt(0).toUpperCase()+key.slice(1);found.add(nice);break;}}
-    // Дополнительные эвристики для часто встречающихся продуктов
     const heuristics=[
-      {re:/молок|кефир|ряженк/i,n:'Молоко'},
-      {re:/хлеб|батон|булк/i,n:'Хлеб'},
-      {re:/сыр(?!\w)/i,n:'Сыр'},
-      {re:/куриц|грудк|филе/i,n:'Курица'},
-      {re:/говяд|свинин|мясо/i,n:'Говядина'},
-      {re:/яйц/i,n:'Яйца'},
-      {re:/яблок/i,n:'Яблоко'},
-      {re:/банан/i,n:'Банан'},
-      {re:/картоф|картош/i,n:'Картофель'},
-      {re:/морков/i,n:'Морковь'},
-      {re:/лук(?!о)/i,n:'Лук'},
-      {re:/помидор/i,n:'Помидоры'},
-      {re:/огурец|огурц/i,n:'Огурцы'},
-      {re:/масл(?!о\s+раст)/i,n:'Масло сливочное'},
-      {re:/йогурт/i,n:'Йогурт'},
-      {re:/творог/i,n:'Творог'},
-      {re:/сметан/i,n:'Сметана'},
-      {re:/кефир/i,n:'Кефир'},
-      {re:/колбас|сосиск|ветчин/i,n:'Колбаса'},
-      {re:/лосос|треск|сельд|рыб/i,n:'Рыба'},
-      {re:/креветк/i,n:'Креветки'},
-      {re:/перец/i,n:'Перец болгарский'},
-      {re:/капуст/i,n:'Капуста'},
-      {re:/пельмен/i,n:'Пельмени'},
-      {re:/морожен/i,n:'Мороженое'}
+      {re:/молок|кефир|ряженк/i,n:'Молоко'},{re:/хлеб|батон|булк/i,n:'Хлеб'},{re:/сыр(?!\w)/i,n:'Сыр'},{re:/куриц|грудк|филе/i,n:'Курица'},{re:/говяд|свинин|мясо/i,n:'Говядина'},{re:/яйц/i,n:'Яйца'},{re:/яблок/i,n:'Яблоки'},{re:/банан/i,n:'Банан'},{re:/картоф|картош/i,n:'Картофель'},{re:/морков/i,n:'Морковь'},{re:/лук(?!о)/i,n:'Лук'},{re:/помидор/i,n:'Помидоры'},{re:/огурец|огурц/i,n:'Огурцы'},{re:/масл(?!о\s+раст)/i,n:'Масло сливочное'},{re:/йогурт/i,n:'Йогурт'},{re:/творог/i,n:'Творог'},{re:/сметан/i,n:'Сметана'},{re:/кефир/i,n:'Кефир'},{re:/колбас|сосиск|ветчин/i,n:'Колбаса'},{re:/лосос|треск|сельд|рыб/i,n:'Рыба'},{re:/креветк/i,n:'Креветки'},{re:/перец/i,n:'Перец болгарский'},{re:/капуст/i,n:'Капуста'},{re:/пельмен/i,n:'Пельмени'},{re:/морожен/i,n:'Мороженое'}
     ];
     for(const h of heuristics){if(h.re.test(cleaned)){found.add(h.n);break;}}
   }
@@ -1430,33 +1068,6 @@ function addScannedProducts(){
   persist();renderFridgeInterior();renderRecipes();updateStats();stopScan();$('#modal-scan').classList.add('hidden');showToast(`✅ Добавлено ${selected.length} продуктов`);scanResults=[];
 }
 
-/* AI */
-function addAIMessage(role,html){
-  const chat=$('#ai-chat');
-  const msg=document.createElement('div');
-  msg.className='ai-message ai-message-'+role;
-  const avatar=role==='user'?'👤':'🤖';
-  msg.innerHTML=`<div class="ai-avatar">${avatar}</div><div class="ai-bubble">${html}</div>`;
-  chat.appendChild(msg);
-  chat.scrollTop=chat.scrollHeight;
-}
-function handleAIForm(query){
-  addAIMessage('user',query.replace(/</g,'&lt;'));
-  const thinking=document.createElement('div');
-  thinking.className='ai-message ai-message-bot';
-  thinking.innerHTML=`<div class="ai-avatar">🤖</div><div class="ai-bubble"><em>Анализирую запрос…</em></div>`;
-  $('#ai-chat').appendChild(thinking);
-  $('#ai-chat').scrollTop=$('#ai-chat').scrollHeight;
-  setTimeout(()=>{
-    thinking.remove();
-    const res=aiAnswer(query);
-    if(!res){addAIMessage('bot','Не понял запрос. Попробуйте иначе.');return;}
-    if(res.type==='answer') addAIMessage('bot',res.text.replace(/\n/g,'<br>'));
-    else if(res.type==='recipe') addAIMessage('bot',res.text+`<br><button class="ai-recipe-link" onclick="openRecipe(${res.recipeId})">📖 Открыть рецепт</button>`);
-    else if(res.type==='list'){let html=res.text+'<ul>';res.recipes.forEach(r=>{html+=`<li><strong>${r.name}</strong> — ${r.time} мин <button class="ai-recipe-link" style="padding:3px 9px;font-size:.72rem;margin-left:5px" onclick="openRecipe(${r.id})">Открыть</button></li>`;});html+='</ul>';addAIMessage('bot',html);}
-  },500);
-}
-
 /* МОДАЛКИ */
 function setupModals(){
   $$('.modal-close').forEach(b=>{b.onclick=()=>{const m=document.getElementById(b.dataset.modal);if(m)m.classList.add('hidden');if(b.dataset.modal==='modal-scan')stopScan();};});
@@ -1467,17 +1078,9 @@ function setupModals(){
     const n=e.target.value.trim();
     if(n.length<2){$('#fridge-warning').classList.add('hidden');$('#product-submit').disabled=false;return;}
     const notForFridge=isNotForFridge(n);
-    if(notForFridge){
-      $('#fridge-warning').textContent='⚠️ '+notForFridge;
-      $('#fridge-warning').classList.remove('hidden');
-      $('#product-submit').disabled=true;
-      return;
-    }
-    $('#fridge-warning').classList.add('hidden');
-    $('#product-submit').disabled=false;
-    const p=guessProduct(n);
-    $('#product-unit').value=p.unit;
-    $('#product-category').value=p.cat;
+    if(notForFridge){$('#fridge-warning').textContent='⚠️ '+notForFridge;$('#fridge-warning').classList.remove('hidden');$('#product-submit').disabled=true;return;}
+    $('#fridge-warning').classList.add('hidden');$('#product-submit').disabled=false;
+    const p=guessProduct(n);$('#product-unit').value=p.unit;$('#product-category').value=p.cat;
     if(!$('#product-expiry').value) $('#product-expiry').value=defaultExpiry(p.shelf);
   });
 
@@ -1489,18 +1092,18 @@ function setupModals(){
     if(notForFridge){showToast('⚠️ '+notForFridge);return;}
     fridge.push({id:genId(),name,qty:parseFloat($('#product-qty').value)||1,unit:$('#product-unit').value,category:$('#product-category').value,expiry:$('#product-expiry').value||null});
     persist();renderFridgeInterior();renderRecipes();updateStats();
-    $('#modal-product').classList.add('hidden');
-    showToast('Продукт добавлен');
+    $('#modal-product').classList.add('hidden');showToast('Продукт добавлен');
   });
 
   $('#add-missing-to-shopping').onclick=()=>{
     const r=RECIPES.find(x=>x.id===activeRecipeId);
     if(!r)return;
-    const m=getMatch(r);
+    const m=r._m||{have:[],missing:r.ingredients};
     let added=0;
     m.missing.forEach(i=>{
-      const ex=shoppingList.find(s=>normalize(s.name)===normalize(i.name)&&!s.bought);
-      if(!ex){shoppingList.push({id:genId(),name:i.name,qty:i.qty,unit:i.unit,recipe:r.name,bought:false});added++;}
+      const name=i.split('—')[0].trim();
+      const ex=shoppingList.find(s=>normalize(s.name)===normalize(name)&&!s.bought);
+      if(!ex){shoppingList.push({id:genId(),name,qty:'1',unit:'шт',recipe:r.name,bought:false});added++;}
     });
     persist();renderShopping();$('#modal-recipe').classList.add('hidden');
     showToast(added>0?`Добавлено ${added} ингредиентов`:'Всё уже в списке');
@@ -1518,28 +1121,23 @@ function setupModals(){
   $('#clear-all').onclick=()=>{if(!confirm('Очистить весь список?'))return;shoppingList=[];persist();renderShopping();showToast('Список очищен');};
   $('#timer-stop').onclick=()=>{if(timerInterval)clearInterval(timerInterval);timerInterval=null;$('#timer-widget').classList.remove('show');};
 }
-function activatePremium(){isPremium=true;persist();updatePremiumUI();updateAILock();renderRecipes();$('#modal-premium').classList.add('hidden');showToast('👑 Премиум активирован!');}
+function activatePremium(){isPremium=true;persist();updatePremiumUI();renderRecipes();$('#modal-premium').classList.add('hidden');showToast('👑 Премиум активирован!');}
 
 function setupShoppingForm(){
   $('#shopping-name').addEventListener('input',e=>{
     const n=e.target.value;
     if(n.length<2){$('#autocomplete-hint').classList.remove('show');return;}
     const p=guessProduct(n);
-    $('#shopping-unit').value=p.unit;
-    $('#autocomplete-text').textContent=p.unit;
+    $('#shopping-unit').value=p.unit;$('#autocomplete-text').textContent=p.unit;
     $('#autocomplete-hint').classList.add('show');
-    clearTimeout(window._acT);
-    window._acT=setTimeout(()=>$('#autocomplete-hint').classList.remove('show'),2500);
+    clearTimeout(window._acT);window._acT=setTimeout(()=>$('#autocomplete-hint').classList.remove('show'),2500);
   });
   $('#shopping-add-form').addEventListener('submit',e=>{
     e.preventDefault();
     const name=$('#shopping-name').value.trim();
     if(!name)return;
     shoppingList.push({id:genId(),name,qty:parseFloat($('#shopping-qty').value)||1,unit:$('#shopping-unit').value,recipe:'',bought:false});
-    persist();renderShopping();
-    $('#shopping-add-form').reset();
-    $('#shopping-qty').value=1;
-    showToast('Добавлено в список');
+    persist();renderShopping();$('#shopping-add-form').reset();$('#shopping-qty').value=1;showToast('Добавлено в список');
   });
 }
 function setupNav(){$$('.nav-btn').forEach(b=>{b.onclick=()=>{$$('.nav-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');$$('.app-section').forEach(s=>s.classList.remove('active'));const sec=document.getElementById('section-'+b.dataset.section);if(sec)sec.classList.add('active');};});}
@@ -1554,27 +1152,20 @@ function setupAuth(){
   $$('.auth-tab').forEach(t=>{t.onclick=()=>{$$('.auth-tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');$$('.auth-form').forEach(f=>f.classList.remove('active'));const f=document.getElementById(t.dataset.tab+'-form');if(f)f.classList.add('active');};});
   $('#login-form').addEventListener('submit',e=>{
     e.preventDefault();
-    const email=$('#login-email').value.trim().toLowerCase();
-    const pass=$('#login-password').value;
+    const email=$('#login-email').value.trim().toLowerCase();const pass=$('#login-password').value;
     const u=getUsers().find(x=>x.email===email&&x.password===pass);
     if(!u){$('#login-error').textContent='Неверный email или пароль';return;}
-    $('#login-error').textContent='';
-    currentUser=u;saveSession(email);loadUserData(email);enterApp();
+    $('#login-error').textContent='';currentUser=u;saveSession(email);loadUserData(email);enterApp();
   });
   $('#register-form').addEventListener('submit',e=>{
     e.preventDefault();
-    const name=$('#register-name').value.trim();
-    const email=$('#register-email').value.trim().toLowerCase();
-    const pass=$('#register-password').value;
+    const name=$('#register-name').value.trim();const email=$('#register-email').value.trim().toLowerCase();const pass=$('#register-password').value;
     if(pass.length<4){$('#register-error').textContent='Пароль минимум 4 символа';return;}
     const users=getUsers();
     if(users.find(x=>x.email===email)){$('#register-error').textContent='Email уже зарегистрирован';return;}
-    const u={name,email,password:pass,isPremium:false};
-    users.push(u);saveUsers(users);
-    $('#register-error').textContent='';
-    currentUser=u;saveSession(email);
-    fridge=[];shoppingList=[];favorites=[];isPremium=false;
-    persist();enterApp();
+    const u={name,email,password:pass,isPremium:false};users.push(u);saveUsers(users);
+    $('#register-error').textContent='';currentUser=u;saveSession(email);
+    fridge=[];shoppingList=[];favorites=[];isPremium=false;persist();enterApp();
   });
   $('#logout-btn').onclick=logout;
 }
@@ -1586,14 +1177,9 @@ function setupFilters(){
   $('#only-fav').addEventListener('change',renderRecipes);
   $$('.meal-tab').forEach(t=>{t.onclick=()=>{$$('.meal-tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');currentMeal=t.dataset.meal;renderRecipes();};});
 }
-function setupAI(){
-  $('#ai-form').addEventListener('submit',e=>{e.preventDefault();const q=$('#ai-input').value.trim();if(!q)return;handleAIForm(q);$('#ai-input').value='';});
-  $$('.quick-prompt').forEach(b=>{b.onclick=()=>handleAIForm(b.dataset.prompt);});
-}
 document.addEventListener('DOMContentLoaded',()=>{
-  applyTheme();
-  setInterval(applyTheme,5*60*1000);
-  setupWelcome();setupAuth();setupNav();setupModals();setupShoppingForm();setupFilters();setupFridge3D();setupAI();
+  applyTheme();setInterval(applyTheme,5*60*1000);
+  setupWelcome();setupAuth();setupNav();setupModals();setupShoppingForm();setupFilters();setupFridge3D();
   initAuth();
 });
 </script>
