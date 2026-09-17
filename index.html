@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover">
 <meta name="theme-color" content="#6366f1">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <title>Умный холодильник</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -19,7 +21,6 @@ input,textarea{-webkit-user-select:text;user-select:text}
 button,input,select,textarea{font-family:inherit;font-size:inherit}
 button{outline:none!important;-webkit-focus-ring-color:transparent}
 button:focus{outline:none}
-button::-moz-focus-inner{border:none}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes slideIn{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}
@@ -39,14 +40,10 @@ button::-moz-focus-inner{border:none}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px var(--pg)}
 .btn-accent{background:linear-gradient(135deg,var(--a) 0%,#059669 100%);color:#fff}
 .btn-rose{background:linear-gradient(135deg,var(--r) 0%,var(--rd) 100%);color:#fff;box-shadow:0 4px 14px var(--rg)}
-.btn-rose:hover{transform:translateY(-2px)}
 .btn-secondary{background:var(--s);color:var(--t);border:2px solid var(--bd2)}
-.btn-secondary:hover{border-color:var(--p);color:var(--p)}
 .btn-ghost{background:transparent;color:var(--t2);padding:8px 12px}
-.btn-ghost:hover{background:var(--s2);color:var(--t)}
 .btn-full{width:100%}
 .btn-sm{padding:8px 14px;font-size:.83rem}
-.btn-lg{padding:16px 32px;font-size:1rem;border-radius:50px}
 .btn-icon{width:40px;height:40px;padding:0;border-radius:50%;background:transparent;color:var(--t2);display:inline-flex;align-items:center;justify-content:center;border:none;cursor:pointer;transition:all var(--tr)}
 .btn-icon:hover{background:var(--s2);color:var(--t)}
 .welcome{min-height:100vh;background:var(--hg);display:flex;flex-direction:column;position:relative;overflow:hidden}
@@ -57,35 +54,31 @@ button::-moz-focus-inner{border:none}
 .w-nav{display:flex;gap:8px}
 .w-nav button{padding:10px 20px;border:2px solid var(--bd2);background:rgba(255,255,255,.75);backdrop-filter:blur(12px);border-radius:50px;font-weight:700;color:var(--t);cursor:pointer;transition:all var(--tr);font-size:.85rem}
 body.dark .w-nav button{background:rgba(21,27,46,.75)}
-.w-nav button:hover{background:var(--p);color:#fff;border-color:var(--p);transform:translateY(-2px)}
+.w-nav button:hover{background:var(--p);color:#fff;border-color:var(--p)}
 .w-hero{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:20px 40px;max-width:1300px;margin:0 auto;width:100%;position:relative;z-index:3}
 .w-text h1{font-size:clamp(1.8rem,3.5vw,2.9rem);font-weight:900;line-height:1.1;margin-bottom:16px;letter-spacing:-.03em}
 .w-text h1 .g{background:linear-gradient(135deg,var(--p) 0%,var(--r) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .w-text p{font-size:1rem;color:var(--t2);margin-bottom:24px;max-width:520px;line-height:1.6;font-weight:500}
 .w-feat{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
-.w-f{display:flex;align-items:center;gap:12px;padding:11px 15px;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:2px solid rgba(255,255,255,.9);border-radius:var(--R);transition:all var(--tr);animation:slideIn .5s ease backwards}
+.w-f{display:flex;align-items:center;gap:12px;padding:11px 15px;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:2px solid rgba(255,255,255,.9);border-radius:var(--R);transition:all var(--tr)}
 body.dark .w-f{background:rgba(21,27,46,.7);border-color:rgba(56,67,100,.5)}
-.w-f:nth-child(1){animation-delay:.05s}.w-f:nth-child(2){animation-delay:.1s}.w-f:nth-child(3){animation-delay:.15s}.w-f:nth-child(4){animation-delay:.2s}
 .w-f:hover{transform:translateX(6px);box-shadow:var(--shm);border-color:var(--p)}
-.w-fi{width:42px;height:42px;min-width:42px;border-radius:12px;background:linear-gradient(135deg,var(--p) 0%,var(--pd) 100%);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 5px 14px var(--pg);transition:transform var(--tr)}
-.w-f:hover .w-fi{transform:scale(1.1) rotate(-6deg)}
+.w-fi{width:42px;height:42px;min-width:42px;border-radius:12px;background:linear-gradient(135deg,var(--p) 0%,var(--pd) 100%);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 5px 14px var(--pg)}
 .w-fi.g{background:linear-gradient(135deg,var(--a) 0%,#059669 100%)}
 .w-fi.r{background:linear-gradient(135deg,var(--r) 0%,var(--rd) 100%)}
 .w-fi.a{background:linear-gradient(135deg,var(--am) 0%,#d97706 100%)}
 .w-ft strong{display:block;font-size:.92rem;margin-bottom:2px;font-weight:800}
 .w-ft span{font-size:.78rem;color:var(--t2);font-weight:500}
 .w-btns{display:flex;gap:10px;flex-wrap:wrap}
-.w-btns button{padding:14px 26px;border:none;border-radius:50px;font-size:.93rem;font-weight:800;cursor:pointer;transition:all var(--tr);display:inline-flex;align-items:center;gap:8px}
-.w-btns .b1{background:linear-gradient(135deg,var(--p) 0%,var(--pd) 100%);color:#fff;box-shadow:0 10px 26px var(--pg)}
-.w-btns .b2{background:linear-gradient(135deg,var(--a) 0%,#059669 100%);color:#fff;box-shadow:0 10px 26px rgba(16,185,129,.4)}
-.w-btns .b3{background:linear-gradient(135deg,var(--r) 0%,var(--rd) 100%);color:#fff;box-shadow:0 10px 26px var(--rg)}
+.w-btns button{padding:14px 26px;border:none;border-radius:50px;font-size:.93rem;font-weight:800;cursor:pointer;transition:all var(--tr);display:inline-flex;align-items:center;gap:8px;color:#fff}
 .w-btns button:hover{transform:translateY(-3px)}
+.w-btns .b2{background:linear-gradient(135deg,var(--a) 0%,#059669 100%);box-shadow:0 10px 26px rgba(16,185,129,.4)}
+.w-btns .b3{background:linear-gradient(135deg,var(--r) 0%,var(--rd) 100%);box-shadow:0 10px 26px var(--rg)}
 .w-3d{display:flex;align-items:center;justify-content:center;position:relative;height:520px;perspective:1400px}
 .fridge-h{position:relative;width:260px;height:460px;transform-style:preserve-3d;animation:float 7s ease-in-out infinite;filter:drop-shadow(0 26px 50px rgba(15,23,42,.28))}
 .fh-bd{position:absolute;inset:0;border-radius:18px;background:linear-gradient(160deg,#fbfcfe,#eef3f9 40%,#cdd7e5 100%);border:1px solid rgba(255,255,255,.7);transform-style:preserve-3d}
 body.dark .fh-bd{background:linear-gradient(160deg,#4a5670,#384561 40%,#1e2a44 100%);border-color:rgba(100,120,150,.4)}
 .fh-bd::before{content:'';position:absolute;top:0;left:0;width:190px;height:100%;background:linear-gradient(90deg,#a9b8cc,#8698b0);border-radius:18px 0 0 18px;transform-origin:left center;transform:rotateY(-90deg)}
-body.dark .fh-bd::before{background:linear-gradient(90deg,#0f1828,#1e2a44)}
 .fh-fr{position:absolute;inset:0;border-radius:18px;overflow:hidden;transform:translateZ(85px);display:flex;flex-direction:column;background:linear-gradient(160deg,#fefefe,#eef3f9 40%,#ced8e5 100%);border:1px solid rgba(255,255,255,.7);box-shadow:0 20px 40px rgba(15,23,42,.3)}
 body.dark .fh-fr{background:linear-gradient(160deg,#4a5670,#384561 40%,#1e2a44 100%);border-color:rgba(100,120,150,.4)}
 .fh-t{height:38%;position:relative;border-bottom:2px solid rgba(0,0,0,.1)}
@@ -94,7 +87,7 @@ body.dark .fh-fr{background:linear-gradient(160deg,#4a5670,#384561 40%,#1e2a44 1
 .fh-t .fh-h{top:24px;height:80px}
 .fh-b .fh-h{top:24px;height:150px}
 .fh-br{position:absolute;top:20px;left:20px;font-size:.72rem;font-weight:900;color:var(--p);letter-spacing:2px}
-.fh-m{position:absolute;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:inset 0 2px 4px rgba(255,255,255,.6)}
+.fh-m{position:absolute;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem}
 .fh-m.m1{top:56px;left:20px;background:linear-gradient(135deg,#fbbf24,#f59e0b);animation:wiggle 4s ease-in-out infinite}
 .fh-m.m2{top:56px;left:68px;background:linear-gradient(135deg,#f472b6,#ec4899);animation:wiggle 4s ease-in-out 1s infinite}
 .fh-m.m3{top:56px;left:116px;background:linear-gradient(135deg,#60a5fa,#3b82f6);animation:wiggle 4s ease-in-out 2s infinite}
@@ -108,30 +101,30 @@ body.dark .fh-fr{background:linear-gradient(160deg,#4a5670,#384561 40%,#1e2a44 1
 .auth{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;background:var(--hg)}
 .auth-c{background:var(--s);border-radius:22px;box-shadow:var(--shl);padding:32px 24px;width:100%;max-width:400px;animation:scaleIn .4s ease;border:1px solid var(--bd)}
 .auth-l{text-align:center;margin-bottom:24px}
-.auth-l svg{color:var(--p);margin-bottom:10px;animation:pulse 3s ease-in-out infinite}
-.auth-l h1{font-size:1.4rem;font-weight:900;margin-bottom:4px;letter-spacing:-.02em}
+.auth-l svg{color:var(--p);margin-bottom:10px}
+.auth-l h1{font-size:1.4rem;font-weight:900;margin-bottom:4px}
 .auth-l p{color:var(--t2);font-size:.85rem}
 .auth-tabs{display:flex;background:var(--s2);border-radius:12px;padding:4px;margin-bottom:20px}
 .auth-tab{flex:1;padding:10px;border:none;background:transparent;border-radius:8px;font-weight:700;color:var(--t2);cursor:pointer;transition:all var(--tr);font-size:.88rem}
 .auth-tab.active{background:var(--s);color:var(--t);box-shadow:var(--sh)}
 .auth-form{display:none}.auth-form.active{display:block}
-.auth-form input{width:100%;padding:13px 15px;border:2px solid var(--bd2);border-radius:var(--Rs);margin-bottom:10px;transition:all var(--tr);background:var(--s);color:var(--t)}
+.auth-form input{width:100%;padding:13px 15px;border:2px solid var(--bd2);border-radius:var(--Rs);margin-bottom:10px;background:var(--s);color:var(--t);transition:all var(--tr)}
 .auth-form input:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 4px var(--pl)}
 .auth-err{color:var(--r);font-size:.82rem;margin-top:6px;min-height:18px}
 .app{max-width:1360px;margin:0 auto;padding-bottom:60px}
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:var(--s);border-bottom:2px solid var(--bd);position:sticky;top:0;z-index:50;backdrop-filter:blur(14px)}
 .hdr-l{display:flex;align-items:center;gap:10px;color:var(--p)}
-.logo-t{font-weight:900;font-size:1rem;letter-spacing:-.02em}
+.logo-t{font-weight:900;font-size:1rem}
 .hdr-r{display:flex;align-items:center;gap:6px}
 .user-n{font-size:.85rem;font-weight:700;color:var(--t2)}
-.badge-p{display:inline-flex;align-items:center;gap:4px;padding:5px 11px;border-radius:50px;font-size:.68rem;font-weight:900;letter-spacing:.5px}
+.badge-p{display:inline-flex;align-items:center;gap:4px;padding:5px 11px;border-radius:50px;font-size:.68rem;font-weight:900}
 .badge-p.plus{background:linear-gradient(135deg,var(--a),#059669);color:#fff}
-.badge-p.pro{background:linear-gradient(135deg,var(--r),var(--rd));color:#fff;animation:glow 2.5s ease-in-out infinite}
+.badge-p.pro{background:linear-gradient(135deg,var(--r),var(--rd));color:#fff}
 .nav{display:flex;gap:4px;padding:10px 20px;background:var(--s);border-bottom:2px solid var(--bd);overflow-x:auto;position:sticky;top:66px;z-index:49;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
 .nb{display:flex;align-items:center;gap:7px;padding:10px 16px;border:none;background:transparent;border-radius:var(--Rs);font-weight:700;color:var(--t2);cursor:pointer;transition:all var(--tr);white-space:nowrap;font-size:.86rem;position:relative}
 .nb:hover{background:var(--s2);color:var(--t)}
-.nb.active{background:linear-gradient(135deg,var(--p) 0%,var(--pd) 100%);color:#fff;box-shadow:0 4px 14px var(--pg)}
+.nb.active{background:linear-gradient(135deg,var(--p) 0%,var(--pd) 100%);color:#fff}
 .nb .badge{position:absolute;top:3px;right:3px;background:var(--r);color:#fff;font-size:.6rem;font-weight:900;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 4px}
 .sec{display:none;padding:20px;animation:fadeIn .3s ease}
 .sec.active{display:block}
@@ -139,16 +132,15 @@ body.dark .fh-fr{background:linear-gradient(160deg,#4a5670,#384561 40%,#1e2a44 1
 .sh h2{font-size:1.5rem;font-weight:900;letter-spacing:-.02em}
 .sh-sub{font-size:.84rem;color:var(--t2);width:100%;font-weight:500}
 .act{display:flex;gap:6px;flex-wrap:wrap}
-/* ХОЛОДИЛЬНИК */
 .fb{background:linear-gradient(135deg,var(--s) 0%,var(--s2) 100%);border-radius:var(--Rl);padding:30px 15px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;perspective:1300px;min-height:540px;box-shadow:var(--shm);border:2px solid var(--bd);position:relative;overflow:hidden}
 .fb::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,var(--pg) 0%,transparent 65%);pointer-events:none;opacity:.3}
-.fr{width:300px;height:520px;position:relative;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.34,1.56,.64,1);cursor:pointer;touch-action:manipulation}
+.fr{width:300px;height:520px;position:relative;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.34,1.56,.64,1);cursor:pointer}
 .fr:not(.open){transform:rotateY(-14deg) rotateX(2deg)}
 .fr.open{transform:rotateY(0) rotateX(0) scale(1.02)}
 .fr-3d{width:300px;height:520px;position:relative;transform-style:preserve-3d}
 .fr-cav{position:absolute;inset:0;transform:translateZ(-115px);border-radius:18px;background:linear-gradient(180deg,#e5ecf5 0%,#c9d5e2 100%);box-shadow:inset 0 0 50px rgba(15,23,42,.15);pointer-events:none}
 body.dark .fr-cav{background:linear-gradient(180deg,#1a2030 0%,#0f1524 100%)}
-.fr-door{position:absolute;left:0;background:linear-gradient(165deg,#fefefe,#eef3f9 30%,#ced8e5 70%,#a7b5c7 100%);border:1px solid rgba(255,255,255,.7);border-radius:16px;transition:transform 1s cubic-bezier(.34,1.56,.64,1);transform-style:preserve-3d;backface-visibility:hidden;box-shadow:inset 0 0 40px rgba(0,0,0,.05);transform-origin:left center;cursor:pointer;pointer-events:auto}
+.fr-door{position:absolute;left:0;background:linear-gradient(165deg,#fefefe,#eef3f9 30%,#ced8e5 70%,#a7b5c7 100%);border:1px solid rgba(255,255,255,.7);border-radius:16px;transition:transform 1s cubic-bezier(.34,1.56,.64,1);transform-style:preserve-3d;backface-visibility:hidden;transform-origin:left center;cursor:pointer;pointer-events:auto}
 body.dark .fr-door{background:linear-gradient(165deg,#4a5670,#384561 30%,#1e2a44 70%,#0f1828 100%);border-color:rgba(100,120,150,.4)}
 .fr-dt{width:300px;height:180px;top:0;transform:translateZ(115px);border-bottom-left-radius:0;border-bottom-right-radius:0}
 .fr-db{width:300px;height:340px;top:180px;transform:translateZ(115px);border-top-left-radius:0;border-top-right-radius:0}
@@ -158,27 +150,26 @@ body.dark .fr-door{background:linear-gradient(165deg,#4a5670,#384561 30%,#1e2a44
 .fr-dt .fr-h{top:26px;height:100px}
 .fr-db .fr-h{top:26px;height:185px}
 .fr-br{position:absolute;top:20px;left:22px;font-size:.74rem;font-weight:900;color:var(--p);letter-spacing:2px}
-.fr-m{position:absolute;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:inset 0 2px 4px rgba(255,255,255,.6)}
+.fr-m{position:absolute;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem}
 .fr-m.m1{top:60px;left:22px;background:linear-gradient(135deg,#fbbf24,#f59e0b)}
 .fr-m.m2{top:60px;left:72px;background:linear-gradient(135deg,#f472b6,#ec4899)}
 .fr-m.m3{top:60px;left:122px;background:linear-gradient(135deg,#60a5fa,#3b82f6)}
-/* ПОЛКИ — СКРЫТЫ, ПОКА ХОЛОДИЛЬНИК ЗАКРЫТ */
-.fr-sh{position:absolute;top:0;left:0;width:300px;height:520px;transform:translateZ(-110px);display:flex;flex-direction:column;padding:12px;gap:7px;border-radius:18px;pointer-events:none;opacity:0;transition:opacity .3s ease .3s}
-.fr.open .fr-sh{pointer-events:auto;opacity:1}
-.shelf{background:linear-gradient(180deg,rgba(255,255,255,.92) 0%,rgba(255,255,255,.7) 100%);border:2px solid rgba(255,255,255,.95);border-radius:12px;padding:12px;min-height:64px;position:relative;box-shadow:inset 0 -2px 5px rgba(0,0,0,.06),0 2px 6px rgba(0,0,0,.05);cursor:pointer;transition:all .22s ease;overflow:hidden;user-select:none}
-.shelf:hover{background:rgba(255,255,255,1);transform:translateY(-2px);box-shadow:inset 0 -2px 5px rgba(0,0,0,.06),0 10px 22px var(--pg);border-color:var(--p)}
+.fr-sh{position:absolute;top:0;left:0;width:300px;height:520px;transform:translateZ(-110px);display:flex;flex-direction:column;padding:12px;gap:7px;border-radius:18px;pointer-events:none;opacity:0;transition:opacity .3s ease}
+.fr.open .fr-sh{pointer-events:auto;opacity:1;transition-delay:.35s}
+.shelf{background:linear-gradient(180deg,rgba(255,255,255,.95) 0%,rgba(255,255,255,.75) 100%);border:2px solid rgba(255,255,255,.95);border-radius:12px;padding:12px;min-height:64px;position:relative;box-shadow:inset 0 -2px 5px rgba(0,0,0,.06);cursor:pointer;transition:all .22s ease;overflow:hidden;user-select:none}
+.shelf:hover{background:rgba(255,255,255,1);transform:translateY(-2px);box-shadow:0 10px 22px var(--pg);border-color:var(--p)}
 body.dark .shelf{background:linear-gradient(180deg,rgba(30,37,56,.95) 0%,rgba(21,27,46,.75) 100%);border-color:rgba(56,67,100,.7)}
 body.dark .shelf:hover{background:rgba(30,37,56,1);border-color:var(--p)}
 .shelf *{pointer-events:none}
-.shelf::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,rgba(15,23,42,.15),transparent);border-radius:2px}
-.sh-lbl{position:absolute;top:-10px;left:12px;font-size:.6rem;font-weight:900;background:var(--s);padding:2px 9px;border-radius:6px;letter-spacing:.3px;border:1.5px solid var(--bd)}
-.st{flex:0 0 82px}.sm1{flex:0 0 90px}.sm2{flex:0 0 90px}.sdr{flex:0 0 90px;background:linear-gradient(180deg,rgba(209,250,229,.7),rgba(209,250,229,.4));border:2px dashed var(--a)}
-body.dark .sdr{background:linear-gradient(180deg,rgba(6,78,59,.6),rgba(6,78,59,.4));border-color:var(--a)}
+.sh-lbl{position:absolute;top:-10px;left:12px;font-size:.6rem;font-weight:900;background:var(--s);padding:2px 9px;border-radius:6px;border:1.5px solid var(--bd)}
+.st{flex:0 0 82px}.sm1{flex:0 0 90px}.sm2{flex:0 0 90px}
+.sdr{flex:0 0 90px;background:linear-gradient(180deg,rgba(209,250,229,.7),rgba(209,250,229,.4));border:2px dashed var(--a)}
+body.dark .sdr{background:linear-gradient(180deg,rgba(6,78,59,.6),rgba(6,78,59,.4))}
 .sfz{flex:0 0 90px;background:linear-gradient(180deg,rgba(207,250,254,.85),rgba(165,243,252,.5));border:2px solid rgba(6,182,212,.5)}
-body.dark .sfz{background:linear-gradient(180deg,rgba(8,51,68,.6),rgba(8,51,68,.4));border-color:rgba(34,211,238,.5)}
+body.dark .sfz{background:linear-gradient(180deg,rgba(8,51,68,.6),rgba(8,51,68,.4))}
 .sh-it{display:flex;flex-wrap:wrap;gap:4px;min-height:24px}
 .sh-ct{position:absolute;bottom:6px;right:10px;font-size:.62rem;font-weight:900;color:#fff;background:linear-gradient(135deg,var(--p) 0%,var(--pd) 100%);padding:2px 8px;border-radius:50px}
-.sh-p{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;border-radius:50px;font-size:.65rem;font-weight:800;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.sh-p{display:inline-flex;padding:3px 9px;background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;border-radius:50px;font-size:.65rem;font-weight:800;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .sh-p.warn{background:linear-gradient(135deg,var(--am),#d97706)}
 .sh-p.danger{background:linear-gradient(135deg,var(--r),var(--rd))}
 .sh-emp{font-size:.68rem;color:var(--t3);font-style:italic;padding:2px 0}
@@ -191,21 +182,18 @@ body.dark .fr-hint{color:var(--p)}
 .st-c{background:var(--s);border-radius:var(--R);padding:16px;text-align:center;box-shadow:var(--sh);border:2px solid var(--bd);transition:all var(--tr);position:relative;overflow:hidden}
 .st-c::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--p),var(--a),var(--r))}
 .st-c:hover{transform:translateY(-3px);border-color:var(--p)}
-.st-v{display:block;font-size:1.7rem;font-weight:900;color:var(--p);letter-spacing:-.02em}
+.st-v{display:block;font-size:1.7rem;font-weight:900;color:var(--p)}
 .st-c.warn .st-v{color:var(--am)}
 .st-c.danger .st-v{color:var(--r)}
 .st-l{font-size:.76rem;color:var(--t2);font-weight:700}
-/* ФИЛЬТРЫ */
 .tabs{display:flex;gap:7px;margin-bottom:16px;flex-wrap:wrap;overflow-x:auto;padding-bottom:3px;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 .tab{display:flex;align-items:center;gap:6px;padding:9px 16px;border:2px solid var(--bd2);background:var(--s);border-radius:50px;font-weight:700;color:var(--t2);cursor:pointer;transition:all .25s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;font-size:.83rem}
 .tab:hover{border-color:var(--p);color:var(--p);transform:translateY(-2px)}
-.tab.active{background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;border-color:transparent;box-shadow:0 6px 18px var(--pg);transform:scale(1.03)}
+.tab.active{background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;border-color:transparent;box-shadow:0 6px 18px var(--pg)}
 .filters{display:grid;grid-template-columns:1fr auto auto auto auto;gap:8px;margin-bottom:14px;align-items:center}
-.filters input,.filters select{padding:11px 14px;border:2px solid var(--bd2);border-radius:var(--Rs);background:var(--s);color:var(--t);transition:all var(--tr);font-weight:500;font-size:.9rem}
+.filters input,.filters select{padding:11px 14px;border:2px solid var(--bd2);border-radius:var(--Rs);background:var(--s);color:var(--t);transition:all var(--tr);font-weight:500;font-size:.9rem;min-width:0}
 .filters input:focus,.filters select:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 4px var(--pl)}
-.filters input{min-width:0}
-/* ЧЕКБОКСЫ — КОМПАКТНО, ТЕКСТ РЯДОМ */
 .ck{display:inline-flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap;font-weight:700;color:var(--t);font-size:.85rem;padding:10px 14px;background:var(--s);border:2px solid var(--bd2);border-radius:50px;transition:all var(--tr);flex-shrink:0;max-width:100%}
 .ck:hover{border-color:var(--p)}
 .ck input{width:16px;height:16px;min-width:16px;accent-color:var(--p);cursor:pointer;margin:0;flex-shrink:0}
@@ -221,39 +209,36 @@ body.dark .ck:has(input:checked){background:rgba(99,102,241,.15);color:var(--p)}
 .rc-b{padding:16px;flex:1;display:flex;flex-direction:column}
 .rc-t{font-size:1rem;font-weight:800;margin-bottom:8px;line-height:1.3}
 .rc-m{display:flex;gap:6px;font-size:.72rem;color:var(--t2);margin-bottom:10px;flex-wrap:wrap;font-weight:700}
-.rc-m span{display:flex;align-items:center;gap:3px;padding:3px 9px;background:var(--s2);border-radius:50px}
+.rc-m span{padding:3px 9px;background:var(--s2);border-radius:50px}
 .mr{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding:10px 12px;background:var(--s2);border-radius:10px;border:1.5px solid var(--bd)}
 .mc{position:relative;width:48px;height:48px;min-width:48px;border-radius:50%;background:conic-gradient(var(--p) calc(var(--pct) * 1%),var(--bd) 0);display:flex;align-items:center;justify-content:center}
 .mc::before{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--s)}
 .mc-t{position:relative;font-size:.8rem;font-weight:900;color:var(--pd);z-index:1}
 body.dark .mc-t{color:var(--p)}
 .mi{flex:1;min-width:0}
-.ml{font-size:.68rem;font-weight:800;color:var(--t2);text-transform:uppercase;letter-spacing:.3px}
+.ml{font-size:.68rem;font-weight:800;color:var(--t2);text-transform:uppercase}
 .md{font-size:.78rem;font-weight:600}
 .md .g{color:var(--a)}
 .md .b{color:var(--r)}
 .rc-i{font-size:.76rem;color:var(--t2);flex:1;margin-bottom:10px;line-height:1.45;font-weight:500}
 .rc-i .h{color:var(--a);font-weight:800}
 .rc-i .m{color:var(--r);font-weight:700}
-.rc-f{padding:9px 0 0;border-top:1.5px solid var(--bd);font-size:.78rem;font-weight:800;color:var(--pd);display:flex;align-items:center;gap:5px}
+.rc-f{padding:9px 0 0;border-top:1.5px solid var(--bd);font-size:.78rem;font-weight:800;color:var(--pd)}
 body.dark .rc-f{color:var(--p)}
-.lock{position:absolute;top:10px;right:10px;background:linear-gradient(135deg,var(--r),var(--rd));color:#fff;padding:4px 10px;border-radius:50px;font-size:.62rem;font-weight:900;z-index:2;letter-spacing:.3px}
+.lock{position:absolute;top:10px;right:10px;background:linear-gradient(135deg,var(--r),var(--rd));color:#fff;padding:4px 10px;border-radius:50px;font-size:.62rem;font-weight:900;z-index:2}
 .fav{position:absolute;top:10px;left:10px;width:36px;height:36px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border:1.5px solid rgba(255,255,255,.9);border-radius:50%;cursor:pointer;font-size:1rem;z-index:2;transition:all .25s cubic-bezier(.34,1.56,.64,1);display:flex;align-items:center;justify-content:center;color:var(--t3)}
 body.dark .fav{background:rgba(21,27,46,.95)}
-.fav:hover{transform:scale(1.12)}
-.fav.active{background:linear-gradient(135deg,#fef3c7,#fbbf24);color:#fff;border-color:#fbbf24;animation:popIn .3s ease}
-/* ПОКУПКИ */
+.fav.active{background:linear-gradient(135deg,#fef3c7,#fbbf24);color:#fff;border-color:#fbbf24}
 .sf{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;background:var(--s);padding:14px;border-radius:var(--R);box-shadow:var(--sh);border:2px solid var(--bd);position:relative}
-.sf input{padding:11px 14px;border:2px solid var(--bd2);border-radius:var(--Rs);background:var(--s);color:var(--t);transition:all var(--tr)}
+.sf input{padding:11px 14px;border:2px solid var(--bd2);border-radius:var(--Rs);background:var(--s);color:var(--t)}
 .sf input:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 4px var(--pl)}
 .sf .sn{flex:2;min-width:150px}
 .sf .sq{flex:0 0 100px}
 .sf .su{flex:0 0 100px;padding:11px 10px;border:2px solid var(--bd2);border-radius:var(--Rs);background:var(--s);color:var(--t);font-weight:600}
 .ah{position:absolute;bottom:-22px;left:14px;font-size:.72rem;color:var(--pd);font-weight:800;opacity:0;transition:opacity var(--tr)}
-body.dark .ah{color:var(--p)}
 .ah.show{opacity:1}
 .slist{display:flex;flex-direction:column;gap:8px}
-.si{background:var(--s);border-radius:var(--Rs);padding:14px;display:flex;align-items:center;gap:12px;box-shadow:var(--sh);transition:all var(--tr);border:2px solid var(--bd);animation:slideUp .25s ease}
+.si{background:var(--s);border-radius:var(--Rs);padding:14px;display:flex;align-items:center;gap:12px;box-shadow:var(--sh);border:2px solid var(--bd);animation:slideUp .25s ease}
 .si:hover{border-color:var(--p)}
 .si.bought{opacity:.55}
 .si.bought .sn2{text-decoration:line-through}
@@ -262,63 +247,58 @@ body.dark .ah{color:var(--p)}
 .sn2{font-weight:800;font-size:.92rem}
 .sr{font-size:.72rem;color:var(--t2);margin-top:2px}
 .sq2{font-size:.85rem;font-weight:800;color:var(--t2);white-space:nowrap}
-.si button{width:30px;height:30px;border:none;background:transparent;border-radius:8px;color:var(--t2);cursor:pointer;transition:all var(--tr);font-size:1rem}
+.si button{width:30px;height:30px;border:none;background:transparent;border-radius:8px;color:var(--t2);cursor:pointer;font-size:1rem}
 .si button:hover{background:var(--rl);color:var(--r)}
-/* МЕНЮ */
 .wk{overflow-x:auto;background:var(--s);border-radius:var(--R);padding:14px;border:2px solid var(--bd);box-shadow:var(--sh)}
 .wg{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;min-width:800px}
-.wd{background:var(--s2);border-radius:var(--Rs);padding:10px;min-height:180px;border:2px dashed var(--bd2);transition:all var(--tr)}
+.wd{background:var(--s2);border-radius:var(--Rs);padding:10px;min-height:180px;border:2px dashed var(--bd2)}
 .wd.today{border-color:var(--p);border-style:solid;background:var(--pl)}
 body.dark .wd.today{background:rgba(99,102,241,.12)}
 .wt{font-size:.7rem;font-weight:900;text-transform:uppercase;margin-bottom:6px;text-align:center}
 .wt .num{display:block;font-size:1.3rem;margin-top:2px;color:var(--p)}
 .wm{padding:6px 8px;background:var(--s);border-radius:8px;font-size:.68rem;font-weight:700;margin-bottom:5px;display:flex;justify-content:space-between;gap:4px;border-left:3px solid var(--p);cursor:pointer}
 .wm .x{color:var(--r);opacity:.7}
-.wm .x:hover{opacity:1}
-/* СТАТИСТИКА */
 .sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:18px}
 .sb{background:var(--s);border-radius:var(--R);padding:20px;box-shadow:var(--sh);border:2px solid var(--bd);text-align:center;position:relative;overflow:hidden;transition:all var(--tr)}
 .sb:hover{transform:translateY(-3px);border-color:var(--p)}
 .sb::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--p),var(--a),var(--r))}
-.sb .num{display:block;font-size:2.1rem;font-weight:900;color:var(--p);margin-bottom:3px;letter-spacing:-.03em}
+.sb .num{display:block;font-size:2.1rem;font-weight:900;color:var(--p);margin-bottom:3px}
 .sb .lbl{font-size:.78rem;color:var(--t2);font-weight:700}
 .ch{background:var(--s);border-radius:var(--R);padding:20px;border:2px solid var(--bd);box-shadow:var(--sh);margin-bottom:18px}
 .ch h3{font-size:1rem;margin-bottom:14px;font-weight:800}
 .br{display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .bl{width:100px;font-size:.8rem;font-weight:700;color:var(--t2);flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bt{flex:1;height:22px;background:var(--s2);border-radius:11px;overflow:hidden}
-.bf{height:100%;background:linear-gradient(90deg,var(--p),var(--r));border-radius:11px;transition:width .8s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:.72rem;font-weight:800}
+.bf{height:100%;background:linear-gradient(90deg,var(--p),var(--r));border-radius:11px;transition:width .8s ease;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:.72rem;font-weight:800}
 .bv{width:56px;text-align:right;font-size:.8rem;font-weight:800}
-/* МОИ РЕЦЕПТЫ */
 .me{text-align:center;padding:50px 20px;color:var(--t2);background:var(--s);border-radius:var(--R);border:2px dashed var(--bd2)}
 .me .icon{font-size:3.5rem;margin-bottom:12px;opacity:.5}
 .rform{background:var(--s);border-radius:var(--R);padding:20px;border:2px solid var(--bd);box-shadow:var(--sh);margin-bottom:18px}
 .rform h3{font-size:1.05rem;margin-bottom:14px}
 .fg{margin-bottom:12px;flex:1}
-.fg label{display:block;font-size:.78rem;font-weight:800;margin-bottom:5px;color:var(--t2);text-transform:uppercase;letter-spacing:.3px}
-.fg input,.fg select,.fg textarea{width:100%;padding:11px 14px;border:2px solid var(--bd2);border-radius:var(--Rs);background:var(--s);color:var(--t);transition:all var(--tr);font-weight:600}
+.fg label{display:block;font-size:.78rem;font-weight:800;margin-bottom:5px;color:var(--t2);text-transform:uppercase}
+.fg input,.fg select,.fg textarea{width:100%;padding:11px 14px;border:2px solid var(--bd2);border-radius:var(--Rs);background:var(--s);color:var(--t);font-weight:600}
 .fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 4px var(--pl)}
 .fg textarea{min-height:90px;resize:vertical;font-family:inherit}
 .frow{display:flex;gap:10px}
 .fw{background:var(--aml);color:#8b5a0f;padding:11px 15px;border-radius:var(--Rs);font-size:.84rem;font-weight:600;margin-bottom:12px;border-left:4px solid var(--am)}
 body.dark .fw{color:var(--am)}
-/* МОДАЛКИ */
 .modal{position:fixed;inset:0;background:rgba(15,23,42,.72);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:14px;z-index:100;animation:fadeIn .2s ease;overflow-y:auto}
 .modal-c{background:var(--s);border-radius:var(--Rl);padding:24px;width:100%;max-width:500px;max-height:92vh;overflow-y:auto;animation:slideUp .3s cubic-bezier(.34,1.56,.64,1);border:2px solid var(--bd);margin:auto}
 .modal-lg{max-width:640px}
 .modal-xl{max-width:800px}
 .mh{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:10px}
-.mh h3{font-size:1.15rem;font-weight:900;letter-spacing:-.02em}
+.mh h3{font-size:1.15rem;font-weight:900}
 .mc-btn{font-size:1.5rem;line-height:1;border:none;background:transparent;cursor:pointer;color:var(--t2);width:34px;height:34px;border-radius:50%;transition:all var(--tr)}
-.mc-btn:hover{background:var(--s2);transform:rotate(90deg)}
+.mc-btn:hover{background:var(--s2)}
 .rh{height:150px;border-radius:var(--R);background:linear-gradient(135deg,var(--pl) 0%,var(--p) 100%);display:flex;align-items:center;justify-content:center;font-size:5rem;margin-bottom:18px;position:relative;overflow:hidden}
 .rh::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);background-size:200% 100%;animation:shimmer 4s ease-in-out infinite}
 .rm{display:flex;gap:8px;font-size:.82rem;color:var(--t2);margin-bottom:16px;flex-wrap:wrap;font-weight:700}
-.rm span{display:flex;align-items:center;gap:4px;padding:6px 12px;background:var(--s2);border-radius:50px;border:1.5px solid var(--bd)}
+.rm span{padding:6px 12px;background:var(--s2);border-radius:50px;border:1.5px solid var(--bd)}
 .rs{margin-bottom:18px}
-.rs h4{font-size:1rem;font-weight:900;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.rs h4{font-size:1rem;font-weight:900;margin-bottom:12px}
 .il{list-style:none;display:flex;flex-direction:column;gap:5px}
-.il li{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;padding:10px 14px;border-radius:9px;background:var(--s2);font-size:.88rem;font-weight:600;animation:slideUp .25s ease backwards;border:1.5px solid transparent}
+.il li{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;padding:10px 14px;border-radius:9px;background:var(--s2);font-size:.88rem;font-weight:600;border:1.5px solid transparent}
 .il li.have{background:var(--al);color:#065f46;border-color:var(--a)}
 body.dark .il li.have{background:rgba(52,211,153,.15);color:var(--a)}
 .in{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -329,34 +309,32 @@ body.dark .il li.have .iq{color:var(--a)}
 .il li.have .mk{background:var(--a);color:#fff}
 .il li:not(.have) .mk{background:var(--rl);color:var(--r)}
 .sl{padding-left:0;list-style:none;counter-reset:step;display:flex;flex-direction:column;gap:8px}
-.sl li{font-size:.88rem;line-height:1.6;counter-increment:step;display:flex;gap:12px;padding:12px 14px;background:var(--s2);border-radius:9px;border-left:3px solid var(--p);font-weight:500;animation:slideUp .25s ease backwards}
+.sl li{font-size:.88rem;line-height:1.6;counter-increment:step;display:flex;gap:12px;padding:12px 14px;background:var(--s2);border-radius:9px;border-left:3px solid var(--p);font-weight:500}
 .sl li::before{content:counter(step);min-width:26px;height:26px;background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.78rem;flex-shrink:0}
 .stx{flex:1}
-.tb{display:inline-flex;align-items:center;gap:3px;margin-top:6px;padding:5px 11px;background:var(--cyl);color:var(--cy);border:none;border-radius:50px;font-size:.72rem;font-weight:800;cursor:pointer}
-.tb:hover{background:var(--cy);color:#fff}
+.tb{display:inline-flex;gap:3px;margin-top:6px;padding:5px 11px;background:var(--cyl);color:var(--cy);border:none;border-radius:50px;font-size:.72rem;font-weight:800;cursor:pointer}
 .ma{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
 .kr{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
 .k{background:var(--s2);border-radius:var(--Rs);padding:10px;text-align:center;border:1.5px solid var(--bd)}
 .k .v{display:block;font-size:1.1rem;font-weight:900;color:var(--p)}
 .k .l{font-size:.68rem;color:var(--t2);font-weight:700;text-transform:uppercase}
-/* ТАРИФЫ */
 .tariff-m{max-width:960px;padding:0;overflow:hidden}
-.tariff-h{text-align:center;padding:28px 20px 22px;background:linear-gradient(135deg,var(--p) 0%,var(--pd) 50%,var(--rd) 100%);color:#fff;position:relative}
+.tariff-h{text-align:center;padding:28px 20px 22px;background:linear-gradient(135deg,var(--p) 0%,var(--pd) 50%,var(--rd) 100%);color:#fff}
 .tariff-h h2{font-size:1.5rem;font-weight:900;margin-bottom:5px}
 .tariff-h p{opacity:.95;font-size:.88rem;font-weight:500}
-.tariff-b{padding:22px;max-height:calc(92vh - 180px);overflow-y:auto}
+.tariff-b{padding:22px;max-height:calc(92vh - 220px);overflow-y:auto}
 .tariff-g{display:grid;grid-template-columns:repeat(var(--cols,3),1fr);gap:12px;margin-bottom:16px}
 .tariff-c{background:var(--s);border-radius:var(--R);padding:20px 14px;border:2px solid var(--bd);text-align:center;transition:all var(--tr);position:relative;overflow:hidden}
 .tariff-c.featured{border-color:var(--p);box-shadow:0 10px 28px var(--pg)}
 .tariff-c.premium{border-color:var(--r);box-shadow:0 10px 28px var(--rg)}
 .tariff-c.current{border-color:var(--a);background:var(--al)}
 body.dark .tariff-c.current{background:rgba(52,211,153,.1)}
-.tariff-tag{position:absolute;top:10px;right:10px;background:var(--p);color:#fff;font-size:.58rem;font-weight:900;padding:3px 8px;border-radius:50px;letter-spacing:.5px}
+.tariff-tag{position:absolute;top:10px;right:10px;background:var(--p);color:#fff;font-size:.58rem;font-weight:900;padding:3px 8px;border-radius:50px}
 .tariff-tag.pr{background:var(--r)}
 .tariff-tag.cu{background:var(--a)}
 .tariff-n{font-size:1.05rem;font-weight:900;margin-bottom:3px}
 .tariff-s{font-size:.74rem;color:var(--t2);margin-bottom:12px;font-weight:500}
-.tariff-p{font-size:1.75rem;font-weight:900;color:var(--p);letter-spacing:-.03em;line-height:1}
+.tariff-p{font-size:1.75rem;font-weight:900;color:var(--p);line-height:1}
 .tariff-p.pr{color:var(--r)}
 .tariff-p.fr{color:var(--t2)}
 .tariff-p small{font-size:.72rem;color:var(--t3);text-decoration:line-through;margin-left:4px;font-weight:600}
@@ -366,7 +344,9 @@ body.dark .tariff-c.current{background:rgba(52,211,153,.1)}
 .tariff-l li .y{color:var(--a);font-weight:900;flex-shrink:0}
 .tariff-l li .n{color:var(--t3);font-weight:900;flex-shrink:0}
 .tariff-l li.off{color:var(--t3);opacity:.6}
-/* СКАН */
+.tariff-cta{padding:0 22px 22px}
+.tariff-free-btn{padding:14px 24px;background:linear-gradient(135deg,var(--a),#059669);color:#fff;border:none;border-radius:50px;font-size:.95rem;font-weight:800;cursor:pointer;width:100%;transition:all var(--tr);box-shadow:0 10px 26px rgba(16,185,129,.4);display:flex;align-items:center;justify-content:center;gap:8px}
+.tariff-free-btn:hover{transform:translateY(-2px)}
 .sp{width:100%;aspect-ratio:4/3;background:#000;border-radius:var(--R);overflow:hidden;position:relative;margin-bottom:14px}
 .sp video,.sp img{width:100%;height:100%;object-fit:cover}
 .sp img{object-fit:contain;background:#000}
@@ -378,122 +358,31 @@ body.dark .tariff-c.current{background:rgba(52,211,153,.1)}
 .spr{height:7px;background:var(--s2);border-radius:4px;overflow:hidden;margin-top:8px}
 .sprf{height:100%;background:linear-gradient(90deg,var(--p),var(--r));border-radius:4px;transition:width .3s ease;width:0}
 .sre{display:flex;flex-direction:column;gap:6px;max-height:320px;overflow-y:auto;margin-bottom:12px}
-.sri{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px 12px;background:var(--s2);border-radius:9px;border:2px solid var(--bd);cursor:pointer;transition:all var(--tr)}
+.sri{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px 12px;background:var(--s2);border-radius:9px;border:2px solid var(--bd);cursor:pointer}
 .sri.sel{border-color:var(--p);background:var(--pl)}
 body.dark .sri.sel{background:rgba(99,102,241,.14)}
 .sri input[type=checkbox]{width:18px;height:18px;accent-color:var(--p);cursor:pointer}
 .srn{font-weight:800;font-size:.88rem}
-.srm{font-size:.72rem;color:var(--t2);margin-top:2px;font-weight:500}
+.srm{font-size:.72rem;color:var(--t2);margin-top:2px}
 .srx{font-size:.72rem;color:var(--a);font-weight:700;margin-top:2px}
 .srq{font-size:.86rem;font-weight:800;color:var(--t2);white-space:nowrap}
-/* ПУСТОЕ */
 .emp{text-align:center;padding:50px 20px;color:var(--t2)}
-.emp .icon{font-size:3.5rem;margin-bottom:12px;opacity:.5;animation:float 3s ease-in-out infinite}
-.emp p{font-size:.9rem;font-weight:500}
-/* ТАЙМЕР */
+.emp .icon{font-size:3.5rem;margin-bottom:12px;opacity:.5}
 .tmr{position:fixed;bottom:20px;right:20px;background:var(--s);border:2px solid var(--bd2);border-radius:var(--R);padding:12px 16px;box-shadow:var(--shl);z-index:250;display:none;align-items:center;gap:10px}
 .tmr.show{display:flex}
 .tmd{font-size:1.3rem;font-weight:900;color:var(--p);min-width:70px}
 .tmr button{padding:6px 12px;border:none;border-radius:8px;font-size:.76rem;font-weight:800;cursor:pointer;background:var(--rl);color:var(--r)}
-/* TOAST */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;padding:12px 24px;border-radius:50px;font-size:.86rem;font-weight:800;box-shadow:0 10px 26px var(--pg);z-index:300;animation:toastIn .3s ease;max-width:90vw;text-align:center}
-.sunset{position:fixed;top:10px;right:10px;font-size:.68rem;padding:4px 10px;background:var(--s2);border:1.5px solid var(--bd);border-radius:50px;color:var(--t2);z-index:60;opacity:.9;display:none;font-weight:700}
-.sunset.show{display:block}
-/* АДАПТАЦИЯ */
-@media (max-width:1000px){
-  .w-hero{grid-template-columns:1fr;gap:20px;padding:16px 22px;text-align:center}
-  .w-feat{align-items:stretch}
-  .w-btns{justify-content:center}
-  .w-3d{height:400px}
-  .fridge-h{width:220px;height:390px}
-  .fh-bd::before{width:160px}
-  .fr{width:270px;height:470px}
-  .fr-3d,.fr-cav{width:270px;height:470px}
-  .fr-dt{width:270px;height:165px}
-  .fr-db{width:270px;height:305px;top:165px}
-  .fr-sh{width:270px;height:470px}
-  .wg{grid-template-columns:repeat(7,130px)}
-  .filters{grid-template-columns:1fr 1fr;}
-  .filters .ck{grid-column:span 1}
-}
-@media (max-width:720px){
-  body{font-size:14px}
-  .w-head{padding:14px 16px}
-  .w-logo{font-size:.95rem}
-  .w-nav button{padding:8px 14px;font-size:.76rem}
-  .w-hero{padding:12px 14px;gap:14px}
-  .w-text h1{font-size:1.55rem}
-  .w-text p{font-size:.86rem}
-  .w-f{padding:10px 12px}
-  .w-fi{width:36px;height:36px;min-width:36px;font-size:1rem}
-  .w-ft strong{font-size:.83rem}
-  .w-ft span{font-size:.7rem}
-  .w-btns button{padding:12px 18px;font-size:.82rem}
-  .hdr{padding:10px 12px}
-  .logo-t{font-size:.88rem}
-  .user-n{display:none}
-  .nav{padding:7px 10px;top:58px}
-  .nb{padding:7px 10px;font-size:.7rem;flex-direction:column;gap:2px;text-align:center}
-  .nb span:not(.badge){display:none}
-  .nb svg{width:20px;height:20px}
-  .sec{padding:12px}
-  .sh h2{font-size:1.2rem}
-  .stats{grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
-  .st-c{padding:10px 4px}
-  .st-v{font-size:1.15rem}
-  .st-l{font-size:.62rem}
-  .grid{grid-template-columns:1fr}
-  .filters{grid-template-columns:1fr 1fr;gap:6px}
-  .filters input{grid-column:span 2}
-  .tabs{gap:4px}
-  .tab{padding:7px 11px;font-size:.72rem}
-  .frow{flex-direction:column;gap:0}
-  .modal-c{padding:18px 14px;border-radius:16px}
-  .sf{flex-direction:column}
-  .sf input,.sf .sn,.sf .sq,.sf .su{width:100%;flex:1}
-  .ma{flex-direction:column}
-  .ma button{width:100%}
-  .fb{padding:14px 6px;min-height:420px}
-  .fr{width:230px;height:400px}
-  .fr-3d,.fr-cav{width:230px;height:400px}
-  .fr-dt{width:230px;height:140px}
-  .fr-db{width:230px;height:260px;top:140px}
-  .fr-sh{width:230px;height:400px;padding:9px;gap:5px}
-  .shelf{padding:8px;min-height:52px}
-  .st{flex:0 0 66px}.sm1,.sm2,.sdr,.sfz{flex:0 0 72px}
-  .sh-lbl{font-size:.54rem;padding:1px 6px}
-  .sh-p{padding:2px 7px;font-size:.6rem}
-  .tmr{right:8px;bottom:8px;padding:9px 12px}
-  .kr{grid-template-columns:repeat(2,1fr)}
-  .tariff-g{grid-template-columns:1fr!important}
-  .wg{grid-template-columns:repeat(7,110px)}
-  .wd{padding:7px;min-height:150px}
-  .wt{font-size:.6rem}
-  .wt .num{font-size:1.1rem}
-  .wm{font-size:.62rem;padding:5px 6px}
-  .filters .ck{width:100%;justify-content:flex-start;grid-column:span 2}
-}
-@media (max-width:380px){
-  .stats{grid-template-columns:1fr 1fr}
-  .fh-bd::before{width:120px}
-  .fridge-h{width:180px;height:320px}
-  .filters{grid-template-columns:1fr}
-  .filters input{grid-column:span 1}
-  .filters .ck{grid-column:span 1}
-}
-@supports (padding:env(safe-area-inset-top)){
-  .hdr{padding-top:calc(12px + env(safe-area-inset-top))}
-  .tmr{bottom:calc(20px + env(safe-area-inset-bottom))}
-  .toast{bottom:calc(24px + env(safe-area-inset-bottom))}
-}
+@media (max-width:1000px){.w-hero{grid-template-columns:1fr;gap:20px;padding:16px 22px;text-align:center}.w-feat{align-items:stretch}.w-btns{justify-content:center}.w-3d{height:400px}.fridge-h{width:220px;height:390px}.fh-bd::before{width:160px}.fr{width:270px;height:470px}.fr-3d,.fr-cav{width:270px;height:470px}.fr-dt{width:270px;height:165px}.fr-db{width:270px;height:305px;top:165px}.fr-sh{width:270px;height:470px}.wg{grid-template-columns:repeat(7,130px)}.filters{grid-template-columns:1fr 1fr}.filters .ck{grid-column:span 1}}
+@media (max-width:720px){body{font-size:14px}.w-head{padding:14px 16px}.w-logo{font-size:.95rem}.w-nav button{padding:8px 14px;font-size:.76rem}.w-hero{padding:12px 14px;gap:14px}.w-text h1{font-size:1.55rem}.w-text p{font-size:.86rem}.w-f{padding:10px 12px}.w-fi{width:36px;height:36px;min-width:36px;font-size:1rem}.w-ft strong{font-size:.83rem}.w-ft span{font-size:.7rem}.w-btns button{padding:12px 18px;font-size:.82rem}.hdr{padding:10px 12px}.logo-t{font-size:.88rem}.user-n{display:none}.nav{padding:7px 10px;top:58px}.nb{padding:7px 10px;font-size:.7rem;flex-direction:column;gap:2px;text-align:center}.nb span:not(.badge){display:none}.nb svg{width:20px;height:20px}.sec{padding:12px}.sh h2{font-size:1.2rem}.stats{grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}.st-c{padding:10px 4px}.st-v{font-size:1.15rem}.st-l{font-size:.62rem}.grid{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr;gap:6px}.filters input{grid-column:span 2}.tabs{gap:4px}.tab{padding:7px 11px;font-size:.72rem}.frow{flex-direction:column;gap:0}.modal-c{padding:18px 14px;border-radius:16px}.sf{flex-direction:column}.sf input,.sf .sn,.sf .sq,.sf .su{width:100%;flex:1}.ma{flex-direction:column}.ma button{width:100%}.fb{padding:14px 6px;min-height:420px}.fr{width:230px;height:400px}.fr-3d,.fr-cav{width:230px;height:400px}.fr-dt{width:230px;height:140px}.fr-db{width:230px;height:260px;top:140px}.fr-sh{width:230px;height:400px;padding:9px;gap:5px}.shelf{padding:8px;min-height:52px}.st{flex:0 0 66px}.sm1,.sm2,.sdr,.sfz{flex:0 0 72px}.sh-lbl{font-size:.54rem;padding:1px 6px}.sh-p{padding:2px 7px;font-size:.6rem}.tmr{right:8px;bottom:8px;padding:9px 12px}.kr{grid-template-columns:repeat(2,1fr)}.tariff-g{grid-template-columns:1fr!important}.wg{grid-template-columns:repeat(7,110px)}.wd{padding:7px;min-height:150px}.filters .ck{width:100%;justify-content:flex-start;grid-column:span 2}}
+@media (max-width:380px){.stats{grid-template-columns:1fr 1fr}.fh-bd::before{width:120px}.fridge-h{width:180px;height:320px}.filters{grid-template-columns:1fr}.filters input{grid-column:span 1}.filters .ck{grid-column:span 1}}
+@supports (padding:env(safe-area-inset-top)){.hdr{padding-top:calc(12px + env(safe-area-inset-top))}.tmr{bottom:calc(20px + env(safe-area-inset-bottom))}.toast{bottom:calc(24px + env(safe-area-inset-bottom))}}
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:var(--s2)}
 ::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:4px}
 </style>
 </head>
 <body>
-
-<div class="sunset" id="sunset"></div>
 
 <div id="welcome" class="welcome">
   <div class="w-head">
@@ -503,23 +392,22 @@ body.dark .sri.sel{background:rgba(99,102,241,.14)}
     </div>
     <div class="w-nav">
       <button id="w-login">Войти</button>
-      <button id="w-register">Начать</button>
+      <button id="w-register">Регистрация</button>
     </div>
   </div>
   <div class="w-hero">
     <div class="w-text">
       <h1>Готовьте из того, <span class="g">что уже есть</span></h1>
-      <p>1000+ рецептов, планировщик меню, умный холодильник и статистика. Всё для домашней кухни.</p>
+      <p>Реальные рецепты, планировщик меню, умный холодильник и статистика. Всё для домашней кухни.</p>
       <div class="w-feat">
-        <div class="w-f"><div class="w-fi">📖</div><div class="w-ft"><strong>1000+ рецептов</strong><span>С реальными пропорциями</span></div></div>
+        <div class="w-f"><div class="w-fi">📖</div><div class="w-ft"><strong>Реальные рецепты</strong><span>С точными пропорциями</span></div></div>
         <div class="w-f"><div class="w-fi g">📅</div><div class="w-ft"><strong>Планировщик меню</strong><span>Рацион на неделю вперёд</span></div></div>
         <div class="w-f"><div class="w-fi r">🧊</div><div class="w-ft"><strong>Умный холодильник</strong><span>Нажмите на полку — увидите продукты</span></div></div>
         <div class="w-f"><div class="w-fi a">👑</div><div class="w-ft"><strong>3 тарифа</strong><span>Базовый, Плюс и Про</span></div></div>
       </div>
       <div class="w-btns">
-        <button class="b1" id="w-start">Начать бесплатно</button>
-        <button class="b2" id="w-plus">💎 Плюс</button>
-        <button class="b3" id="w-pro">👑 Про</button>
+        <button class="b2" id="w-plus">💎 Плюс — 299 ₽</button>
+        <button class="b3" id="w-pro">👑 Про — 599 ₽</button>
       </div>
     </div>
     <div class="w-3d">
@@ -545,7 +433,7 @@ body.dark .sri.sel{background:rgba(99,102,241,.14)}
     <div class="auth-l">
       <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="5" y1="10" x2="19" y2="10"/><line x1="9" y1="6" x2="9" y2="8"/><line x1="9" y1="14" x2="9" y2="18"/></svg>
       <h1>Умный холодильник</h1>
-      <p>Рецепты и планировщик</p>
+      <p>Реальные рецепты и планировщик</p>
     </div>
     <div class="auth-tabs">
       <button class="auth-tab active" data-tab="login">Вход</button>
@@ -580,7 +468,6 @@ body.dark .sri.sel{background:rgba(99,102,241,.14)}
       <button class="btn-icon" id="logout-btn" title="Выйти"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button>
     </div>
   </header>
-
   <nav class="nav">
     <button class="nb active" data-tab="fridge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="5" y1="10" x2="19" y2="10"/></svg><span>Холодильник</span></button>
     <button class="nb" data-tab="recipes"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/></svg><span>Рецепты</span></button>
@@ -591,13 +478,10 @@ body.dark .sri.sel{background:rgba(99,102,241,.14)}
   </nav>
 
   <section id="tab-fridge" class="sec active">
-    <div class="sh">
-      <h2>Мой холодильник</h2>
-      <div class="act">
-        <button class="btn btn-rose btn-sm" id="scan-btn">📸 Скан чека</button>
-        <button class="btn btn-primary btn-sm" id="add-p-btn">+ Добавить</button>
-      </div>
-    </div>
+    <div class="sh"><h2>Мой холодильник</h2><div class="act">
+      <button class="btn btn-rose btn-sm" id="scan-btn">📸 Скан чека</button>
+      <button class="btn btn-primary btn-sm" id="add-p-btn">+ Добавить</button>
+    </div></div>
     <div class="fb">
       <button class="fr-cls" id="fr-cls">✕ Закрыть</button>
       <div class="fr" id="fr">
@@ -610,12 +494,8 @@ body.dark .sri.sel{background:rgba(99,102,241,.14)}
             <div class="shelf sdr" data-sh="drawer" data-nm="🥬 Ящик для овощей"><div class="sh-lbl">🥬 ОВОЩИ</div><div class="sh-it"></div><div class="sh-ct">0</div></div>
             <div class="shelf sfz" data-sh="freezer" data-nm="❄️ Морозилка"><div class="sh-lbl">❄️ МОРОЗИЛКА</div><div class="sh-it"></div><div class="sh-ct">0</div></div>
           </div>
-          <div class="fr-door fr-dt" data-door="top">
-            <div class="fr-br">SMART</div>
-            <div class="fr-m m1">🍎</div><div class="fr-m m2">🥛</div><div class="fr-m m3">🥕</div>
-            <div class="fr-h"></div>
-          </div>
-          <div class="fr-door fr-db" data-door="bottom"><div class="fr-h"></div></div>
+          <div class="fr-door fr-dt"><div class="fr-br">SMART</div><div class="fr-m m1">🍎</div><div class="fr-m m2">🥛</div><div class="fr-m m3">🥕</div><div class="fr-h"></div></div>
+          <div class="fr-door fr-db"><div class="fr-h"></div></div>
         </div>
       </div>
       <div class="fr-hint" id="fr-hint">👆 Нажмите, чтобы открыть</div>
@@ -628,7 +508,7 @@ body.dark .sri.sel{background:rgba(99,102,241,.14)}
   </section>
 
   <section id="tab-recipes" class="sec">
-    <div class="sh"><h2>Рецепты</h2><p class="sh-sub">Реальные рецепты с точными пропорциями</p></div>
+    <div class="sh"><h2>Рецепты</h2><p class="sh-sub">Реальные рецепты из проверенных источников</p></div>
     <div class="tabs" id="meal-tabs">
       <button class="tab active" data-m="">🍽 Все</button>
       <button class="tab" data-m="Завтрак">🌅 Завтрак</button>
@@ -650,14 +530,12 @@ body.dark .sri.sel{background:rgba(99,102,241,.14)}
   </section>
 
   <section id="tab-menu" class="sec">
-    <div class="sh"><h2>Планировщик меню</h2>
-      <div class="act">
-        <button class="btn btn-secondary btn-sm" id="mn-prev">◀</button>
-        <button class="btn btn-primary btn-sm" id="mn-add">+ Блюдо</button>
-        <button class="btn btn-secondary btn-sm" id="mn-next">▶</button>
-        <button class="btn btn-rose btn-sm" id="mn-list">🛒 Список</button>
-      </div>
-    </div>
+    <div class="sh"><h2>Планировщик меню</h2><div class="act">
+      <button class="btn btn-secondary btn-sm" id="mn-prev">◀</button>
+      <button class="btn btn-primary btn-sm" id="mn-add">+ Блюдо</button>
+      <button class="btn btn-secondary btn-sm" id="mn-next">▶</button>
+      <button class="btn btn-rose btn-sm" id="mn-list">🛒 Список</button>
+    </div></div>
     <p class="sh-sub" id="mn-week"></p>
     <div class="wk"><div class="wg" id="week-grid"></div></div>
   </section>
@@ -688,15 +566,13 @@ body.dark .sri.sel{background:rgba(99,102,241,.14)}
   </section>
 
   <section id="tab-shop" class="sec">
-    <div class="sh"><h2>Список покупок</h2>
-      <div class="act">
-        <button class="btn btn-rose btn-sm" id="ex-pdf">📄 PDF</button>
-        <button class="btn btn-secondary btn-sm" id="ex-tg">✈️ Telegram</button>
-        <button class="btn btn-secondary btn-sm" id="ex-csv">📊 Excel</button>
-        <button class="btn btn-secondary btn-sm" id="clr-b">Убрать купленное</button>
-        <button class="btn btn-ghost btn-sm" id="clr-a">🗑</button>
-      </div>
-    </div>
+    <div class="sh"><h2>Список покупок</h2><div class="act">
+      <button class="btn btn-rose btn-sm" id="ex-pdf">📄 PDF</button>
+      <button class="btn btn-secondary btn-sm" id="ex-tg">✈️ Telegram</button>
+      <button class="btn btn-secondary btn-sm" id="ex-csv">📊 Excel</button>
+      <button class="btn btn-secondary btn-sm" id="clr-b">Убрать купленное</button>
+      <button class="btn btn-ghost btn-sm" id="clr-a">🗑</button>
+    </div></div>
     <form class="sf" id="shop-form">
       <input type="text" class="sn" id="sh-nm" placeholder="Продукт" required autocomplete="off">
       <input type="number" class="sq" id="sh-q" value="1" min="0.1" step="0.1" required>
@@ -745,6 +621,9 @@ body.dark .sri.sel{background:rgba(99,102,241,.14)}
 <div id="modal-tariffs" class="modal hidden"><div class="modal-c tariff-m">
   <div class="tariff-h"><h2 id="tariff-t">Тарифы</h2><p id="tariff-s">Выберите подходящий план</p></div>
   <div class="tariff-b"><div class="tariff-g" id="tariff-g"></div></div>
+  <div class="tariff-cta hidden" id="tariff-cta">
+    <button class="tariff-free-btn" id="tariff-free-btn">🎁 Попробовать 7 дней бесплатно</button>
+  </div>
 </div></div>
 
 <div id="modal-scan" class="modal hidden"><div class="modal-c">
@@ -771,9 +650,24 @@ body.dark .sri.sel{background:rgba(99,102,241,.14)}
 <script>
 /* ============ БАЗА ПРОДУКТОВ ============ */
 const DB={
-'курица':[165,2,'г','Мясо','Нижняя полка','🍗'],'куриная грудка':[165,2,'г','Мясо','Нижняя полка','🍗'],'говядина':[250,3,'г','Мясо','Нижняя полка','🥩'],'свинина':[260,3,'г','Мясо','Нижняя полка','🥓'],'баранина':[294,3,'г','Мясо','Нижняя полка','🍖'],'стейк':[270,2,'г','Мясо','Нижняя полка','🥩'],'рибай':[290,2,'г','Мясо','Нижняя полка','🥩'],'стриплойн':[270,2,'г','Мясо','Нижняя полка','🥩'],'фарш':[230,1,'г','Мясо','Нижняя полка','🍖'],'бекон':[540,5,'г','Мясо','Нижняя полка','🥓'],'колбаса':[260,5,'г','Мясо','Средняя полка','🌭'],'сосиски':[250,5,'г','Мясо','Средняя полка','🌭'],'ветчина':[145,5,'г','Мясо','Средняя полка','🥓'],'пельмени':[275,180,'г','Заморозка','Морозилка','🥟'],'вареники':[200,180,'г','Заморозка','Морозилка','🥟'],'мороженое':[207,180,'г','Заморозка','Морозилка','🍦'],'картошка фри':[150,180,'г','Заморозка','Морозилка','🍟'],'рыба':[140,1,'г','Рыба','Холодная зона','🐟'],'лосось':[208,2,'г','Рыба','Холодная зона','🐟'],'треска':[82,2,'г','Рыба','Холодная зона','🐟'],'сельдь':[217,3,'г','Рыба','Холодная зона','🐟'],'креветки':[99,1,'г','Рыба','Холодная зона','🍤'],'кальмары':[92,1,'г','Рыба','Холодная зона','🦑'],'мидии':[77,1,'г','Рыба','Холодная зона','🦪'],'яйца':[155,25,'шт','Молочное','Средняя полка','🥚'],'молоко':[60,5,'мл','Молочное','Средняя полка','🥛'],'кефир':[40,5,'мл','Молочное','Средняя полка','🥛'],'ряженка':[67,5,'мл','Молочное','Средняя полка','🥛'],'сыр':[350,14,'г','Молочное','Средняя полка','🧀'],'творог':[120,3,'г','Молочное','Средняя полка','🍶'],'сметана':[210,5,'г','Молочное','Средняя полка','🥛'],'йогурт':[80,7,'г','Молочное','Средняя полка','🥛'],'масло сливочное':[720,14,'г','Молочное','Маслёнка','🧈'],'сливки':[210,5,'мл','Молочное','Средняя полка','🥛'],'моцарелла':[240,5,'г','Молочное','Средняя полка','🧀'],'пармезан':[430,30,'г','Молочное','Средняя полка','🧀'],'фета':[264,7,'г','Молочное','Средняя полка','🧀'],'маскарпоне':[412,7,'г','Молочное','Средняя полка','🧀'],'помидоры':[18,5,'шт','Овощи','Комнатная','🍅'],'огурцы':[15,5,'шт','Овощи','Ящик','🥒'],'перец болгарский':[26,7,'шт','Овощи','Ящик','🫑'],'капуста':[25,14,'г','Овощи','Ящик','🥬'],'кабачки':[17,10,'шт','Овощи','Ящик','🥒'],'баклажаны':[25,5,'шт','Овощи','Ящик','🍆'],'свёкла':[43,21,'шт','Овощи','Ящик','🫐'],'картофель':[77,21,'г','Овощи','Тёмное','🥔'],'морковь':[41,14,'г','Овощи','Ящик','🥕'],'лук':[40,30,'г','Овощи','Сухое','🧅'],'чеснок':[149,60,'г','Овощи','Сухое','🧄'],'редис':[14,7,'г','Овощи','Ящик','🔴'],'грибы':[22,4,'г','Овощи','Бумага','🍄'],'шампиньоны':[27,5,'г','Овощи','Бумага','🍄'],'тыква':[26,14,'г','Овощи','Прохладно','🎃'],'сельдерей':[16,10,'г','Овощи','Ящик','🥬'],'зелень':[23,6,'пучок','Овощи','В воде','🌿'],'петрушка':[47,7,'пучок','Овощи','В воде','🌿'],'укроп':[43,7,'пучок','Овощи','В воде','🌿'],'базилик':[23,5,'пучок','Овощи','В воде','🌿'],'кинза':[23,5,'пучок','Овощи','В воде','🌿'],'яблоки':[52,30,'шт','Фрукты','Ящик','🍎'],'банан':[89,5,'шт','Фрукты','Комнатная','🍌'],'лимон':[29,21,'шт','Фрукты','Ящик','🍋'],'апельсин':[47,14,'шт','Фрукты','Ящик','🍊'],'мандарин':[38,14,'шт','Фрукты','Ящик','🍊'],'груша':[57,14,'шт','Фрукты','Ящик','🍐'],'виноград':[69,7,'г','Фрукты','Контейнер','🍇'],'авокадо':[160,3,'шт','Фрукты','Холодильник','🥑'],'ягоды':[43,3,'г','Фрукты','1 слой','🍓'],'клубника':[32,3,'г','Фрукты','1 слой','🍓'],'черника':[57,5,'г','Фрукты','Контейнер','🫐'],'малина':[52,2,'г','Фрукты','1 слой','🍇'],'хлеб':[265,4,'шт','Крупы','Хлебница','🍞'],'лаваш':[275,5,'шт','Крупы','Пакет','🫓'],'сок':[45,5,'л','Напитки','Холодильник','🧃'],'вино':[85,5,'бутылка','Напитки','Холодильник','🍷'],'соевый соус':[53,365,'мл','Соусы','Холодильник','🍾'],'томатная паста':[82,5,'г','Соусы','Холодильник','🥫'],'майонез':[680,30,'г','Соусы','Средняя','🥫'],'кетчуп':[112,30,'г','Соусы','Средняя','🥫'],'горчица':[66,180,'г','Соусы','Средняя','🥫'],'шоколад':[546,180,'г','Сладкое','Тёмное','🍫'],'торт':[350,3,'г','Сладкое','Средняя','🎂'],'оливки':[115,30,'банка','Прочее','Холодильник','🫒'],'маслины':[115,30,'банка','Прочее','Холодильник','🫒'],'горошек':[73,3,'банка','Прочее','Холодильник','🫛'],'кукуруза':[96,3,'банка','Прочее','Холодильник','🌽'],'тунец':[96,3,'банка','Рыба','Холодильник','🐟']
+'курица':[165,2,'г','Мясо','Нижняя полка','🍗'],'куриная грудка':[165,2,'г','Мясо','Нижняя полка','🍗'],'куриное филе':[165,2,'г','Мясо','Нижняя полка','🍗'],
+'говядина':[250,3,'г','Мясо','Нижняя полка','🥩'],'свинина':[260,3,'г','Мясо','Нижняя полка','🥓'],'баранина':[294,3,'г','Мясо','Нижняя полка','🍖'],
+'стейк':[270,2,'г','Мясо','Нижняя полка','🥩'],'рибай':[290,2,'г','Мясо','Нижняя полка','🥩'],'стриплойн':[270,2,'г','Мясо','Нижняя полка','🥩'],'филе-миньон':[240,2,'г','Мясо','Нижняя полка','🥩'],
+'фарш':[230,1,'г','Мясо','Нижняя полка','🍖'],'бекон':[540,5,'г','Мясо','Нижняя полка','🥓'],'колбаса':[260,5,'г','Мясо','Средняя полка','🌭'],'сосиски':[250,5,'г','Мясо','Средняя полка','🌭'],'ветчина':[145,5,'г','Мясо','Средняя полка','🥓'],
+'пельмени':[275,180,'г','Заморозка','Морозилка','🥟'],'вареники':[200,180,'г','Заморозка','Морозилка','🥟'],'мороженое':[207,180,'г','Заморозка','Морозилка','🍦'],'картошка фри':[150,180,'г','Заморозка','Морозилка','🍟'],
+'рыба':[140,1,'г','Рыба','Холодная зона','🐟'],'лосось':[208,2,'г','Рыба','Холодная зона','🐟'],'треска':[82,2,'г','Рыба','Холодная зона','🐟'],'сельдь':[217,3,'г','Рыба','Холодная зона','🐟'],'креветки':[99,1,'г','Рыба','Холодная зона','🍤'],'кальмары':[92,1,'г','Рыба','Холодная зона','🦑'],'мидии':[77,1,'г','Рыба','Холодная зона','🦪'],
+'яйца':[155,25,'шт','Молочное','Средняя полка','🥚'],'молоко':[60,5,'мл','Молочное','Средняя полка','🥛'],'кефир':[40,5,'мл','Молочное','Средняя полка','🥛'],'ряженка':[67,5,'мл','Молочное','Средняя полка','🥛'],
+'сыр':[350,14,'г','Молочное','Средняя полка','🧀'],'творог':[120,3,'г','Молочное','Средняя полка','🍶'],'сметана':[210,5,'г','Молочное','Средняя полка','🥛'],'йогурт':[80,7,'г','Молочное','Средняя полка','🥛'],
+'масло сливочное':[720,14,'г','Молочное','Маслёнка','🧈'],'сливки':[210,5,'мл','Молочное','Средняя полка','🥛'],'моцарелла':[240,5,'г','Молочное','Средняя полка','🧀'],'пармезан':[430,30,'г','Молочное','Средняя полка','🧀'],'фета':[264,7,'г','Молочное','Средняя полка','🧀'],'маскарпоне':[412,7,'г','Молочное','Средняя полка','🧀'],
+'помидоры':[18,5,'шт','Овощи','Комнатная','🍅'],'огурцы':[15,5,'шт','Овощи','Ящик','🥒'],'перец болгарский':[26,7,'шт','Овощи','Ящик','🫑'],'капуста':[25,14,'г','Овощи','Ящик','🥬'],'кабачки':[17,10,'шт','Овощи','Ящик','🥒'],'баклажаны':[25,5,'шт','Овощи','Ящик','🍆'],'свёкла':[43,21,'шт','Овощи','Ящик','🫐'],'картофель':[77,21,'г','Овощи','Тёмное','🥔'],'морковь':[41,14,'г','Овощи','Ящик','🥕'],'лук':[40,30,'г','Овощи','Сухое','🧅'],'чеснок':[149,60,'г','Овощи','Сухое','🧄'],'редис':[14,7,'г','Овощи','Ящик','🔴'],'грибы':[22,4,'г','Овощи','Бумага','🍄'],'шампиньоны':[27,5,'г','Овощи','Бумага','🍄'],'тыква':[26,14,'г','Овощи','Прохладно','🎃'],'сельдерей':[16,10,'г','Овощи','Ящик','🥬'],'зелень':[23,6,'пучок','Овощи','В воде','🌿'],'петрушка':[47,7,'пучок','Овощи','В воде','🌿'],'укроп':[43,7,'пучок','Овощи','В воде','🌿'],'базилик':[23,5,'пучок','Овощи','В воде','🌿'],'кинза':[23,5,'пучок','Овощи','В воде','🌿'],
+'яблоки':[52,30,'шт','Фрукты','Ящик','🍎'],'банан':[89,5,'шт','Фрукты','Комнатная','🍌'],'лимон':[29,21,'шт','Фрукты','Ящик','🍋'],'апельсин':[47,14,'шт','Фрукты','Ящик','🍊'],'мандарин':[38,14,'шт','Фрукты','Ящик','🍊'],'груша':[57,14,'шт','Фрукты','Ящик','🍐'],'виноград':[69,7,'г','Фрукты','Контейнер','🍇'],'авокадо':[160,3,'шт','Фрукты','Холодильник','🥑'],'ягоды':[43,3,'г','Фрукты','1 слой','🍓'],'клубника':[32,3,'г','Фрукты','1 слой','🍓'],'черника':[57,5,'г','Фрукты','Контейнер','🫐'],'малина':[52,2,'г','Фрукты','1 слой','🍇'],
+'хлеб':[265,4,'шт','Крупы','Хлебница','🍞'],'лаваш':[275,5,'шт','Крупы','Пакет','🫓'],
+'сок':[45,5,'л','Напитки','Холодильник','🧃'],'вино':[85,5,'бутылка','Напитки','Холодильник','🍷'],
+'соевый соус':[53,365,'мл','Соусы','Холодильник','🍾'],'томатная паста':[82,5,'г','Соусы','Холодильник','🥫'],'майонез':[680,30,'г','Соусы','Средняя','🥫'],'кетчуп':[112,30,'г','Соусы','Средняя','🥫'],'горчица':[66,180,'г','Соусы','Средняя','🥫'],
+'шоколад':[546,180,'г','Сладкое','Тёмное','🍫'],'торт':[350,3,'г','Сладкое','Средняя','🎂'],
+'оливки':[115,30,'банка','Прочее','Холодильник','🫒'],'маслины':[115,30,'банка','Прочее','Холодильник','🫒'],'горошек':[73,3,'банка','Прочее','Холодильник','🫛'],'кукуруза':[96,3,'банка','Прочее','Холодильник','🌽'],'тунец':[96,3,'банка','Рыба','Холодильник','🐟']
 };
-const NF=[{re:/^мука$/i,r:'В шкафу'},{re:/^сахар$/i,r:'В шкафу'},{re:/^соль$/i,r:'В шкафу'},{re:/^рис$/i,r:'В шкафу'},{re:/^гречк/i,r:'В шкафу'},{re:/^макарон/i,r:'В шкафу'},{re:/^специи/i,r:'В шкафу'},{re:/^чай$/i,r:'В шкафу'},{re:/^кофе$/i,r:'В шкафу'},{re:/^масло раст/i,r:'В шкафу'},{re:/^уксус$/i,r:'В шкафу'},{re:/^мёд$|^мед$/i,r:'В шкафу'},{re:/^орехи$/i,r:'В шкафу'},{re:/^порошок/i,r:'Бытовое'},{re:/^мыло$/i,r:'Бытовое'}];
+const NF=[{re:/^мука$/i,r:'Хранится в шкафу'},{re:/^сахар$/i,r:'Хранится в шкафу'},{re:/^соль$/i,r:'Хранится в шкафу'},{re:/^рис$/i,r:'Хранится в шкафу'},{re:/^гречк/i,r:'Хранится в шкафу'},{re:/^макарон/i,r:'Хранится в шкафу'},{re:/^специи/i,r:'Хранится в шкафу'},{re:/^чай$/i,r:'Хранится в шкафу'},{re:/^кофе$/i,r:'Хранится в шкафу'},{re:/^масло раст/i,r:'Хранится в шкафу'},{re:/^масло олив/i,r:'Хранится в шкафу'},{re:/^уксус$/i,r:'Хранится в шкафу'},{re:/^мёд$|^мед$/i,r:'Хранится в шкафу'},{re:/^орехи$/i,r:'Хранится в шкафу'},{re:/^порошок/i,r:'Бытовое'},{re:/^мыло$/i,r:'Бытовое'},{re:/^шампунь/i,r:'Бытовое'}];
 function isNF(n){for(const i of NF) if(i.re.test(n.trim())) return i.r; return null;}
 function findP(n){const l=n.toLowerCase().trim();if(!l) return null;if(DB[l]) return {k:l,...pack(l)};let b=null,bl=0;for(const k in DB){if(l.includes(k)&&k.length>bl){b={k,...pack(k)};bl=k.length;}}return b;}
 function pack(k){const v=DB[k];return {cal:v[0],shelf:v[1],unit:v[2],cat:v[3],store:v[4],emoji:v[5]};}
@@ -784,7 +678,7 @@ function guessP(n){
   else if(/молок|кефир|сливк|ряженк|йогурт/.test(l)){c='Молочное';u='мл';s=5;cl=60;e='🥛';st='Средняя';}
   else if(/сыр|творог|сметан|маскарпон|фета/.test(l)){c='Молочное';u='г';s=7;cl=250;e='🧀';st='Средняя';}
   else if(/мяс|куриц|говяд|свинин|фарш|бекон|стейк|колбас|сосиск/.test(l)){c='Мясо';u='г';s=2;cl=250;e='🥩';st='Нижняя';}
-  else if(/рыб|креветк|лосос|треск|сельд|кальмар|мидии/.test(l)){c='Рыба';u='г';s=1;cl=140;e='🐟';st='Холод';}
+  else if(/рыб|креветк|лосос|треск|сельд|кальмар|мидии/.test(l)){c='Рыба';u='г';s=1;cl=140;e='🐟';st='Холодная';}
   else if(/яблок|банан|апельсин|лимон|груш|виноград|мандарин/.test(l)){c='Фрукты';u='шт';s=10;cl=60;e='🍎';st='Ящик';}
   else if(/ягод|клубник|малин|черник/.test(l)){c='Фрукты';u='г';s=3;cl=45;e='🍓';st='1 слой';}
   else if(/помидор|огур|морков|лук|чеснок|картоф|капуст|перец|кабач|баклаж|свекл|редис|салат|зелен|укроп|петрушк|базилик/.test(l)){c='Овощи';u='г';s=10;cl=30;e='🥕';st='Ящик';}
@@ -800,8 +694,7 @@ function guessP(n){
 function defExp(d){const dt=new Date();dt.setDate(dt.getDate()+d);return dt.toISOString().slice(0,10);}
 function genId(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
 
-/* ============ 100 РЕАЛЬНЫХ БАЗОВЫХ РЕЦЕПТОВ ============ */
-/* Формат: [emoji, name, category, meal, time, servings, ingredients(строка через |), steps(через |)] */
+/* ============ РЕАЛЬНЫЕ РЕЦЕПТЫ (формат: emoji, name, cat, meal, time, serv, ingr|, steps|) ============ */
 const RB=[
 ['🥩','Стейк Рибай на гриле','Стейк','Ужин',25,2,'Стейк рибай — 2 шт|Соль — по вкусу|Перец чёрный — по вкусу|Масло сливочное — 20 г|Чеснок — 2 зубчика|Розмарин — 2 веточки','Достаньте стейк за 30 минут до готовки.|Обсушите бумажным полотенцем, посолите, поперчите.|Разогрейте сковороду на сильном огне 3 минуты.|Обжарьте по 3 минуты с каждой стороны.|Добавьте масло, чеснок и розмарин, поливайте 2 минуты.|Дайте отдохнуть 5–7 минут под фольгой.'],
 ['🥩','Стейк Стриплойн','Стейк','Ужин',22,2,'Стейк стриплойн — 2 шт|Соль — по вкусу|Перец — по вкусу|Масло сливочное — 15 г|Розмарин — 2 веточки|Чеснок — 2 зубчика','Согрейте стейк 30 минут.|Посолите и поперчите.|Разогрейте сковороду 3 минуты.|Обжарьте по 4 минуты с каждой стороны.|Добавьте масло и розмарин.|Дайте отдохнуть 5 минут.'],
@@ -908,86 +801,33 @@ const RB=[
 ['🍗','Куриные ножки в духовке','Основное','Ужин',60,4,'Курица — 8 шт|Чеснок — 4 зубчика|Паприка — 1 ст.л.|Масло оливковое — 3 ст.л.|Соль — по вкусу|Перец — по вкусу','Натрите ножки специями.|Выложите в форму.|Запекайте 200°C 45 минут.|Поливайте соком.|Подавайте с картофелем.']
 ];
 
-/* ГЕНЕРАТОР 1000+ РЕЦЕПТОВ */
-/* Расширяющие прилагательные по категориям (без странных комбинаций) */
-const MOD_FOOD={
-  'Основное':['по-домашнему','праздничное','сытное','быстрое'],
-  'Суп':['наваристый','лёгкий','домашний','сытный'],
-  'Салат':['лёгкий','праздничный','с авокадо','с сыром'],
-  'Завтрак':['быстрый','домашний','праздничный','сытный'],
-  'Десерт':['праздничный','домашний','шоколадный','нежный'],
-  'Выпечка':['домашняя','праздничная','ароматная','нежная'],
-  'Напиток':['домашний','охлаждённый','с мёдом','с корицей'],
-  'Стейк':['классический','с розмарином','по-домашнему','на сковороде'],
-  'Паста':['домашняя','классическая','с сыром','быстрая'],
-  'Перекус':['быстрый','полезный','домашний','лёгкий'],
-  'На костре':['классический','по-деревенски','с дымком','праздничный'],
-  'В казане':['праздничный','наваристый','традиционный','сытный']
-};
+/* Без авто-генерации — только реальные */
+const RECIPES=RB.map((r,i)=>({id:i+1,emoji:r[0],name:r[1],category:r[2],meal:r[3],time:r[4],servings:r[5],ingredients:r[6].split('|'),steps:r[7].split('|'),premium:i%7===5}));
 
-function buildAllRecipes(){
-  const list=[];
-  let id=1;
-  // Базовые
-  RB.forEach(r=>{
-    list.push({id:id++,emoji:r[0],name:r[1],category:r[2],meal:r[3],time:r[4],servings:r[5],ingredients:r[6].split('|'),steps:r[7].split('|'),premium:id%5===4});
-  });
-  // Генерируем вариации
-  let i=0;
-  while(list.length<1100){
-    const base=RB[i%RB.length];
-    const cat=base[2];
-    const mods=MOD_FOOD[cat]||['классический','домашний'];
-    const mod=mods[Math.floor(i/mods.length)%mods.length];
-    const baseName=base[1];
-    // Избегаем дублирования если уже есть модификатор
-    const newName=baseName.includes(mod)?baseName:`${baseName} ${mod}`;
-    // Небольшие вариации ингредиентов
-    const newIngr=base[6];
-    const newSteps=base[7];
-    const timeVar=base[4]+(i%3)*5;
-    list.push({
-      id:id++,
-      emoji:base[0],
-      name:newName,
-      category:cat,
-      meal:base[3],
-      time:timeVar,
-      servings:base[5],
-      ingredients:newIngr.split('|'),
-      steps:newSteps.split('|'),
-      premium:id%5===4
-    });
-    i++;
-  }
-  return list;
-}
-const RECIPES=buildAllRecipes();
-
-/* ============ ПЛАНЫ ============ */
+/* ============ ПЛАНЫ (ИСПРАВЛЕНО) ============ */
 const PLANS={
   free:{name:'Базовый',price:0,old:0,badge:''},
   plus:{name:'Плюс',price:299,old:599,badge:'plus'},
   pro:{name:'Про',price:599,old:1199,badge:'pro'}
 };
 const FEATURES=[
-  {k:'fridge',t:'Холодильник',f:true,p:true,pr:true},
-  {k:'recipes',t:'Рецепты',f:'до 200',p:'до 1000',pr:'все'},
-  {k:'scan',t:'Скан чека',f:false,p:'5/мес',pr:'∞'},
-  {k:'pdf',t:'Экспорт PDF',f:false,p:true,pr:true},
-  {k:'tg',t:'Telegram',f:false,p:false,pr:true},
-  {k:'csv',t:'Excel',f:false,p:false,pr:true},
-  {k:'kbju',t:'КБЖУ',f:false,p:false,pr:true},
-  {k:'menu',t:'Планировщик',f:'простой',p:'полный',pr:'полный'},
-  {k:'menulist',t:'Список из меню',f:false,p:true,pr:true},
-  {k:'my',t:'Свои рецепты',f:'5',p:'50',pr:'∞'},
-  {k:'stats',t:'Статистика',f:'базовая',p:'расширенная',pr:'+экспорт'},
-  {k:'family',t:'Семья',f:false,p:'2',pr:'5'},
-  {k:'adfree',t:'Без рекламы',f:false,p:true,pr:true}
+  {t:'Холодильник',free:true,plus:true,pro:true},
+  {t:'Рецепты',free:'200',plus:'1000',pro:'все'},
+  {t:'Скан чека',free:false,plus:'5/мес',pro:'∞'},
+  {t:'Экспорт PDF',free:false,plus:true,pro:true},
+  {t:'Telegram',free:false,plus:false,pro:true},
+  {t:'Excel',free:false,plus:false,pro:true},
+  {t:'КБЖУ',free:false,plus:false,pro:true},
+  {t:'Планировщик',free:'просмотр',plus:'полный',pro:'полный'},
+  {t:'Список из меню',free:false,plus:true,pro:true},
+  {t:'Свои рецепты',free:'5',plus:'50',pro:'∞'},
+  {t:'Статистика',free:'базовая',plus:'расширенная',pro:'+экспорт'},
+  {t:'Семья',free:false,plus:'2',pro:'5'},
+  {t:'Без рекламы',free:false,plus:true,pro:true}
 ];
 
 /* ============ СОСТОЯНИЕ ============ */
-let currentUser=null,plan='free',pendingPlan=null;
+let currentUser=null,plan='free',pendingPlan=null,fromWelcome=false;
 let fridge=[],shoppingList=[],favorites=[],myRecipes=[],menuPlan={};
 let activeId=null,currentMeal='',menuWeekOffset=0;
 let timerInterval=null,timerRemaining=0,scanStream=null,scanResults=[];
@@ -999,16 +839,8 @@ function toast(m){const t=$('#toast');t.textContent=m;t.classList.remove('hidden
 function fmt(d){if(!d)return '';return new Date(d).toLocaleDateString('ru-RU',{day:'numeric',month:'short'});}
 function daysU(d){if(!d)return null;const t=new Date();t.setHours(0,0,0,0);const x=new Date(d);x.setHours(0,0,0,0);return Math.round((x-t)/86400000);}
 function norm(s){return String(s).toLowerCase().trim().replace(/ё/g,'е').replace(/[^a-zа-я0-9\s]/g,'');}
-
-/* ТЕМА */
 function applyTheme(){const h=new Date().getHours();document.body.classList.toggle('dark',h>=19||h<7);}
-
-/* ПРАВА */
-function has(k){
-  if(plan==='pro') return true;
-  if(plan==='plus') return !['tg','csv','kbju'].includes(k);
-  return false;
-}
+function has(k){if(plan==='pro') return true;if(plan==='plus') return !['tg','csv','kbju'].includes(k);return false;}
 function recipeLimit(){return plan==='pro'?9999:plan==='plus'?1000:200;}
 function myLimit(){return plan==='pro'?9999:plan==='plus'?50:5;}
 function scanLimit(){return plan==='pro'?9999:plan==='plus'?5:0;}
@@ -1021,7 +853,6 @@ function updatePlanBadge(){
   b.textContent=plan==='plus'?'💎 PLUS':'👑 PRO';
 }
 
-/* АВТОРИЗАЦИЯ */
 function saveUsers(u){localStorage.setItem('sf_users',JSON.stringify(u));}
 function getUsers(){return JSON.parse(localStorage.getItem('sf_users')||'[]');}
 function saveSession(e){localStorage.setItem('sf_session',e);}
@@ -1057,12 +888,15 @@ function enterApp(){
   renderStats();
   renderMy();
   updateStats();
-  // Если был pendingPlan
-  if(pendingPlan){setTimeout(()=>openTariffs(pendingPlan),400);pendingPlan=null;}
+  // Если пришли с приветственного экрана — показываем тарифы с CTA
+  if(pendingPlan){
+    setTimeout(()=>openTariffs(pendingPlan, true), 500);
+    pendingPlan=null;
+    fromWelcome=false;
+  }
 }
 function logout(){currentUser=null;plan='free';clearSession();$('#app').classList.add('hidden');$('#welcome').classList.remove('hidden');$('#login-form').reset();$('#reg-form').reset();}
 
-/* СТАТИСТИКА */
 function updateStats(){
   let e=0,x=0;
   fridge.forEach(i=>{if(!i.expiry)return;const d=daysU(i.expiry);if(d<0)x++;else if(d<=3)e++;});
@@ -1071,7 +905,6 @@ function updateStats(){
   $('#st-exd').textContent=x;
 }
 
-/* ХОЛОДИЛЬНИК */
 function setupFridge(){
   const fr=$('#fr'),hint=$('#fr-hint'),closeBtn=$('#fr-cls');
   function toggle(){
@@ -1082,13 +915,17 @@ function setupFridge(){
   }
   // Клик по дверцам
   $$('.fr-door').forEach(d=>d.addEventListener('click',e=>{e.stopPropagation();toggle();}));
-  // Клик по полкам — только когда холодильник открыт
+  // Клик по полкам: если холодильник закрыт — открываем и через задержку показываем полку
   $$('.shelf').forEach(sh=>{
     sh.addEventListener('click',e=>{
       e.stopPropagation();
-      if(!fr.classList.contains('open')){toggle();return;}
       const k=sh.dataset.sh,nm=sh.dataset.nm||'Полка';
-      openShelf(k,nm);
+      if(!fr.classList.contains('open')){
+        toggle();
+        setTimeout(()=>openShelf(k,nm),700);
+      }else{
+        openShelf(k,nm);
+      }
     });
   });
   closeBtn.addEventListener('click',e=>{e.stopPropagation();toggle();});
@@ -1144,16 +981,15 @@ window.openPi=function(id){
   let exp='Не указан';
   if(item.expiry){const d=daysU(item.expiry);if(d<0)exp=`⚠ Просрочено ${Math.abs(d)} дн.`;else if(d===0)exp='⏰ Сегодня';else exp=`✓ Осталось ${d} дн.`;}
   $('#pi-b').innerHTML=`
-    <div class="pi-row" style="padding:14px;background:var(--s2);border-radius:10px;margin-bottom:8px;border-left:4px solid var(--cy)"><strong style="font-size:.72rem;color:var(--t2);display:block;text-transform:uppercase">Калорийность</strong><span style="font-size:1.4rem;color:var(--p);font-weight:900">${info.cal} ккал/100 г</span></div>
-    <div class="pi-row" style="padding:14px;background:var(--s2);border-radius:10px;margin-bottom:8px;border-left:4px solid var(--cy)"><strong style="font-size:.72rem;color:var(--t2);display:block;text-transform:uppercase">Количество</strong><span>${item.qty} ${item.unit}</span></div>
-    <div class="pi-row" style="padding:14px;background:var(--s2);border-radius:10px;margin-bottom:8px;border-left:4px solid var(--cy)"><strong style="font-size:.72rem;color:var(--t2);display:block;text-transform:uppercase">Хранение</strong><span>${info.store}</span></div>
-    <div class="pi-row" style="padding:14px;background:var(--s2);border-radius:10px;border-left:4px solid var(--cy)"><strong style="font-size:.72rem;color:var(--t2);display:block;text-transform:uppercase">Срок</strong><span>${exp}</span></div>`;
+    <div style="padding:14px;background:var(--s2);border-radius:10px;margin-bottom:8px;border-left:4px solid var(--cy)"><strong style="font-size:.72rem;color:var(--t2);display:block;text-transform:uppercase">Калорийность</strong><span style="font-size:1.4rem;color:var(--p);font-weight:900">${info.cal} ккал/100 г</span></div>
+    <div style="padding:14px;background:var(--s2);border-radius:10px;margin-bottom:8px;border-left:4px solid var(--cy)"><strong style="font-size:.72rem;color:var(--t2);display:block;text-transform:uppercase">Количество</strong><span>${item.qty} ${item.unit}</span></div>
+    <div style="padding:14px;background:var(--s2);border-radius:10px;margin-bottom:8px;border-left:4px solid var(--cy)"><strong style="font-size:.72rem;color:var(--t2);display:block;text-transform:uppercase">Хранение</strong><span>${info.store}</span></div>
+    <div style="padding:14px;background:var(--s2);border-radius:10px;border-left:4px solid var(--cy)"><strong style="font-size:.72rem;color:var(--t2);display:block;text-transform:uppercase">Срок</strong><span>${exp}</span></div>`;
   $('#pi-rm').onclick=()=>{fridge=fridge.filter(p=>p.id!==id);persist();renderFridge();renderRecipes();updateStats();renderStats();$('#modal-pi').classList.add('hidden');toast('Удалено');};
   $('#pi-cl').onclick=()=>$('#modal-pi').classList.add('hidden');
   $('#modal-pi').classList.remove('hidden');
 };
 
-/* РЕЦЕПТЫ */
 function ingName(s){return s.split('—')[0].trim();}
 function ingQty(s){const p=s.split('—');return p[1]?p[1].trim():'';}
 function match(r){
@@ -1249,7 +1085,6 @@ window.openRecipe=function(id,isMy){
   $('#modal-recipe').classList.remove('hidden');
 };
 
-/* ТАЙМЕР */
 window.startTimer=function(m){
   if(timerInterval) clearInterval(timerInterval);
   timerRemaining=m*60;
@@ -1267,7 +1102,6 @@ window.startTimer=function(m){
 };
 function updateTimer(){const m=Math.floor(timerRemaining/60),s=timerRemaining%60;$('#tmr-d').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;}
 
-/* СПИСОК */
 function renderShop(){
   const list=$('#shop-list'),empty=$('#shop-empty'),badge=$('#shop-badge');
   const active=shoppingList.filter(i=>!i.bought);
@@ -1301,7 +1135,6 @@ function exportCSV(){
   toast('📊 Файл скачан');
 }
 
-/* МЕНЮ */
 function weekStart(offset=0){
   const d=new Date();const day=d.getDay()||7;
   d.setDate(d.getDate()-day+1+offset*7);d.setHours(0,0,0,0);return d;
@@ -1335,7 +1168,6 @@ function openMenuAdd(pre){
   $('#modal-menu').classList.remove('hidden');
 }
 
-/* СТАТИСТИКА */
 function renderStats(){
   const total=fridge.length;
   const exp=fridge.filter(i=>i.expiry&&daysU(i.expiry)>=0&&daysU(i.expiry)<=3).length;
@@ -1355,7 +1187,6 @@ function renderStats(){
   $('#chart-exp').innerHTML=soon.length?soon.map(i=>{const d=daysU(i.expiry);const nm=i.name;const st=d<0?'Просрочено':d===0?'Сегодня':`${d} дн.`;return `<div class="br"><div class="bl">${nm.length>12?nm.slice(0,11)+'…':nm}</div><div class="bt"><div class="bf" style="width:${d<0?100:Math.max(20,(3-Math.max(d,0))/3*100)}%;background:linear-gradient(90deg,${d<0?'#f43f5e':d===0?'#f59e0b':'#6366f1'},#e11d48)"></div></div><div class="bv">${st}</div></div>`;}).join(''):'<p style="color:var(--t2);font-size:.9rem">Всё свежее 🎉</p>';
 }
 
-/* МОИ */
 function renderMy(){
   const list=$('#my-list'),empty=$('#my-empty');
   if(!myRecipes.length){list.innerHTML='';empty.classList.remove('hidden');return;}
@@ -1377,13 +1208,24 @@ function saveMy(){
   toast('✅ Сохранено');
 }
 
-/* ТАРИФЫ */
-function renderTariffs(view){
+/* ТАРИФЫ — ИСПРАВЛЕНО */
+function renderTariffs(view,showCTA){
   const grid=$('#tariff-g');
+  const cta=$('#tariff-cta');
   let cols,title,sub;
-  if(view==='plus'){cols=['free','plus'];title='Сравнение тарифов';sub='Базовый vs Плюс';}
-  else if(view==='pro'){cols=['free','plus','pro'];title='Сравнение тарифов';sub='Все планы — выберите лучший';}
-  else{cols=['free','plus','pro'];title='Все тарифы';sub='Выберите подходящий план';}
+  if(view==='plus'){
+    cols=['free','plus'];
+    title='Сравнение тарифов';
+    sub='Базовый vs Плюс — что вы получите';
+  }else if(view==='pro'){
+    cols=['free','plus','pro'];
+    title='Сравнение тарифов';
+    sub='Все планы — выберите лучший';
+  }else{
+    cols=['free','plus','pro'];
+    title='Все тарифы';
+    sub='Выберите подходящий план';
+  }
   $('#tariff-t').textContent=title;
   $('#tariff-s').textContent=sub;
   grid.style.setProperty('--cols',cols.length);
@@ -1393,7 +1235,7 @@ function renderTariffs(view){
     const cls=k==='plus'?'featured':k==='pro'?'premium':'';
     const pcls=k==='pro'?'pr':k==='free'?'fr':'';
     const feats=FEATURES.map(f=>{
-      const v=f[k];
+      const v=f[k]; // <-- ИСПРАВЛЕНО! Было f.f — теперь f[k] = f.free/f.plus/f.pro
       let icon,txt,off='';
       if(v===true){icon='✓';txt=f.t;}
       else if(v===false){icon='✕';txt=f.t;off='off';}
@@ -1414,6 +1256,19 @@ function renderTariffs(view){
       <button class="btn ${isCur?'btn-secondary':'btn-primary'} btn-full" data-plan="${k}" ${isCur?'disabled':''}>${isCur?'✓ Активен':'Выбрать'}</button>
     </div>`;
   }).join('');
+  // CTA "попробовать 7 дней бесплатно" — только если пришли с welcome или у пользователя free
+  if(showCTA && currentUser){
+    cta.classList.remove('hidden');
+    $('#tariff-free-btn').onclick=()=>{
+      // Активируем тариф Плюс на 7 дней (тестовый режим)
+      plan='plus';
+      persist();updatePlanBadge();renderRecipes();renderMy();
+      $('#modal-tariffs').classList.add('hidden');
+      toast('🎁 Плюс активирован на 7 дней бесплатно!');
+    };
+  } else {
+    cta.classList.add('hidden');
+  }
   grid.querySelectorAll('button[data-plan]').forEach(b=>{
     b.onclick=()=>{
       const k=b.dataset.plan;
@@ -1424,12 +1279,11 @@ function renderTariffs(view){
     };
   });
 }
-function openTariffs(view='all'){
-  renderTariffs(view);
+function openTariffs(view='all',showCTA=false){
+  renderTariffs(view,showCTA);
   $('#modal-tariffs').classList.remove('hidden');
 }
 
-/* МОДАЛКИ */
 function setupModals(){
   $$('.mc-btn').forEach(b=>b.onclick=()=>{
     const m=document.getElementById(b.dataset.close);
@@ -1542,7 +1396,6 @@ function setupModals(){
   $('#mr-sv').onclick=saveMy;
 }
 
-/* ФОРМА ПОКУПОК */
 function setupShop(){
   $('#sh-nm').addEventListener('input',e=>{
     const n=e.target.value;
@@ -1563,7 +1416,6 @@ function setupShop(){
   });
 }
 
-/* НАВИГАЦИЯ */
 function setupNav(){
   $$('.nb').forEach(b=>b.onclick=()=>{
     $$('.nb').forEach(x=>x.classList.remove('active'));
@@ -1574,7 +1426,6 @@ function setupNav(){
   });
 }
 
-/* WELCOME */
 function setupWelcome(){
   const show=tab=>{
     $('#welcome').classList.add('hidden');
@@ -1586,13 +1437,29 @@ function setupWelcome(){
   };
   $('#w-login').onclick=()=>show('login');
   $('#w-register').onclick=()=>show('register');
-  $('#w-start').onclick=()=>show('register');
-  // Плюс и Про — сначала регистрация, потом тариф
-  $('#w-plus').onclick=()=>{pendingPlan='plus';show('register');};
-  $('#w-pro').onclick=()=>{pendingPlan='pro';show('register');};
+  // Кнопки тарифов на welcome — показывают СРАВНЕНИЕ
+  $('#w-plus').onclick=()=>{
+    if(currentUser){openTariffs('plus',true);}
+    else{pendingPlan='plus';fromWelcome=true;openTariffs('plus',false);$('#modal-tariffs').dataset.fromWelcome='1';}
+  };
+  $('#w-pro').onclick=()=>{
+    if(currentUser){openTariffs('pro',true);}
+    else{pendingPlan='pro';fromWelcome=true;openTariffs('pro',false);$('#modal-tariffs').dataset.fromWelcome='1';}
+  };
+  // Кнопка "попробовать 7 дней" в тарифах — если не авторизован, ведёт на регистрацию
+  $('#tariff-free-btn').onclick=()=>{
+    if(currentUser){
+      plan='plus';persist();updatePlanBadge();renderRecipes();renderMy();
+      $('#modal-tariffs').classList.add('hidden');
+      toast('🎁 Плюс активирован на 7 дней!');
+    } else {
+      // Закрываем тарифы и открываем регистрацию
+      $('#modal-tariffs').classList.add('hidden');
+      show('register');
+    }
+  };
 }
 
-/* AUTH */
 function setupAuth(){
   $$('.auth-tab').forEach(t=>t.onclick=()=>{
     $$('.auth-tab').forEach(x=>x.classList.remove('active'));
@@ -1604,6 +1471,7 @@ function setupAuth(){
   $('#login-form').addEventListener('submit',e=>{
     e.preventDefault();
     const em=$('#l-em').value.trim().toLowerCase(),pw=$('#l-pw').value;
+    if(!em||!pw){$('#l-err').textContent='Заполните все поля';return;}
     const u=getUsers().find(x=>x.email===em&&x.password===pw);
     if(!u){$('#l-err').textContent='Неверный email или пароль';return;}
     $('#l-err').textContent='';
@@ -1612,20 +1480,27 @@ function setupAuth(){
   $('#reg-form').addEventListener('submit',e=>{
     e.preventDefault();
     const name=$('#r-nm').value.trim(),em=$('#r-em').value.trim().toLowerCase(),pw=$('#r-pw').value;
-    if(pw.length<4){$('#r-err').textContent='Пароль минимум 4';return;}
+    if(!name){$('#r-err').textContent='Введите имя';return;}
+    if(!em){$('#r-err').textContent='Введите email';return;}
+    if(pw.length<4){$('#r-err').textContent='Пароль минимум 4 символа';return;}
     const users=getUsers();
-    if(users.find(x=>x.email===em)){$('#r-err').textContent='Email занят';return;}
+    if(users.find(x=>x.email===em)){$('#r-err').textContent='Email уже зарегистрирован';return;}
     const u={name,email:em,password:pw,plan:'free'};
     users.push(u);saveUsers(users);
     $('#r-err').textContent='';
     currentUser=u;saveSession(em);
     fridge=[];shoppingList=[];favorites=[];myRecipes=[];menuPlan={};plan='free';
-    persist();enterApp();
+    persist();
+    // Сохраняем выбранный тариф
+    if(pendingPlan){
+      plan=pendingPlan;
+      persist();
+    }
+    enterApp();
   });
   $('#logout-btn').onclick=logout;
 }
 
-/* ФИЛЬТРЫ */
 function setupFilters(){
   $('#r-search').addEventListener('input',renderRecipes);
   $('#r-sort').addEventListener('change',renderRecipes);
@@ -1640,7 +1515,6 @@ function setupFilters(){
   });
 }
 
-/* СКАН */
 async function startScan(){
   const lim=scanLimit();
   if(lim===0){$('#scan-lock').classList.remove('hidden');$('#scan-act').classList.add('hidden');$('#modal-scan').classList.remove('hidden');return;}
@@ -1732,7 +1606,6 @@ function addScanned(){
   scanResults=[];
 }
 
-/* СТАРТ */
 document.addEventListener('DOMContentLoaded',()=>{
   applyTheme();
   setInterval(applyTheme,10*60*1000);
